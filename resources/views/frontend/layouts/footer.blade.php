@@ -1,0 +1,53 @@
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box">
+						<h2 class="widget-title">1Choice</h2>
+						<ul>
+							<li><a href="{{url('about-us')}}">เกี่ยวกับเรา</a></li>
+							<li><a href="{{url('news-activities')}}">ข่าวสารและกิจกรรม</a></li>
+							<li><a href="{{url('condition')}}">ข้อกำหนดและเงื่อนไข</a></li>
+							<li><a href="{{url('help-center')}}">ศูนย์ช่วยเหลือ</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box">
+						<h2 class="widget-title">สมาชิก</h2>
+						<ul>
+							<li><a href="{{url('rewards')}}">ของรางวัล</a></li>
+							<li><a href="{{url('alliance')}}">พันธมิตรในเครือ</a></li>
+							<li><a href="{{url('privilege')}}">สิทธิประโยชน์</a></li>
+							@if(Auth::guard('member')->user() == NULL)
+								<li><a href="{{url('member/login')}}">เข้าสู่ระบบ</a></li>
+							@endif
+
+							@auth('member')
+								<li>
+									<a href="{{url('member/profile')}}">บัญชีสมาชิก</a>
+								</li>
+							@endauth
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box">
+						<h2 class="widget-title about-us">ติดตามเรา</h2>
+						<ul>
+							<li><a href="{{url('')}}">Facebook</a></li>
+							<li><a href="{{url('')}}">Line Official Account</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box">
+						<h2 class="widget-title">ศูนย์บริการสมาชิก</h2>
+						<p>082-628-2244</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
