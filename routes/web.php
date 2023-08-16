@@ -33,7 +33,7 @@ Route::group(['prefix' => 'member'], function(){
 
     Route::get('/profile','Frontend\MembersController@profile')->name('member.home');
     Route::get('/reward-redem/{id}','Frontend\RewardsController@rewardRedem');
-    // Route::get('/reward-history/{id}','Frontend\\MembersController@rewardHistory');
+    Route::get('/redeem-point','Frontend\MembersController@redeemPoint');
 });
 
 
@@ -101,7 +101,8 @@ Route::group(['prefix' => '/'], function(){
     Route::get('campaign-notActive','Backend\AdminController@campaignNotActive'); //หน้ายังไม่เริ่มแคมเปญ
     Route::get('campaign-pause','Backend\AdminController@campaignPause'); //หน้าแคมเปญถูกพัก
     Route::get('campaign-off','Backend\AdminController@campaignOff'); //หน้าสิ้นสุดแคมเปญ
-    
+    Route::get('campaign-edit/{id}','Backend\AdminController@campaignEdit'); //แก้ไขแคมเปญ
+    Route::post('update-campaign','Backend\AdminController@updateCampaign'); //อัพเดตแคมเปญ
 });
 
 // Admin ร้านค้า

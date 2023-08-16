@@ -402,6 +402,28 @@ class AdminController extends Controller
         }
     }
 
+    public function campaignEdit($id) {
+        $campaign = Campaign::findOrFail($id);
+        return view('/backend/admin/campaign/campaign-edit')->with('campaign',$campaign);
+    }
+
+    public function updateCampaign(Request $request) {
+        $id = $request->get('id');
+        $campaign = Campaign::findOrFail($id);
+        $campaign->update($request->all());
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/campaign/', $filename);
+            $path = 'images/'.$filename;
+            $campaign = Campaign::findOrFail($id);
+            $campaign->image = $filename; 
+            $campaign->save();
+        }
+        return redirect()->action('Backend\AdminController@campaign'); 
+    }
+
     public function reward(Request $request) {
         $NUM_PAGE = 20;
         $rewards = Reward::paginate($NUM_PAGE);

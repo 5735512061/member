@@ -167,7 +167,7 @@
                     <div class="col-md-4 col-6">
                         <div class="card mt-3">
                             <div class="card-body" style="padding: 1.25rem 0 1.25rem 0;">
-                                <p>Coupon</p>
+                                <p>คูปอง</p>
                             </div>
                         </div>
                     </div>
@@ -181,11 +181,13 @@
                         </a>
                     </div>
                     <div class="col-md-4 col-6">
-                        <div class="card mt-3">
-                            <div class="card-body" style="padding: 1.25rem 0 1.25rem 0;">
-                                <p>ประวัติการแลกพอยท์</p>
+                        <a href="{{ url('member/redeem-point') }}">
+                            <div class="card mt-3">
+                                <div class="card-body" style="padding: 1.25rem 0 1.25rem 0;">
+                                    <p>ประวัติการแลกพอยท์</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-md-4 col-6">
                         <a href="{{ url('member/tel-change') }}">

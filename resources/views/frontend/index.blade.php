@@ -104,75 +104,116 @@
     <div class="container">
         <div class="header-title">
             <h2 style="padding-top: 5rem;">
-                <strong>ข่าวสารและกิจกรรม</strong>
+                <strong>พันธมิตรในเครือ</strong>
             </h2>
             <div style="display: flex; justify-content: space-between;">
-                <h4>ข่าวสารและกิจกรรม</h4>
-                <a href="{{ url('news-activities') }}">
+                <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
+                <a href="{{ url('alliance') }}">
                     <p style="color: #ffffff;">ดูเพิ่มเติม <i class="fa fa-chevron-right" aria-hidden="true"></i></p>
                 </a>
             </div>
-        </div><br>
+        </div>
         <div class="row">
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                    @foreach ($rewards as $reward => $value)
+                        @php
+                            $reward_point = DB::table('reward_points')
+                                ->where('reward_id', $value->id)
+                                ->value('point');
+                        @endphp
+                        <div class="col-md-3 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                                        class="img-responsive" width="100%">
+                                    <p class="mb-0 mt-4">
+                                        {{ $value->name }}</p>
+                                    <p class="mb-3">ใช้พอยท์ <i class="fa fa-caret-right"
+                                            style="color:#777777;"></i>
+                                        <span>{{ $reward_point }}</span> พอยท์
+                                    </p>
+                                    <div style="border-bottom: 2px dashed #cac8c8;"></div>
+                                    <div style="text-align: right;" class="mt-3">
+                                        <a href="{{ url('reward-detail') }}/{{ $value->id }}"
+                                            class="btn btn-outline-primary radius-15">รายละเอียด</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><br>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="background-color:#313131; margin-top:10rem;">
+        <div class="container" style="padding-bottom: 5rem;">
+            <div class="header-title">
+                <h2 style="padding-top: 5rem;">
+                    <strong>ข่าวสารและกิจกรรม</strong>
+                </h2>
+                <div style="display: flex; justify-content: space-between;">
+                    <h4>ข่าวสารและกิจกรรม</h4>
+                    <a href="{{ url('news-activities') }}">
+                        <p style="color: #ffffff;">ดูเพิ่มเติม <i class="fa fa-chevron-right" aria-hidden="true"></i></p>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card ">
-                            <div class="card-body">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
-                                    width="100%">
+                        <div class="col-md-4 mt-3">
+                            <div class="card ">
+                                <div class="card-body">
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="img-responsive"
+                                        width="100%">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="header-title">
-            <h3 style="padding-top: 5rem;">
-                <strong>ตรวจสอบคะแนนสะสมผ่านทางเว็บไซต์</strong>
-            </h3>
-        </div><br>
     </div>
 @endsection

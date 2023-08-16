@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Member;
+use App\Model\RedeemReward;
 use Auth;
 
 class MembersController extends Controller
@@ -40,5 +41,16 @@ class MembersController extends Controller
         $member->update($request->all());
 
     	return redirect()->action('Frontend\\MembersController@profile');
+    }
+
+    public function redeemPoint(Request $request){
+        $NUM_PAGE = 20;
+        $member_id = Auth::guard('member')->user()->id;
+        $redeem_points = RedeemReward::where('member_id', $member_id)->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('frontend/member/account/redeem-point')->with('redeem_points',$redeem_points)
+                                                           ->with('NUM_PAGE',$NUM_PAGE)
+                                                           ->with('page',$page);
     }
 }
