@@ -103,6 +103,14 @@ Route::group(['prefix' => '/'], function(){
     Route::get('campaign-off','Backend\AdminController@campaignOff'); //หน้าสิ้นสุดแคมเปญ
     Route::get('campaign-edit/{id}','Backend\AdminController@campaignEdit'); //แก้ไขแคมเปญ
     Route::post('update-campaign','Backend\AdminController@updateCampaign'); //อัพเดตแคมเปญ
+
+    // พันธมิตรในเครือ
+    Route::get('partner','Backend\AdminController@partner'); //หน้าพันธมิตรในเครือทั้งหมด
+    Route::get('partner-off','Backend\AdminController@partnerOff'); //หน้าปิดการใช้งานพันธมิตร
+    Route::get('create-partner','Backend\AdminController@createPartner'); //หน้าสร้างพันธมิตร
+    Route::post('create-partner','Backend\AdminController@createPartnerPost'); //สร้างพันธมิตร
+    Route::get('partner-edit/{id}','Backend\AdminController@partnerEdit'); //แก้ไขพันธมิตร
+    Route::post('update-partner','Backend\AdminController@updatePartner'); //อัพเดตพันธมิตร
 });
 
 // Admin ร้านค้า
@@ -159,3 +167,20 @@ Route::group(['prefix' => 'staff'], function(){
     Route::get('coupon','Backend\StaffController@coupon'); //หน้าจัดการคูปอง
     Route::get('search-coupon','Backend\StaffController@searchCoupon'); //หน้าค้นหาคูปอง
 });
+
+
+// Partner เครือข่ายพันธมิตร
+Route::group(['prefix' => 'partner'], function(){
+    // ข้อมูลการเข้าสู่ระบบของพันธมิตร
+    Route::get('/login','AuthPartner\LoginController@ShowLoginForm')->name('partner.login');
+    Route::post('/login','AuthPartner\LoginController@login')->name('partner.login.submit');
+    Route::post('/logout', 'AuthPartner\LoginController@logout')->name('partner.logout');
+
+    Route::get('dashboard','Backend\PartnerController@dashboard')->name('partner.home'); //หน้า dashboard
+    Route::get('search-member','Backend\PartnerController@searchMember'); //หน้าค้นหาข้อมูลสมาชิก
+
+    // จัดการคูปอง
+    Route::get('coupon','Backend\PartnerController@coupon'); //หน้าจัดการคูปอง
+    Route::get('search-coupon','Backend\PartnerController@searchCoupon'); //หน้าค้นหาคูปอง
+});
+

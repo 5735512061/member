@@ -59,6 +59,14 @@
         </a>
       </li>
       <li class="nav-item">
+        <a class="nav-link " href="{{url('/partner')}}">
+          <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+            <i class="fa fa-handshake-o text-dark text-sm opacity-10 mb-2"></i>
+          </div>
+          <span class="nav-link-text ms-1">เครือข่ายพันธมิตร</span>
+        </a>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" href="{{ route('admin.logout') }}" onclick="event.preventDefault();
         document.getElementById('logout-form').submit();">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">

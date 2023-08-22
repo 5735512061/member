@@ -16,6 +16,7 @@ use App\Model\RewardPoint;
 use App\Model\Campaign;
 use App\Model\RedeemPoint;
 use App\Model\RedeemReward;
+use App\Model\PartnerShop;
 
 use Carbon\Carbon;
 use Validator;
@@ -579,6 +580,60 @@ class AdminController extends Controller
         }
     }
 
+    public function partner(Request $request) {
+        $NUM_PAGE = 100;
+        $partners = PartnerShop::orderByRaw('FIELD(status,"เปิด","ปิด")')->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/partner/index')->with('NUM_PAGE',$NUM_PAGE)
+                                                  ->with('page',$page)
+                                                  ->with('partners',$partners);
+    }
+
+    public function partnerOff(Request $request) {
+        $NUM_PAGE = 100;
+        $partners = PartnerShop::where('status','ปิด')->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/partner/partner-off')->with('NUM_PAGE',$NUM_PAGE)
+                                                        ->with('page',$page)
+                                                        ->with('partners',$partners);
+    }
+
+    public function createPartner() {
+        return view('backend/admin/partner/create-partner');
+    }
+
+    public function createPartnerPost(Request $request) {
+        // $validator = Validator::make($request->all(), $this->rules_createPartner(), $this->messages_createPartner());
+        // if($validator->passes()) {
+
+            $partner = $request->all();
+            $partner['password'] = bcrypt($partner['tel']);
+            $partner = PartnerShop::create($partner);
+
+            // $partner->session()->flash('alert-success', 'เพิ่มเครือข่ายพันธมิตรสำเร็จ');
+            return redirect()->action('Backend\AdminController@partner');
+        // }else{
+            // $request->session()->flash('alert-danger', 'เพิ่มเครือข่ายพันธมิตรไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
+            // return back()->withErrors($validator)->withInput();   
+        // }
+    }
+
+    public function partnerEdit($id) {
+        $partner = PartnerShop::findOrFail($id);
+        return view('/backend/admin/partner/partner-edit')->with('partner',$partner);
+    }
+
+    public function updatePartner(Request $request) {
+        $id = $request->get('id');
+
+        $partner = PartnerShop::findOrFail($id);
+        $partner->update($request->all());
+
+        return redirect()->action('Backend\AdminController@partner'); 
+    }
+
     public function rules_editProfile() {
         return [
             'name' => 'required',
@@ -692,6 +747,21 @@ class AdminController extends Controller
             'expire_date.required' => 'กรุณากรอกวันที่สิ้นสุดแคมเปญ',
             'detail.required' => 'กรุณากรอกเงื่อนไขในการใช้สิทธิ์',
             'image.required' => 'กรุณาแนบไฟล์รูปภาพ',
+        ];
+    }
+
+    public function rules_createPartner() {
+        return [
+            'name' => 'required',
+            'tel' => 'required|unique:partner_shops',
+        ];
+    }
+
+    public function messages_createPartner() {
+        return [
+            'name.required' => 'กรุณากรอกชื่อพันธมิตร',
+            'tel.required' => 'กรุณากรอกเบอร์โทรศัพท์',
+            'tel.unique' => 'เบอร์โทรศัพท์นี้มีผู้ใช้แล้ว',
         ];
     }
 }
