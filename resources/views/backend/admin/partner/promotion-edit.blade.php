@@ -98,6 +98,9 @@
     }
 </style>
 @section("content")
+@php
+    $partner = DB::table('partner_shops')->where('id',$promotion->partner_id)->value('name');
+@endphp
 <div class="container-fluid py-4">
     <div class="campaign">
         <div class="row">   
@@ -105,7 +108,7 @@
                 <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
             </div>
         </div>
-        <h4 class="mt-4">เพิ่มเครือข่ายพันธมิตร</h4>
+        <h4 class="mt-4">แก้ไขโปรโมชั่น {{$partner}}</h4>
         <div class="row mt-4">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -116,55 +119,28 @@
                         @endif
                     @endforeach
                 </div>
-                <form action="{{url('create-partner')}}" enctype="multipart/form-data" method="post">@csrf
+                <form action="{{url('update-promotion')}}" enctype="multipart/form-data" method="post">@csrf
                     <div class="row">
-                        <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-                            <div class="card z-index-2">
-                                <div class="card-header pb-0 pt-3 bg-transparent">
-                                    @if ($errors->has('image'))
-                                        <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('image') }})</span></center>
-                                    @endif
-                                    <input type="file" id="file" name="image" accept="image/*" hidden>
-                                    <div class="img-area" data-img="">
-                                        <i class="fa fa-cloud-upload icon" aria-hidden="true"></i>
-                                        <h5>Upload Image</h5>
-                                    </div>
-                                    <a class="select-image mb-4" style="text-align: center;">SELECT IMAGE</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                        <div class="offset-2 col-md-8">
                             <div class="card z-index-2">
                                 <div class="card-header pb-0 pt-3 bg-transparent">
                                     <div class="row">
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ชื่อพันธมิตร <span>(จำเป็นต้องกรอก)</span>
-                                                @if ($errors->has('name'))
-                                                    <span class="text-danger" style="font-size: 15px;">({{ $errors->first('name') }})</span>
-                                                @endif
-                                            </p>
-                                            <input class="form-control" type="text" placeholder="กรุณากรอกชื่อพันธมิตร" name="name">
+                                            <p>พันธมิตร</p>
+                                            <input class="form-control" type="text" value="{{$partner}}" disabled>
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> เบอร์โทรศัพท์ <span>(จำเป็นต้องกรอก)</span>
-                                                @if ($errors->has('tel'))
-                                                    <span class="text-danger" style="font-size: 15px;">({{ $errors->first('tel') }})</span>
+                                            <p><span>*</span> รายละเอียดโปรโมชั่น <span>(จำเป็นต้องกรอก)</span>
+                                                @if ($errors->has('promotion'))
+                                                    <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('promotion') }})</span></center>
                                                 @endif
                                             </p>
-                                            <input type="text" name="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์" class="phone_format form-control">
-                                        </div>
-                                        <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ประเภทพันธมิตร <span>(จำเป็นต้องกรอก)</span></p>
-                                            <select name="type" class="form-control">
-                                                <option value="Food And Drink">Food And Drink</option>
-                                                <option value="Life Style">Life Style</option>
-                                                <option value="Travel">Travel</option>
-                                                <option value="Car Service">Car Service</option>
-                                            </select> 
+                                            <textarea name="promotion" class="ckeditor form-control">{{$promotion->promotion}}</textarea>
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <p>สถานะ</p>
                                             <select name="status" class="form-control">
+                                                <option value="{{$promotion->status}}">{{$promotion->status}}</option>
                                                 <option value="เปิด">เปิด</option>
                                                 <option value="ปิด">ปิด</option>
                                             </select> 
@@ -172,7 +148,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mt-3">
-                                            <button type="submit" class="btn btn-lg btn-success">เพิ่มเครือข่ายพันธมิตร</button>
+                                            <input type="hidden" name="id" value="{{$promotion->id}}">
+                                            <button type="submit" class="btn btn-lg btn-success">อัพเดตโปรโมชั่น</button>
                                         </div>
                                     </div>
                                 </div>
@@ -187,6 +164,13 @@
 </div>  
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{asset('https://code.jquery.com/jquery-3.2.1.min.js')}}"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
 <script>
     // number phone
     function phoneFormatter() {

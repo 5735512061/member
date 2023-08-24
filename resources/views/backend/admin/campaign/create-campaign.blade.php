@@ -179,13 +179,13 @@
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <p>สามารถใช้ได้ที่</p>
-                                            <select name="store_id" class="form-control">
+                                            <select name="partner_id" class="form-control">
                                                 @php
-                                                    $stores = DB::table('account_stores')->where('status','เปิด')->get();
+                                                    $partners = DB::table('partner_shops')->where('status','เปิด')->get();
                                                 @endphp
                                                 <option value="0">ไม่ระบุ</option>
-                                                @foreach ($stores as $store => $value)
-                                                    <option value="{{$value->id}}">{{$value->store_name}} {{$value->branch}}</option> 
+                                                @foreach ($partners as $partner => $value)
+                                                    <option value="{{$value->id}}">{{$value->name}}</option> 
                                                 @endforeach
                                             </select>
                                         </div>

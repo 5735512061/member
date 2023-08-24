@@ -16,7 +16,9 @@ use App\Model\RewardPoint;
 use App\Model\Campaign;
 use App\Model\RedeemPoint;
 use App\Model\RedeemReward;
-use App\Model\PartnerShop;
+use App\Model\PartnerShopPromotion;
+use App\Model\Article;
+use App\PartnerShop;
 
 use Carbon\Carbon;
 use Validator;
@@ -605,19 +607,27 @@ class AdminController extends Controller
     }
 
     public function createPartnerPost(Request $request) {
-        // $validator = Validator::make($request->all(), $this->rules_createPartner(), $this->messages_createPartner());
-        // if($validator->passes()) {
+        $validator = Validator::make($request->all(), $this->rules_createPartner(), $this->messages_createPartner());
+        if($validator->passes()) {
 
             $partner = $request->all();
             $partner['password'] = bcrypt($partner['tel']);
             $partner = PartnerShop::create($partner);
+            if($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+                $image->move('images/partner/', $filename);
+                $path = 'images/partner/'.$filename;
+                $partner->image = $filename;
+                $partner->save();
+            }
 
-            // $partner->session()->flash('alert-success', 'เพิ่มเครือข่ายพันธมิตรสำเร็จ');
+            $request->session()->flash('alert-success', 'เพิ่มเครือข่ายพันธมิตรสำเร็จ');
             return redirect()->action('Backend\AdminController@partner');
-        // }else{
-            // $request->session()->flash('alert-danger', 'เพิ่มเครือข่ายพันธมิตรไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
-            // return back()->withErrors($validator)->withInput();   
-        // }
+        }else{
+            $request->session()->flash('alert-danger', 'เพิ่มเครือข่ายพันธมิตรไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
+            return back()->withErrors($validator)->withInput();   
+        }
     }
 
     public function partnerEdit($id) {
@@ -630,8 +640,124 @@ class AdminController extends Controller
 
         $partner = PartnerShop::findOrFail($id);
         $partner->update($request->all());
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/partner/', $filename);
+            $path = 'images/'.$filename;
+            $partner = PartnerShop::findOrFail($id);
+            $partner->image = $filename; 
+            $partner->save();
+        }
 
         return redirect()->action('Backend\AdminController@partner'); 
+    }
+
+    public function partnerAddPromotion($id) {
+        return view('/backend/admin/partner/partner-add-promotion')->with('id',$id);
+    }
+
+    public function partnerAddPromotionPost(Request $request) {
+        $validator = Validator::make($request->all(), $this->rules_partnerAddPromotion(), $this->messages_partnerAddPromotion());
+        if($validator->passes()) {
+
+            $promotion = $request->all();
+            $promotion = PartnerShopPromotion::create($promotion);
+
+            $request->session()->flash('alert-success', 'เพิ่มโปรโมชั่นสำเร็จ');
+            return redirect()->action('Backend\AdminController@partner');
+        }else{
+            $request->session()->flash('alert-danger', 'เพิ่มโปรโมชั่นสำเร็จไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
+            return back()->withErrors($validator)->withInput();   
+        }
+    }
+
+    public function partnerPromotion(Request $request, $id) {
+        $NUM_PAGE = 50;
+        $promotions = PartnerShopPromotion::where('partner_id',$id)->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/partner/partner-promotion')->with('NUM_PAGE',$NUM_PAGE)
+                                                              ->with('page',$page)
+                                                              ->with('promotions',$promotions)
+                                                              ->with('id',$id);
+    }
+
+    public function deletePromotion(Request $request, $id) {
+        $promotion = PartnerShopPromotion::destroy($id);
+        $request->session()->flash('alert-success', 'ลบข้อมูลโปรโมชั่นสำเร็จ');
+        return redirect()->action('Backend\AdminController@partner');
+    }
+
+    public function promotionEdit($id) {
+        $promotion = PartnerShopPromotion::findOrFail($id);
+        return view('/backend/admin/partner/promotion-edit')->with('promotion',$promotion);
+    }
+
+    public function updatePromotion(Request $request) {
+        $id = $request->get('id');
+
+        $promotion = PartnerShopPromotion::findOrFail($id);
+        $promotion->update($request->all());
+
+        return redirect()->action('Backend\AdminController@partner'); 
+    }
+
+    public function article(Request $request) {
+        $NUM_PAGE = 20;
+        $articles = Article::paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/article/index')->with('NUM_PAGE',$NUM_PAGE)
+                                                  ->with('page',$page)
+                                                  ->with('articles',$articles);
+    }
+
+    public function createArticle() {
+        return view('backend/admin/article/create-article');
+    }
+
+    public function createArticlePost(Request $request) {
+        $article = $request->all();
+        $article = Article::create($article);
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/article/', $filename);
+            $path = 'images/article/'.$filename;
+            $article->image = $filename;
+            $article->save();
+        }
+        return redirect()->action('Backend\AdminController@article');
+    }
+
+    public function deleteArticle(Request $request, $id) {
+        $article = Article::destroy($id);
+        $request->session()->flash('alert-success', 'ลบข้อมูลบทความสำเร็จ');
+        return redirect()->action('Backend\AdminController@article');
+    }
+
+    public function articleEdit($id) {
+        $article = Article::findOrFail($id);
+        return view('/backend/admin/article/article-edit')->with('article',$article);
+    }
+
+    public function updateArticle(Request $request) {
+        $id = $request->get('id');
+
+        $article = Article::findOrFail($id);
+        $article->update($request->all());
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/article/', $filename);
+            $path = 'images/'.$filename;
+            $article = Article::findOrFail($id);
+            $article->image = $filename; 
+            $article->save();
+        }
+
+        return redirect()->action('Backend\AdminController@article'); 
     }
 
     public function rules_editProfile() {
@@ -762,6 +888,18 @@ class AdminController extends Controller
             'name.required' => 'กรุณากรอกชื่อพันธมิตร',
             'tel.required' => 'กรุณากรอกเบอร์โทรศัพท์',
             'tel.unique' => 'เบอร์โทรศัพท์นี้มีผู้ใช้แล้ว',
+        ];
+    }
+
+    public function rules_partnerAddPromotion() {
+        return [
+            'promotion' => 'required',
+        ];
+    }
+
+    public function messages_partnerAddPromotion() {
+        return [
+            'promotion.required' => 'กรุณากรอกรายละเอียดโปรโมชั่น',
         ];
     }
 }

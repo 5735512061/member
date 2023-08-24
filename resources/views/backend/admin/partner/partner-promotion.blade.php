@@ -19,18 +19,30 @@
         color: red;
         font-weight: bold;
     }
+
+    .partner a{
+        color: #ffffff;
+    }
+
+    .partner a:hover{
+        color: #ffffff;
+    }
 </style>
 @section('content')
+    @php
+        $partner = DB::table('partner_shops')
+            ->where('id', $id)
+            ->value('name');
+    @endphp
     <div class="container-fluid py-4">
         <div class="partner">
-            <h4>เครือข่ายพันธมิตร</h4>
+            <div class="row">
+                <div class="col-lg-5 mb-lg-0 mb-4">
+                    <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+                </div>
+            </div>
+            <h4 class="mt-4">โปรโมชั่นเครือข่ายพันธมิตร {{ $partner }}</h4>
         </div>
-        <a href="{{ url('/create-partner') }}" class="btn btn-success mt-5" type="submit"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i> สร้างพันธมิตร</a><br>
-        <a href="{{ url('/partner') }}" class="btn btn-secondary mt-5" type="submit"><i class="fa fa-gift"
-                aria-hidden="true"></i> พันธมิตรทั้งหมด</a>
-        <a href="{{ url('/partner-off') }}" class="btn btn-danger mt-5" type="submit"><i class="fa fa-hourglass-half"
-                aria-hidden="true"></i> ปิดการใช้งาน</a>
     </div>
     <div class="container-fluid py-4">
         <div class="flash-message">
@@ -45,7 +57,7 @@
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="card z-index-2 h-100">
                         <div class="card-header pb-0 pt-3 bg-transparent">
-                            <h6 class="text-capitalize">ข้อมูลเครือข่ายพันธมิตร</h6>
+                            <h6 class="text-capitalize">โปรโมชั่นเครือข่ายพันธมิตร</h6>
                         </div>
                         <div class="card-body p-3">
                             <div class="table-responsive">
@@ -53,27 +65,23 @@
                                     <thead class="thead-light">
                                         <tr style="text-align: center;">
                                             <th>#</th>
-                                            <th>พันธมิตร</th>
-                                            <th>เบอร์โทรศัพท์</th>
-                                            <th>ประเภทพันธมิตร</th>
+                                            <th>โปรโมชั่น</th>
                                             <th>สถานะ</th>
                                             <th></th>
                                         </tr>
                                     </thead>
                                     <tbody class="list">
-                                        @foreach ($partners as $partner => $value)
+                                        @foreach ($promotions as $promotion => $value)
                                             <tr style="text-align:center;">
-                                                <td>{{ $NUM_PAGE * ($page - 1) + $partner + 1 }}</td>
-                                                <td>{{ $value->name }}</td>
-                                                <td>{{ $value->tel }}</td>
-                                                <td>{{ $value->type }}</td>
+                                                <td>{{ $NUM_PAGE * ($page - 1) + $promotion + 1 }}</td>
+                                                <td>{!! $value->promotion !!}</td>
                                                 <td>{{ $value->status }}</td>
-                                                <td><a href="{{ url('/partner-promotion') }}/{{ $value->id }}"><i
-                                                            class="fa fa-folder-o" style="color: green;"></i></a>
-                                                    <a href="{{ url('/partner-add-promotion') }}/{{ $value->id }}"><i
-                                                            class="fa fa-plus-circle" style="color: green;"></i></a>
-                                                    <a href="{{ url('/partner-edit') }}/{{ $value->id }}"><i
-                                                            class="fa fa-pencil-square" style="color: red;"></i></a>
+                                                <td>
+                                                    <a href="{{ url('/promotion-edit') }}/{{ $value->id }}"><i
+                                                            class="fa fa-pencil-square" style="color: green;"></i></a>
+                                                    <a href="{{ url('/delete-promotion') }}/{{ $value->id }}"
+                                                        onclick="return confirm('Are you sure to delete ?')"><i
+                                                            class="fa fa-trash-o" style="color: red;"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach

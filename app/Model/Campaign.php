@@ -9,7 +9,7 @@ class Campaign extends Model
 	protected $table = 'campaigns';
 
 	protected $fillable = [
-    	'store_id', 'code', 'name', 'campaign_type', 'start_date', 'expire_date','detail', 'image', 'status'
+    	'partner_id', 'code', 'name', 'campaign_type', 'start_date', 'expire_date','detail', 'image', 'status'
     ];
 
     protected $primaryKey = 'id';

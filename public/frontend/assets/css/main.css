@@ -1021,12 +1021,22 @@ a.tof-btn:hover i {
   margin-left: 10px;
 }
 
+.news-text-box {
+  padding: 15px;
+}
+
+.news-text-box h1 {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
 .single-latest-news {
-  -webkit-box-shadow: 0 0 20px #dddddd;
-  box-shadow: 0 0 20px #dddddd;
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  background-color: #ffffff;
+  border-radius: 10px;
+  margin-bottom: 30px;
 }
 
 .single-latest-news:hover {
@@ -1540,7 +1550,6 @@ div.owl-controls, .owl-controls div {
 }
 
 .latest-news-bg {
-  height: 200px;
   background-size: cover;
   background-position: center;
   border-radius: 10px;
@@ -1553,17 +1562,22 @@ div.owl-controls, .owl-controls div {
   font-size: 20px;
   line-height: 1.25em;
   font-weight: 600;
+  height: 40px;
 }
 
 .single-latest-news h3 a {
   color: #051922;
 }
 
+p.blog-meta {
+  margin-bottom: 0.25rem;
+}
+
 p.blog-meta span {
   margin-right: 15px;
   opacity: 0.6;
   color: #051922;
-  font-size: 0.85em;
+  font-size: 1em;
 }
 
 p.blog-meta span:last-child {
@@ -1574,7 +1588,7 @@ p.blog-meta span i {
   margin-right: 5px;
 }
 
-p.excerpt {
+.excerpt {
   line-height: 1.8;
   color: #555;
 }
@@ -1628,6 +1642,20 @@ p.excerpt {
   font-size: 15px;
   line-height: 1.6;
   color: #051922;
+}
+
+.single-article-text .article-title {
+  font-size: 2em;
+  line-height: 1.6;
+  color: #f28123;
+  margin-top: 20px;
+}
+
+.single-article-text .article-detail p{
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #ffffff;
+  margin-top: 20px;
 }
 
 .comments-list-wrap {
@@ -1756,7 +1784,7 @@ span.comment-date {
 }
 
 .sidebar-section ul li a {
-  color: #555;
+  color: #9d9d9d;
   font-size: 15px;
 }
 
@@ -2740,4 +2768,11 @@ table.order-details tbody td {
 
 .header-title {
   color: #777777;
+}
+
+.flex {
+  display: flex;
+}
+.space-between {
+  justify-content: space-between;
 }

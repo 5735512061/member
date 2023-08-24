@@ -47,12 +47,9 @@
                             <div class="row">
                                 @foreach ($campaigns as $campaign => $value)
                                     @php
-                                        $store_name = DB::table('account_stores')
-                                            ->where('id', $value->store_id)
-                                            ->value('store_name');
-                                        $branch = DB::table('account_stores')
-                                            ->where('id', $value->store_id)
-                                            ->value('branch');
+                                        $store_name = DB::table('partner_shops')
+                                            ->where('id', $value->partner_id)
+                                            ->value('name');
                                     @endphp
                                     <div class="col-md-3">
                                         <div class="card">
@@ -80,7 +77,7 @@
                                                         {{ $store_name }} <span>(ใช้ได้ทุกร้านในเครือ)</span></p>
                                                 @else
                                                     <p>ใช้ได้ที่ <i class="fa fa-caret-right" style="color:#777777;"></i>
-                                                        {{ $store_name }} {{ $branch }}</p>
+                                                        {{ $store_name }}
                                                 @endif
                                                 <p>ระยะเวลา <i class="fa fa-caret-right" style="color:#777777;"></i>
                                                     {{ $value->start_date }} - {{ $value->expire_date }}</p>

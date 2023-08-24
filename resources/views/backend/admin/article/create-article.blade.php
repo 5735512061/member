@@ -105,7 +105,7 @@
                 <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
             </div>
         </div>
-        <h4 class="mt-4">เพิ่มเครือข่ายพันธมิตร</h4>
+        <h4 class="mt-4">สร้างบทความ</h4>
         <div class="row mt-4">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -116,7 +116,7 @@
                         @endif
                     @endforeach
                 </div>
-                <form action="{{url('create-partner')}}" enctype="multipart/form-data" method="post">@csrf
+                <form action="{{url('create-article')}}" enctype="multipart/form-data" method="post">@csrf
                     <div class="row">
                         <div class="col-lg-4 col-12 mb-lg-0 mb-4">
                             <div class="card z-index-2">
@@ -138,29 +138,31 @@
                                 <div class="card-header pb-0 pt-3 bg-transparent">
                                     <div class="row">
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ชื่อพันธมิตร <span>(จำเป็นต้องกรอก)</span>
-                                                @if ($errors->has('name'))
-                                                    <span class="text-danger" style="font-size: 15px;">({{ $errors->first('name') }})</span>
+                                            <p><span>*</span> หัวข้อบทความ <span>(จำเป็นต้องกรอก)</span>
+                                                @if ($errors->has('title'))
+                                                    <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('title') }})</span></center>
                                                 @endif
                                             </p>
-                                            <input class="form-control" type="text" placeholder="กรุณากรอกชื่อพันธมิตร" name="name">
+                                            <input class="form-control" type="text" name="title">
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> เบอร์โทรศัพท์ <span>(จำเป็นต้องกรอก)</span>
-                                                @if ($errors->has('tel'))
-                                                    <span class="text-danger" style="font-size: 15px;">({{ $errors->first('tel') }})</span>
-                                                @endif
-                                            </p>
-                                            <input type="text" name="tel" placeholder="กรุณากรอกเบอร์โทรศัพท์" class="phone_format form-control">
-                                        </div>
-                                        <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ประเภทพันธมิตร <span>(จำเป็นต้องกรอก)</span></p>
+                                            <p><span>*</span> ประเภทบทความ <span>(จำเป็นต้องเลือก)</span></p>
                                             <select name="type" class="form-control">
-                                                <option value="Food And Drink">Food And Drink</option>
-                                                <option value="Life Style">Life Style</option>
-                                                <option value="Travel">Travel</option>
-                                                <option value="Car Service">Car Service</option>
-                                            </select> 
+                                                <option value="อาหาร">อาหาร</option>
+                                                <option value="ไลฟ์สไตล์">ไลฟ์สไตล์</option>
+                                                <option value="บิวตี้">บิวตี้</option>
+                                                <option value="ข่าว">ข่าว</option>
+                                                <option value="ดูดวง">ดูดวง</option>
+                                                <option value="ทั่วไป">ทั่วไป</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-12 mt-2">
+                                            <p><span>*</span> เนื้อหา <span>(จำเป็นต้องกรอก)</span>
+                                                @if ($errors->has('article'))
+                                                    <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('article') }})</span></center>
+                                                @endif
+                                            </p>
+                                            <textarea name="article" class="ckeditor form-control"></textarea>
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <p>สถานะ</p>
@@ -172,7 +174,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-12 mt-3">
-                                            <button type="submit" class="btn btn-lg btn-success">เพิ่มเครือข่ายพันธมิตร</button>
+                                            <button type="submit" class="btn btn-lg btn-success">สร้างบทความ</button>
                                         </div>
                                     </div>
                                 </div>
@@ -185,20 +187,42 @@
         </div>
     </div>
 </div>  
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript" src="{{asset('https://code.jquery.com/jquery-3.2.1.min.js')}}"></script>
+<script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+       $('.ckeditor').ckeditor();
+    });
+</script>
 <script>
-    // number phone
-    function phoneFormatter() {
-        $('input.phone_format').on('input', function() {
-            var number = $(this).val().replace(/[^\d]/g, '')
-                if (number.length >= 5 && number.length < 10) { number = number.replace(/(\d{3})(\d{2})/, "$1-$2"); } else if (number.length >= 10) {
-                    number = number.replace(/(\d{3})(\d{3})(\d{3})/, "$1-$2-$3"); 
-                }
-            $(this).val(number)
-            $('input.phone_format').attr({ maxLength : 12 });
-        });
-    };
-    $(phoneFormatter);
+    const selectImage = document.querySelector('.select-image');
+    const inputFile = document.querySelector('#file');
+    const imgArea = document.querySelector('.img-area');
+
+    selectImage.addEventListener('click', function() {
+        inputFile.click('');
+    });
+
+    inputFile.addEventListener('change', function() {
+        const image = this.files[0]
+        console.log(image);
+        if(image.size < 2000000) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                const allImg = imgArea.querySelectorAll('img');
+                allImg.forEach(item => item.remove());
+                const imgUrl = reader.result;
+                const img = document.createElement('img');
+                img.src = imgUrl;
+                imgArea.appendChild(img);
+                imgArea.classList.add('active');
+                imgArea.dataset.img = image.name;
+            }
+            reader.readAsDataURL(image);
+        } else {
+            alert('Image size more than 2MB');
+        }
+        
+    });
 </script>
 @endsection

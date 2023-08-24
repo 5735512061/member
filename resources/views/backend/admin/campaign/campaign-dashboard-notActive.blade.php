@@ -47,12 +47,9 @@
                             <div class="row">
                                 @foreach ($campaigns as $campaign => $value)
                                     @php
-                                        $store_name = DB::table('account_stores')
-                                            ->where('id', $value->store_id)
-                                            ->value('store_name');
-                                        $branch = DB::table('account_stores')
-                                            ->where('id', $value->store_id)
-                                            ->value('branch');
+                                        $partner = DB::table('partner_shops')
+                                            ->where('id', $value->partner_id)
+                                            ->value('name');
                                     @endphp
                                     <div class="col-md-3">
                                         <div class="card">

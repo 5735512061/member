@@ -457,6 +457,10 @@
 	    line-height: 1.5;
 	}
 
+	.news-text-box {
+		padding: 15px !important;
+	}
+
 	.copyright p {
 	    padding-bottom: 0;
 	}

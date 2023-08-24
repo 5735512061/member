@@ -7,11 +7,24 @@ Route::get('/clear-cache', function() {
 
 Route::get('/','Frontend\SystemController@index');
 Route::get('/condition','Frontend\SystemController@condition');
-Route::get('/news-activities','Frontend\SystemController@newsActivity');
+Route::get('/allarticle','Frontend\SystemController@article');
+Route::get('/article/food','Frontend\SystemController@articleFood');
+Route::get('/article/lifeStyle','Frontend\SystemController@articleLifeStyle');
+Route::get('/article/beauty','Frontend\SystemController@articleBeauty');
+Route::get('/article/news','Frontend\SystemController@articleNews');
+Route::get('/article/horoscope','Frontend\SystemController@articleHoroscope');
+Route::get('/article/general','Frontend\SystemController@articleGeneral');
+Route::get('/article/{id}/{title}','Frontend\SystemController@articleDetail');
 Route::get('/privilege','Frontend\SystemController@privilege');
+Route::get('/privilege/{id}/{name}','Frontend\SystemController@privilegeDetail');
 Route::get('/rewards','Frontend\SystemController@reward');
 Route::get('/reward-detail/{id}','Frontend\SystemController@rewardDetail');
 Route::get('/alliance','Frontend\SystemController@alliance');
+Route::get('/alliance-foodanddrink','Frontend\SystemController@allianceFoodAndDrink');
+Route::get('/alliance-lifestyle','Frontend\SystemController@allianceLifeStyle');
+Route::get('/alliance-travel','Frontend\SystemController@allianceTravel');
+Route::get('/alliance-carservice','Frontend\SystemController@allianceCarService');
+Route::get('/alliance/{id}/{name}','Frontend\SystemController@allianceDetail');
 Route::get('/contact-us','Frontend\SystemController@contactUs');
 Route::get('/about-us','Frontend\SystemController@aboutUs');
 Route::get('/help-center','Frontend\SystemController@helpCenter');
@@ -111,6 +124,20 @@ Route::group(['prefix' => '/'], function(){
     Route::post('create-partner','Backend\AdminController@createPartnerPost'); //สร้างพันธมิตร
     Route::get('partner-edit/{id}','Backend\AdminController@partnerEdit'); //แก้ไขพันธมิตร
     Route::post('update-partner','Backend\AdminController@updatePartner'); //อัพเดตพันธมิตร
+    Route::get('partner-add-promotion/{id}','Backend\AdminController@partnerAddPromotion'); //หน้าเพิ่มโปรโมชั่น
+    Route::post('partner-add-promotion','Backend\AdminController@partnerAddPromotionPost'); //เพิ่มโปรโมชั่น
+    Route::get('partner-promotion/{id}','Backend\AdminController@partnerPromotion'); //หน้าโปรโมชั่น
+    Route::get('delete-promotion/{id}','Backend\AdminController@deletePromotion'); //ลบโปรโมชั่น
+    Route::get('promotion-edit/{id}','Backend\AdminController@promotionEdit'); //แก้ไขโปรโมชั่น
+    Route::post('update-promotion','Backend\AdminController@updatePromotion'); //อัพเดตโปรโมชั่น
+
+    // บทความ ข่าวสาร
+    Route::get('article','Backend\AdminController@article'); 
+    Route::get('create-article','Backend\AdminController@createArticle'); 
+    Route::post('create-article','Backend\AdminController@createArticlePost'); 
+    Route::get('delete-article/{id}','Backend\AdminController@deleteArticle'); //ลบบทความ
+    Route::get('article-edit/{id}','Backend\AdminController@articleEdit'); //แก้ไขบทความ
+    Route::post('update-article','Backend\AdminController@updateArticle'); //อัพเดตบทความ
 });
 
 // Admin ร้านค้า

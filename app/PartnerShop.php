@@ -14,7 +14,7 @@ class PartnerShop extends Authenticatable
 	protected $guard = 'partner';
 
 	protected $fillable = [
-    	'name', 'tel', 'password', 'type', 'status'
+    	'name', 'tel', 'password', 'type', 'status', 'image'
     ];
 
     protected $primaryKey = 'id';

@@ -14,7 +14,7 @@
                 <div class="card alliance-food">
                     <div class="card-body text-center centered-element">
                         <h3 class="text-center">Food And Drink</h3><br>
-                        <a href="">สิทธิพิเศษ</a>
+                        <a href="{{ url('alliance-foodanddrink') }}">สิทธิพิเศษ</a>
                     </div>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <h3>Life Style</h3><br>
-                                <a href="">สิทธิพิเศษ</a>
+                                <a href="{{ url('alliance-lifestyle') }}">สิทธิพิเศษ</a>
                             </div>
                         </div>
 
@@ -34,16 +34,24 @@
             <div class="col-md-3">
                 <div class="card alliance-travel">
                     <div class="card-body text-center centered-element">
-                        <h3>Travel</h3><br>
-                        <a href="">สิทธิพิเศษ</a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Travel</h3><br>
+                                <a href="{{ url('alliance-travel') }}">สิทธิพิเศษ</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card alliance-car">
                     <div class="card-body text-center centered-element">
-                        <h3>Car Service</h3><br>
-                        <a href="">สิทธิพิเศษ</a>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>Car Service</h3><br>
+                                <a href="{{ url('alliance-carservice') }}">สิทธิพิเศษ</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

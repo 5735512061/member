@@ -4,12 +4,12 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PartnerShopPoint extends Model
+class PartnerShopPromotion extends Model
 {
-	protected $table = 'partner_shop_points';
+	protected $table = 'partner_shop_promotions';
 
 	protected $fillable = [
-    	'partner_id', 'point', 'date'
+    	'partner_id', 'promotion', 'status'
     ];
 
     protected $primaryKey = 'id';

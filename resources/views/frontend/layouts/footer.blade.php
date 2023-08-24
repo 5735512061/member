@@ -7,7 +7,7 @@
 						<h2 class="widget-title">1Choice</h2>
 						<ul>
 							<li><a href="{{url('about-us')}}">เกี่ยวกับเรา</a></li>
-							<li><a href="{{url('news-activities')}}">ข่าวสารและกิจกรรม</a></li>
+							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>
 							<li><a href="{{url('condition')}}">ข้อกำหนดและเงื่อนไข</a></li>
 							<li><a href="{{url('help-center')}}">ศูนย์ช่วยเหลือ</a></li>
 						</ul>
