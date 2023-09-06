@@ -1,58 +1,90 @@
 @extends('frontend/layouts/template')
-
+<style>
+    .article-detail p {
+        color: #ffffff;
+        font-size: 1.5rem;
+    }
+</style>
 @section('content')
-@php
-    $coupons = DB::table('campaigns')->where('id','!=',$coupon->id)->paginate(10);
-    $partner = DB::table('partner_shops')->where('id',$coupon->partner_id)->value('name');
-@endphp
+    @php
+        $coupons = DB::table('campaigns')
+            ->where('id', '!=', $coupon->id)
+            ->paginate(10);
+        $partner = DB::table('partner_shops')
+            ->where('id', $coupon->partner_id)
+            ->value('name');
+        $count_get_coupon = DB::table('get_coupons')
+            ->where('member_id', Auth::guard('member')->user()->id)
+            ->count();
+    @endphp
     <div class="container" style="margin-bottom: 50px;">
-        <center>
-            <div class="header-title">
-                <h1 style="margin-top:15rem; color: #f28123;">
-                    <strong>สิทธิประโยชน์พิเศษ</strong>
-                </h1>
-            </div>
-        </center>
-        <br>
-        <!-- single article section -->
+
         <div class="mt-100 mb-150">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="single-article-section">
-                            <div class="single-article-text">
-                                <img src="{{ url('images/campaign') }}/{{ $coupon->image }}" class="img-responsive"
-                                    width="100%">
-                                <h1 class="article-title">{{ $coupon->name }}</h1>
-                                <div class="article-detail">{!! $coupon->detail !!}</div>
-                                <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i> {{ $partner }}</p>
-                                <p class="blog-meta">
-                                    <strong style="color: red;">สิ้นสุดแคมเปญ {{ $coupon->expire_date }}</strong>
-                                </p>
-                            </div>
+            @if (\Session::has('Message'))
+                <div class="alert alert-success">
+                    <p>{!! \Session::get('Message') !!}</p>
+                </div>
+            @endif
+            <div class="row">
+                <div class="col-lg-6 mt-5">
+                    <div class="single-article-section">
+                        <div class="single-article-text">
+                            <img src="{{ url('images/campaign') }}/{{ $coupon->image }}" class="img-responsive"
+                                width="100%">
                         </div>
                     </div>
-                    <div class="col-lg-4">
-                        <div class="sidebar-section">
-                            <div class="recent-posts">
-                                <h4>Others Coupon</h4>
-                                <ul>
-                                    @foreach ($coupons as $coupon => $value)
-                                        <li><a href="{{ url('privilege') }}/{{$value->id}}/{{$value->name}}">{{$value->name}}</a></li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="tag-section">
-                                <h4>Tags</h4>
-                                <ul>
-                                    <li><a href="">อาหาร</a></li>
-                                    <li><a href="">ไลฟ์สไตล์</a></li>
-                                    <li><a href="">บิวตี้</a></li>
-                                    <li><a href="">ข่าว</a></li>
-                                    <li><a href="">ดูดวง</a></li>
-                                    <li><a href="">ทั่วไป</a></li>
-                                </ul>
-                            </div>
+                </div>
+                <div class="col-lg-6 mt-5">
+                    <div class="single-article-section">
+                        <h1 class="article-title" style="font-size: 3.5rem; color: #F28123;">{{ $coupon->name }}</h1>
+                        <div class="article-detail">{!! $coupon->detail !!}</div>
+                        <p class="mt-3" style="color:#ffffff;">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i>
+                            {{ $partner }}</p>
+                        <p class="blog-meta">
+                            @php
+                                $date_format = date('d-m-Y', strtotime($coupon->expire_date));
+                            @endphp
+                            <strong style="color: red;">สิ้นสุดแคมเปญ {{ $date_format }}</strong>
+                        </p>
+                        <h5 class="mt-3">เงื่อนไขการใช้คูปอง</h5>
+                        <ui>
+                            <li>กรุณาเก็บหลักฐานการกดรับคูปองไว้แสดงก่อนรับสิทธิประโยชน์พิเศษ</li>
+                            <li>เมื่อทำรายการแล้วไม่สามารถเปลี่ยนแปลง ยกเลิก คืน หรือ ทอน เป็นคะแนนหรือเงินสดได้</li>
+                            <li>บริษัทฯ ถือตามข้อมูลที่ปรากฏในระบบของบริษัทฯ เป็นสำคัญ</li>
+                            <li>เงื่อนไขเป็นไปตามที่บริษัทฯ กำหนด ขอสงวนสิทธิ์ในการเปลี่ยนแปลง แก้ไข
+                                โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</li>
+                        </ui>
+                    </div>
+                    @if ($count_get_coupon == 0)
+                        <a href="{{ url('member/get-coupon/') }}/{{ $coupon->id }}"
+                            class="btn btn-block btn-success mt-3">กดรับคูปอง</a>
+                    @else
+                        <a href="{{ url('member/coupon/') }}" 
+                            class="btn btn-block btn-secondary mt-3">คุณได้รับคูปองแล้ว ตรวจสอบคูปองที่เมนู คูปองของฉัน</a>
+                    @endif
+                </div>
+                <div class="col-lg-12 mt-5">
+                    <div class="sidebar-section" style="margin-left: 0;">
+                        <div class="recent-posts">
+                            <h4>Others Coupon</h4>
+                            <ul>
+                                @foreach ($coupons as $coupon => $value)
+                                    <li><a
+                                            href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="tag-section">
+                            <h4>บทความ และข่าวสาร</h4>
+                            <ul>
+                                <li><a href="{{ url('article/food') }}">บทความ อาหาร</a></li>
+                                <li><a href="{{ url('article/lifeStyle') }}">บทความ ไลฟ์สไตล์</a></li>
+                                <li><a href="{{ url('article/beauty') }}">บทความ บิวตี้</a></li>
+                                <li><a href="{{ url('article/news') }}">บทความ ข่าว</a></li>
+                                <li><a href="{{ url('article/horoscope') }}">บทความ ดูดวง</a></li>
+                                <li><a href="{{ url('article/general') }}">บทความ ทั่วไป</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>

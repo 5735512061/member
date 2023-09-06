@@ -126,7 +126,6 @@
                     <div class="card z-index-2 h-100">
                         <div class="card-header pb-0 pt-3 bg-transparent">
                             <h5 class="text-capitalize">รายชื่อสมาชิก (ข้อมูลทั้งหมด)</h5>
-                            <p>{{ $members->links() }}</p>
                         </div>
                         <div class="card-body p-3">
                             <div class="table-responsive">
@@ -153,7 +152,7 @@
                                                 $point = floor($sumprice / 100);
                                             @endphp
                                             <tr style="text-align:center;">
-                                                <td>{{ $NUM_PAGE * ($page - 1) + $member + 1 }}</td>
+                                                <td>{{ ($page - 1) + $member + 1 }}</td>
                                                 <td>{{ $value->serialnumber }}</td>
                                                 <td>{{ $value->tel }}</td>
                                                 <td>{{ $value->name }} {{ $value->surname }}</td>

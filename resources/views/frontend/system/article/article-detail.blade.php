@@ -1,9 +1,12 @@
 @extends('frontend/layouts/template')
 
 @section('content')
-@php
-    $articles = DB::table('articles')->where('id','!=',$article->id)->paginate(10);
-@endphp
+    @php
+        $articles = DB::table('articles')
+            ->where('id', '!=', $article->id)
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+    @endphp
     <div class="container" style="margin-bottom: 50px;">
         <center>
             <div class="header-title">
@@ -33,20 +36,39 @@
                                 <h4>Recent Posts</h4>
                                 <ul>
                                     @foreach ($articles as $article => $value)
-                                        <li><a href="{{ url('article') }}/{{$value->id}}/{{$value->title}}">{{$value->title}}</a></li>
+                                        <li><a
+                                                href="{{ url('article') }}/{{ $value->id }}/{{ $value->title }}">{{ $value->title }}</a>
+                                        </li>
                                     @endforeach
                                 </ul>
                             </div>
                             <div class="tag-section">
                                 <h4>Tags</h4>
                                 <ul>
-                                    <li><a href="{{ url('article/food') }}">อาหาร</a></li>
-                                    <li><a href="{{ url('article/lifeStyle') }}">ไลฟ์สไตล์</a></li>
-                                    <li><a href="{{ url('article/beauty') }}">บิวตี้</a></li>
-                                    <li><a href="{{ url('article/news') }}">ข่าว</a></li>
-                                    <li><a href="{{ url('article/horoscope') }}">ดูดวง</a></li>
-                                    <li><a href="{{ url('article/general') }}">ทั่วไป</a></li>
+                                    <li><a href="{{ url('article/food') }}">บทความ อาหาร</a></li>
+                                    <li><a href="{{ url('article/lifeStyle') }}">บทความ ไลฟ์สไตล์</a></li>
+                                    <li><a href="{{ url('article/beauty') }}">บทความ บิวตี้</a></li>
+                                    <li><a href="{{ url('article/news') }}">บทความ ข่าว</a></li>
+                                    <li><a href="{{ url('article/horoscope') }}">บทความ ดูดวง</a></li>
+                                    <li><a href="{{ url('article/general') }}">บทความ ทั่วไป</a></li>
                                 </ul>
+                            </div>
+                            <h4>Others Posts</h4>
+                            <div class="latest-news">
+                                @foreach ($articles as $article => $value)
+                                    <div class="single-latest-news" style="background-color: #ffffff;">
+                                        <a href="{{ url('article') }}/{{ $value->id }}/{{ $value->title }}">
+                                            <img src="{{ url('images/article') }}/{{ $value->image }}"
+                                                class="img-responsive" width="100%">
+                                        </a>
+                                        <div class="news-text-box">
+                                            <h1><a
+                                                    href="{{ url('article') }}/{{ $value->id }}/{{ $value->title }}">{{ $value->title }}</a>
+                                            </h1>
+                                            <div class="excerpt" style="-webkit-line-clamp: 2 !important;">{!! $value->article !!}</div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>

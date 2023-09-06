@@ -49,7 +49,7 @@
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="privilege text-center">
-                        <i class="fas fa-gift"></i>
+                        <i class="fas fa-ticket"></i>
                         <h4>รับส่วนลดพิเศษ</h4>
                         <p>
                             รับส่วนลดพิเศษในเครือข่ายพันธมิตร
@@ -62,15 +62,6 @@
                         <h4>ของรางวัลพรีเมี่ยม</h4>
                         <p>
                             แลกรับของรางวัลพรีเมี่ยม
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 mt-5 offset-4">
-                    <div class="privilege text-center">
-                        <i class="fas fa-info-circle"></i>
-                        <h4>ตรวจสอบสิทธิพิเศษ</h4>
-                        <p>
-                            ตรวจสอบสิทธิประโยชน์ และพันธมิตรที่ร่วมรายการ ได้ผ่านทางเว็บไซต์
                         </p>
                     </div>
                 </div>

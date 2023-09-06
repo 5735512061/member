@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Member;
 use App\Model\RedeemReward;
+use App\Model\GetCoupon;
 use Auth;
 
 class MembersController extends Controller
@@ -52,5 +53,11 @@ class MembersController extends Controller
         return view('frontend/member/account/redeem-point')->with('redeem_points',$redeem_points)
                                                            ->with('NUM_PAGE',$NUM_PAGE)
                                                            ->with('page',$page);
+    }
+
+    public function coupon() {
+        $member_id = Auth::guard('member')->user()->id;
+        $coupons = GetCoupon::where('member_id',$member_id)->get();
+        return view('frontend/member/coupon/coupon')->with('coupons',$coupons);
     }
 }

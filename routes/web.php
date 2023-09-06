@@ -47,6 +47,8 @@ Route::group(['prefix' => 'member'], function(){
     Route::get('/profile','Frontend\MembersController@profile')->name('member.home');
     Route::get('/reward-redem/{id}','Frontend\RewardsController@rewardRedem');
     Route::get('/redeem-point','Frontend\MembersController@redeemPoint');
+    Route::get('/get-coupon/{id}','Frontend\CouponsController@getCoupon');
+    Route::get('/coupon','Frontend\MembersController@coupon');
 });
 
 
@@ -138,6 +140,22 @@ Route::group(['prefix' => '/'], function(){
     Route::get('delete-article/{id}','Backend\AdminController@deleteArticle'); //ลบบทความ
     Route::get('article-edit/{id}','Backend\AdminController@articleEdit'); //แก้ไขบทความ
     Route::post('update-article','Backend\AdminController@updateArticle'); //อัพเดตบทความ
+
+    // Media
+    Route::get('media','Backend\AdminController@media'); 
+    // รูปภาพสไลด์หน้าหลัก
+    Route::get('upload-slide-image','Backend\AdminController@uploadSlideImage'); 
+    Route::post('upload-slide-image','Backend\AdminController@uploadSlideImagePost'); 
+    Route::get('slide-image-delete/{id}','Backend\AdminController@slideImageDelete');
+    Route::get('slide-image-edit/{id}','Backend\AdminController@slideImageEdit');
+    Route::post('update-slide-image','Backend\AdminController@updateSlideImage');
+    
+    // รูปภาพเนื้อหาบทความ
+    Route::get('upload-article-image','Backend\AdminController@uploadArticleImage'); 
+    Route::post('upload-article-image','Backend\AdminController@uploadArticleImagePost'); 
+    Route::get('article-image-delete/{id}','Backend\AdminController@ArticleImageDelete');
+    Route::get('article-image-edit/{id}','Backend\AdminController@ArticleImageEdit');
+    Route::post('update-article-image','Backend\AdminController@updateArticleImage');
 });
 
 // Admin ร้านค้า

@@ -60,8 +60,11 @@
                                                 <p style="border-bottom: 2px dashed #cac8c8;">สถานะ <i
                                                         class="fa fa-caret-right" style="color:#777777;"></i>
                                                     {{ $value->status }}</p>
-                                                <p>ระยะเวลา <i class="fa fa-caret-right" style="color:#777777;"></i>
-                                                    {{ $value->start_date }} - {{ $value->expire_date }}</p>
+                                                @php
+                                                    $date_format = date('d-m-Y', strtotime($value->expire_date));
+                                                @endphp
+                                                <p>สิ้นสุดแคมเปญ <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                    {{ $date_format }}</p>
                                                 <div class="col" style="text-align: right;">
                                                     <a href="#" class="btn btn-outline-primary radius-15"><i
                                                             class="fa fa-pencil" aria-hidden="true"></i></a>

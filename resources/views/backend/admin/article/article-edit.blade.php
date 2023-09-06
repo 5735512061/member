@@ -149,9 +149,12 @@
                                             <p><span>*</span> ประเภทบทความ <span>(จำเป็นต้องเลือก)</span></p>
                                             <select name="type" class="form-control">
                                                 <option value="{{$article->type}}">{{$article->type}}</option>
-                                                <option value="บทความอาหาร">บทความอาหาร</option>
-                                                <option value="บทความท่องเที่ยว">บทความท่องเที่ยว</option>
-                                                <option value="บทความทั่วไป">บทความทั่วไป</option>
+                                                <option value="อาหาร">อาหาร</option>
+                                                <option value="ไลฟ์สไตล์">ไลฟ์สไตล์</option>
+                                                <option value="บิวตี้">บิวตี้</option>
+                                                <option value="ข่าว">ข่าว</option>
+                                                <option value="ดูดวง">ดูดวง</option>
+                                                <option value="ทั่วไป">ทั่วไป</option>
                                             </select>
                                         </div>
                                         <div class="col-md-12 mt-2">

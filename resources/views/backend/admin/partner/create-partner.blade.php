@@ -118,22 +118,7 @@
                 </div>
                 <form action="{{url('create-partner')}}" enctype="multipart/form-data" method="post">@csrf
                     <div class="row">
-                        <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-                            <div class="card z-index-2">
-                                <div class="card-header pb-0 pt-3 bg-transparent">
-                                    @if ($errors->has('image'))
-                                        <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('image') }})</span></center>
-                                    @endif
-                                    <input type="file" id="file" name="image" accept="image/*" hidden>
-                                    <div class="img-area" data-img="">
-                                        <i class="fa fa-cloud-upload icon" aria-hidden="true"></i>
-                                        <h5>Upload Image</h5>
-                                    </div>
-                                    <a class="select-image mb-4" style="text-align: center;">SELECT IMAGE</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                        <div class="offset-2 col-md-8">
                             <div class="card z-index-2">
                                 <div class="card-header pb-0 pt-3 bg-transparent">
                                     <div class="row">

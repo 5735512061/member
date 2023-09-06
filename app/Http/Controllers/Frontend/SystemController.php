@@ -9,6 +9,7 @@ use App\Model\Reward;
 use App\Model\Campaign;
 use App\Model\Article;
 use App\Model\PartnerShopPromotion;
+use App\PartnerShop;
 
 class SystemController extends Controller
 {
@@ -91,22 +92,38 @@ class SystemController extends Controller
     }
 
     public function allianceFoodAndDrink() {
-        $partners = PartnerShopPromotion::where('status','เปิด')->get();
+        $partners = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                               ->where('partner_shops.status','=','เปิด')
+                               ->where('partner_shop_promotions.status','=','เปิด')
+                               ->where('partner_shops.type','=','Food And Drink')
+                               ->select('partner_shops.*','partner_shop_promotions.*')->get();
         return view('frontend/system/alliance/foodanddrink')->with('partners',$partners);
     }
 
     public function allianceLifeStyle() {
-        $partners = PartnerShopPromotion::where('status','เปิด')->get();
+        $partners = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                               ->where('partner_shops.status','=','เปิด')
+                               ->where('partner_shop_promotions.status','=','เปิด')
+                               ->where('partner_shops.type','=','Life Style')
+                               ->select('partner_shops.*','partner_shop_promotions.*')->get();
         return view('frontend/system/alliance/lifestyle')->with('partners',$partners);
     }
 
     public function allianceTravel() {
-        $partners = PartnerShopPromotion::where('status','เปิด')->get();
+        $partners = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                               ->where('partner_shops.status','=','เปิด')
+                               ->where('partner_shop_promotions.status','=','เปิด')
+                               ->where('partner_shops.type','=','Travel')
+                               ->select('partner_shops.*','partner_shop_promotions.*')->get();
         return view('frontend/system/alliance/travel')->with('partners',$partners);
     }
 
     public function allianceCarService() {
-        $partners = PartnerShopPromotion::where('status','เปิด')->get();
+        $partners = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                               ->where('partner_shops.status','=','เปิด')
+                               ->where('partner_shop_promotions.status','=','เปิด')
+                               ->where('partner_shops.type','=','Car Service')
+                               ->select('partner_shops.*','partner_shop_promotions.*')->get();
         return view('frontend/system/alliance/carservice')->with('partners',$partners);
     }
 

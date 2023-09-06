@@ -159,15 +159,29 @@
                 <tbody class="list">
                     @foreach ($members as $member => $value)
                       @php
+                          // point ที่ได้รับ
                           $sumprice = DB::table('points')->where('member_id',$value->id)->sum('price');
-                          $point = floor(($sumprice)/100);
+                          $culPrice = floor(($sumprice)/100); 
+
+                          // หักคะแนนจากการแลกของรางวัล
+                          $redeem_reward_point = DB::table('redeem_rewards')
+                                                   ->join('reward_points', 'reward_points.id','=','redeem_rewards.point_id')
+                                                   ->where('member_id',$value->id)->sum('reward_points.point');
+
+                          // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
+                          $redeem_point = DB::table('redeem_points')
+                                                   ->join('partner_shop_points', 'partner_shop_points.id','=','redeem_points.point_id')
+                                                   ->where('member_id',$value->id)->sum('partner_shop_points.point');
+
+                          $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
+                            
                       @endphp
                         <tr style="text-align:center;">
                             <td>{{$NUM_PAGE*($page-1) + $member+1}}</td>
                             <td>{{$value->serialnumber}}</td>
                             <td>{{$value->tel}}</td>
                             <td>{{$value->name}} {{$value->surname}}</td>
-                            <td>{{$point}}</td>
+                            <td>{{$point_balance}}</td>
                             @if($sumprice == 0 || $sumprice < 100001)
                               <td>SILVER</td>
                             @elseif($sumprice == 100001 || $sumprice < 500001)

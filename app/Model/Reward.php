@@ -9,7 +9,7 @@ class Reward extends Model
 	protected $table = 'rewards';
 
 	protected $fillable = [
-    	'name', 'reward_tyre', 'detail', 'tier', 'status', 'image'
+    	'name', 'reward_tyre', 'detail', 'status', 'image'
     ];
 
     protected $primaryKey = 'id';

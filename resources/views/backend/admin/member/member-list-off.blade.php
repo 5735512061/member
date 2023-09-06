@@ -61,16 +61,13 @@
                             @php
                                 $tiers = DB::table('tiers')->get();
                             @endphp
-                            <div class="row mb-2">
+                            <div class="row mb-4">
                                 <div class="col-md-10">
                                     <select name="tier" id="tier" class="form-control">
                                         @foreach ($tiers as $tier => $value)
-                                            <option value="{{$value->tier}}">{{$value->tier}}</option>
+                                            <option value="{{ $value->tier }}">{{ $value->tier }}</option>
                                         @endforeach
                                     </select>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">ค้นหา</button>
                                 </div>
                             </div>
                         </div>
@@ -109,7 +106,6 @@
             <div class="card z-index-2 h-100">
                 <div class="card-header pb-0 pt-3 bg-transparent">
                     <h5 class="text-capitalize">รายชื่อสมาชิก (ข้อมูลทั้งหมด)</h5>
-                    <p>{{$members->links()}}</p>
                 </div>
                 <div class="card-body p-3">
                     <div class="table-responsive">
@@ -134,7 +130,7 @@
                                         $point = floor(($sumprice)/100);
                                     @endphp
                                     <tr style="text-align:center;">
-                                        <td>{{$NUM_PAGE*($page-1) + $member+1}}</td>
+                                        <td>{{($page-1) + $member+1}}</td>
                                         <td>{{$value->serialnumber}}</td>
                                         <td>{{$value->tel}}</td>
                                         <td>{{$value->name}} {{$value->surname}}</td>
@@ -230,21 +226,26 @@
 </script>
 
 <script>
-    $(document).ready(function(){
-        $("#tier").on('change',function() {
-            var i;
-            var tier = $(this).val();
-            var table = document.getElementById("filter-table");
-            var tr = table.getElementsByTagName("tr");
-            console.log(tr);
-            for(i=0; i<tr.length; i++){
-                var td = tr[i].getElementsByTagName("td")[5];
-                console.log(td);
-                if(tier == td){
-                    console.log(tr[i].style.display="");
+    $(document).ready(function() {
+        $("#tier").on('change', function() {
+            var input, filter, table, tr, td, i, txtValue;
+
+            input = document.getElementById("tier");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("filter-table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[5];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
                 }
             }
-
         });
     });
 </script>

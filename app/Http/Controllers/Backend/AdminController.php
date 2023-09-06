@@ -18,6 +18,8 @@ use App\Model\RedeemPoint;
 use App\Model\RedeemReward;
 use App\Model\PartnerShopPromotion;
 use App\Model\Article;
+use App\Model\SlideImageMain;
+use App\Model\ArticleImage;
 use App\PartnerShop;
 
 use Carbon\Carbon;
@@ -218,32 +220,26 @@ class AdminController extends Controller
     }
 
     public function memberList(Request $request) {
-        $NUM_PAGE = 20;
-        $members = Member::paginate($NUM_PAGE);
+        $members = Member::get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list')->with('NUM_PAGE',$NUM_PAGE)
-                                                       ->with('page',$page)
+        return view('backend/admin/member/member-list')->with('page',$page)
                                                        ->with('members',$members);
     }
 
     public function memberListOn(Request $request) {
-        $NUM_PAGE = 20;
-        $members = Member::where('status',"ONLINE")->paginate($NUM_PAGE);
+        $members = Member::where('status',"ONLINE")->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list-on')->with('NUM_PAGE',$NUM_PAGE)
-                                                          ->with('page',$page)
+        return view('backend/admin/member/member-list-on')->with('page',$page)
                                                           ->with('members',$members);
     }
 
     public function memberListOff(Request $request) {
-        $NUM_PAGE = 20;
-        $members = Member::where('status',"OFFLINE")->paginate($NUM_PAGE);
+        $members = Member::where('status',"OFFLINE")->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list-off')->with('NUM_PAGE',$NUM_PAGE)
-                                                           ->with('page',$page)
+        return view('backend/admin/member/member-list-off')->with('page',$page)
                                                            ->with('members',$members);
     }
 
@@ -488,7 +484,6 @@ class AdminController extends Controller
             $reward->name = $request->get('name');
             $reward->reward_type = $request->get('reward_type');
             $reward->detail = $request->get('detail');
-            $reward->tier = $request->get('tier');
             $reward->status = $request->get('status');
             if($request->hasFile('image')) {
                 $image = $request->file('image');
@@ -613,14 +608,6 @@ class AdminController extends Controller
             $partner = $request->all();
             $partner['password'] = bcrypt($partner['tel']);
             $partner = PartnerShop::create($partner);
-            if($request->hasFile('image')) {
-                $image = $request->file('image');
-                $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
-                $image->move('images/partner/', $filename);
-                $path = 'images/partner/'.$filename;
-                $partner->image = $filename;
-                $partner->save();
-            }
 
             $request->session()->flash('alert-success', 'เพิ่มเครือข่ายพันธมิตรสำเร็จ');
             return redirect()->action('Backend\AdminController@partner');
@@ -640,16 +627,7 @@ class AdminController extends Controller
 
         $partner = PartnerShop::findOrFail($id);
         $partner->update($request->all());
-        if($request->hasFile('image')) {
-            $image = $request->file('image');
-            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
-            $image->move('images/partner/', $filename);
-            $path = 'images/'.$filename;
-            $partner = PartnerShop::findOrFail($id);
-            $partner->image = $filename; 
-            $partner->save();
-        }
-
+        
         return redirect()->action('Backend\AdminController@partner'); 
     }
 
@@ -663,6 +641,15 @@ class AdminController extends Controller
 
             $promotion = $request->all();
             $promotion = PartnerShopPromotion::create($promotion);
+
+            if($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+                $image->move('images/partner/', $filename);
+                $path = 'images/'.$filename;
+                $promotion->image = $filename;
+                $promotion->save();
+            }
 
             $request->session()->flash('alert-success', 'เพิ่มโปรโมชั่นสำเร็จ');
             return redirect()->action('Backend\AdminController@partner');
@@ -699,6 +686,17 @@ class AdminController extends Controller
 
         $promotion = PartnerShopPromotion::findOrFail($id);
         $promotion->update($request->all());
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/partner/', $filename);
+            $path = 'images/'.$filename;
+            $promotion = PartnerShopPromotion::findOrFail($id);
+            $promotion->image = $filename; 
+            $promotion->save();
+        }
+
 
         return redirect()->action('Backend\AdminController@partner'); 
     }
@@ -760,6 +758,115 @@ class AdminController extends Controller
         return redirect()->action('Backend\AdminController@article'); 
     }
 
+    public function media() {
+        return view('backend/admin/media/index');
+    }
+
+    public function uploadSlideImage(Request $request) {
+        $NUM_PAGE = 20;
+        $images = SlideImageMain::paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/media/slide-image/upload-slide-image')->with('NUM_PAGE',$NUM_PAGE)
+                                                                         ->with('page',$page)
+                                                                         ->with('images',$images);
+    }
+
+    public function uploadSlideImagePost(Request $request) {
+        $slide_image = $request->all();
+        $slide_image = SlideImageMain::create($slide_image);
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/slide_main/', $filename);
+            $path = 'images/slide_main/'.$filename;
+            $slide_image->image = $filename;
+            $slide_image->save();
+        }
+        return redirect()->action('Backend\AdminController@uploadSlideImage');
+    }
+
+    public function slideImageDelete(Request $request, $id) {
+        $slide_image = SlideImageMain::destroy($id);
+        $request->session()->flash('alert-success', 'ลบรูปภาพสำเร็จ');
+        return redirect()->action('Backend\AdminController@uploadSlideImage');
+    }
+
+    public function slideImageEdit($id) {
+        $slide_image = SlideImageMain::findOrFail($id);
+        return view('backend/admin/media/slide-image/edit-slide-image')->with('slide_image',$slide_image);
+    }
+
+    public function updateSlideImage(Request $request) {
+        $id = $request->get('id');
+
+        $slide_image = SlideImageMain::findOrFail($id);
+        $slide_image->update($request->all());
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/slide_main/', $filename);
+            $path = 'images/'.$filename;
+            $slide_image = SlideImageMain::findOrFail($id);
+            $slide_image->image = $filename; 
+            $slide_image->save();
+        }
+
+        return redirect()->action('Backend\AdminController@uploadSlideImage'); 
+    }
+
+    public function uploadArticleImage(Request $request) {
+        $NUM_PAGE = 20;
+        $images = ArticleImage::paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/media/article-image/upload-article-image')->with('NUM_PAGE',$NUM_PAGE)
+                                                                             ->with('page',$page)
+                                                                             ->with('images',$images);
+    }
+
+    public function uploadArticleImagePost(Request $request) {
+        $article_image = $request->all();
+        $article_image = ArticleImage::create($article_image);
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/article_image/', $filename);
+            $path = 'images/article_image/'.$filename;
+            $article_image->image = $filename;
+            $article_image->save();
+        }
+        return redirect()->action('Backend\AdminController@uploadArticleImage');
+    }
+
+    public function articleImageDelete(Request $request, $id) {
+        $article_image = ArticleImage::destroy($id);
+        $request->session()->flash('alert-success', 'ลบรูปภาพสำเร็จ');
+        return redirect()->action('Backend\AdminController@uploadArticleImage');
+    }
+
+    public function articleImageEdit($id) {
+        $article_image = ArticleImage::findOrFail($id);
+        return view('backend/admin/media/article-image/edit-article-image')->with('article_image',$article_image);
+    }
+
+    public function updateArticleImage(Request $request) {
+        $id = $request->get('id');
+
+        $article_image = ArticleImage::findOrFail($id);
+        $article_image->update($request->all());
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/article_image/', $filename);
+            $path = 'images/'.$filename;
+            $article_image = ArticleImage::findOrFail($id);
+            $article_image->image = $filename; 
+            $article_image->save();
+        }
+
+        return redirect()->action('Backend\AdminController@uploadArticleImage'); 
+    }
     public function rules_editProfile() {
         return [
             'name' => 'required',
@@ -859,7 +966,6 @@ class AdminController extends Controller
     public function rules_createCampaign() {
         return [
             'name' => 'required',
-            'start_date' => 'required',
             'expire_date' => 'required',
             'detail' => 'required',
             'image' => 'required',
@@ -869,7 +975,6 @@ class AdminController extends Controller
     public function messages_createCampaign() {
         return [
             'name.required' => 'กรุณากรอกชื่อแคมเปญ',
-            'start_date.required' => 'กรุณากรอกวันที่เริ่มแคมเปญ',
             'expire_date.required' => 'กรุณากรอกวันที่สิ้นสุดแคมเปญ',
             'detail.required' => 'กรุณากรอกเงื่อนไขในการใช้สิทธิ์',
             'image.required' => 'กรุณาแนบไฟล์รูปภาพ',

@@ -154,14 +154,6 @@
                                             </select>
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> วันที่เริ่มแคมเปญ <span>(จำเป็นต้องกรอก)</span>
-                                                @if ($errors->has('start_date'))
-                                                    <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('start_date') }})</span></center>
-                                                @endif
-                                            </p>
-                                            <input type="date" name="start_date" placeholder="" class="form-control">
-                                        </div>
-                                        <div class="col-md-12 mt-2">
                                             <p><span>*</span> วันที่สิ้นสุดแคมเปญ <span>(จำเป็นต้องกรอก)</span>
                                                 @if ($errors->has('expire_date'))
                                                     <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('expire_date') }})</span></center>

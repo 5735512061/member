@@ -69,7 +69,7 @@
                                                 @endif
                                                 <p style="border-bottom: 2px dashed #cac8c8;">สถานะ <i
                                                         class="fa fa-caret-right" style="color:#777777;"></i>
-                                                        {{ $value->status }}
+                                                    {{ $value->status }}
                                                 </p>
 
                                                 @if ($store_name == 'ไม่ระบุ')
@@ -79,11 +79,16 @@
                                                     <p>ใช้ได้ที่ <i class="fa fa-caret-right" style="color:#777777;"></i>
                                                         {{ $store_name }}
                                                 @endif
-                                                <p>ระยะเวลา <i class="fa fa-caret-right" style="color:#777777;"></i>
-                                                    {{ $value->start_date }} - {{ $value->expire_date }}</p>
+
+                                                @php
+                                                    $date_format = date('d-m-Y', strtotime($value->expire_date));
+                                                @endphp
+                                                <p>สิ้นสุดแคมเปญ <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                    {{ $date_format }}</p>
                                                 <div class="col" style="text-align: right;">
-                                                    <a href="{{url('campaign-edit/')}}/{{$value->id}}" class="btn btn-outline-primary radius-15"><i
-                                                            class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    <a href="{{ url('campaign-edit/') }}/{{ $value->id }}"
+                                                        class="btn btn-outline-primary radius-15"><i class="fa fa-pencil"
+                                                            aria-hidden="true"></i></a>
                                                     <a href="#" class="btn btn-outline-primary radius-15"><i
                                                             class="fa fa-trash" aria-hidden="true"></i></a>
                                                 </div>

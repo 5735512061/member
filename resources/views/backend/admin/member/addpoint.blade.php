@@ -66,8 +66,20 @@
                         @php
                             $dateNow = Carbon\Carbon::now()->format('d/m/Y');
 
+                            // point ที่ได้รับ
                             $sumprice = DB::table('points')->where('member_id',$value->id)->sum('price');
-                            $point_balance = floor(($sumprice)/100);
+                            $culPrice = floor(($sumprice)/100); 
+
+                            // หักคะแนนจากการแลกของรางวัล
+                            $redeem_reward_point = DB::table('redeem_rewards')
+                                                     ->join('reward_points', 'reward_points.id','=','redeem_rewards.point_id')
+                                                     ->where('member_id',$value->id)->sum('reward_points.point');
+                            // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
+                            $redeem_point = DB::table('redeem_points')
+                                                     ->join('partner_shop_points', 'partner_shop_points.id','=','redeem_points.point_id')
+                                                     ->where('member_id',$value->id)->sum('partner_shop_points.point');
+
+                            $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
                         @endphp
                         <div class="card z-index-2 mt-4">
                             <div class="card-header pb-0 pt-3 bg-transparent">

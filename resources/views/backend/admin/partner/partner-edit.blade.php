@@ -118,22 +118,7 @@
                 </div>
                 <form action="{{url('update-partner')}}" enctype="multipart/form-data" method="post">@csrf
                     <div class="row">
-                        <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-                            <div class="card z-index-2">
-                                <div class="card-header pb-0 pt-3 bg-transparent">
-                                    @if ($errors->has('image'))
-                                        <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('image') }})</span></center>
-                                    @endif
-                                    <input type="file" id="file" name="image" accept="image/*" hidden>
-                                    <div class="img-area" data-img="">
-                                        <i class="fa fa-cloud-upload icon" aria-hidden="true"></i>
-                                        <h5>Upload Image</h5>
-                                    </div>
-                                    <a class="select-image mb-4" style="text-align: center;">SELECT IMAGE</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8 col-12 mb-lg-0 mb-4">
+                        <div class="offset-2 col-md-8">
                             <div class="card z-index-2">
                                 <div class="card-header pb-0 pt-3 bg-transparent">
                                     <div class="row">
@@ -151,7 +136,7 @@
                                                     <span class="text-danger" style="font-size: 15px;">({{ $errors->first('tel') }})</span>
                                                 @endif
                                             </p>
-                                            <input type="text" name="tel" value="{{$partner->tel}}" class="form-control">
+                                            <input type="text" name="tel" value="{{$partner->tel}}" class="phone_format form-control">
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <p><span>*</span> ประเภทพันธมิตร <span>(จำเป็นต้องกรอก)</span></p>
@@ -190,6 +175,23 @@
 </div>  
 <script type="text/javascript" src="{{asset('https://code.jquery.com/jquery-3.2.1.min.js')}}"></script>
 <script src="//cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<script>
+    // number phone
+    function phoneFormatter() {
+        $('input.phone_format').on('input', function() {
+            var number = $(this).val().replace(/[^\d]/g, '')
+                if (number.length >= 5 && number.length < 10) { number = number.replace(/(\d{3})(\d{2})/, "$1-$2"); } else if (number.length >= 10) {
+                    number = number.replace(/(\d{3})(\d{3})(\d{3})/, "$1-$2-$3"); 
+                }
+            $(this).val(number)
+            $('input.phone_format').attr({ maxLength : 12 });
+        });
+    };
+    $(phoneFormatter);
+</script>
+
 <script type="text/javascript">
     $(document).ready(function() {
        $('.ckeditor').ckeditor();

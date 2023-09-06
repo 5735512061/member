@@ -161,11 +161,7 @@
                                                     <span class="text-danger" style="font-size: 15px;">({{ $errors->first('detail') }})</span>
                                                 @endif
                                             </p>
-                                            <textarea name="detail" class="ckeditor form-control">
-                                                <p>1. กดแลกพอยท์ผ่านทางเว็บไซต์</p>
-                                                <p>2. ทางบริษัทฯ จะติดต่อกลับเพื่อให้สมาชิกยืนยันการรับสิทธิ์</p>
-                                                <p>3. กรณีทำการแลกพอยท์แล้ว จะไม่สามารถเปลี่ยนแปลง หรือยกเลิกได้ทุกกรณี</p>
-                                            </textarea>
+                                            <textarea name="detail" class="ckeditor form-control">{{$reward->detail}}</textarea>
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             @php
@@ -177,19 +173,6 @@
                                                 @endif
                                             </p>
                                             <input type="text" name="point" placeholder="20 คะแนน" class="form-control" value="{{$point}}">
-                                        </div>
-                                        <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ระดับลูกค้า</p>
-                                            @php
-                                                $tiers = DB::table('tiers')->get();
-                                                $tier = DB::table('tiers')->where('id',$reward->tier_id)->value('tier');
-                                            @endphp
-                                            <select name="tier_id" class="form-control">
-                                                    <option value="{{$reward->tier_id}}">{{$tier}}</option>
-                                                @foreach ($tiers as $tiers => $value)
-                                                    <option value="{{$value->id}}">{{$value->tier}}</option>
-                                                @endforeach
-                                            </select>
                                         </div>
                                         <div class="col-md-12 mt-2">
                                             <p>สถานะ</p>

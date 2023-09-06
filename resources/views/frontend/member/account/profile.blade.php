@@ -165,11 +165,13 @@
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-4 col-6">
-                        <div class="card mt-3">
-                            <div class="card-body" style="padding: 1.25rem 0 1.25rem 0;">
-                                <p>คูปอง</p>
+                        <a href="{{ url('member/coupon') }}">
+                            <div class="card mt-3">
+                                <div class="card-body" style="padding: 1.25rem 0 1.25rem 0;">
+                                    <p>คูปองของฉัน</p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-md-4 col-6">
                         <a href="{{ url('member/profile-change') }}">

@@ -81,8 +81,8 @@
                                                             aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div><br>
+                                        </div><br>
+                                    </div>
                                 @endforeach
                             </div>
                         </div>

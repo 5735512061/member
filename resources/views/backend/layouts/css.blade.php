@@ -7,3 +7,5 @@
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
 </style>
+
+<link rel="stylesheet" type="text/css" href="{{ asset('css/halkaBox.min.css')}}">

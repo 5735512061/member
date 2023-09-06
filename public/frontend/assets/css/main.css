@@ -83,7 +83,7 @@ h1, .h1 {
 @media only screen and (max-width: 575.96px) {
   h1, .h1 {
     font-size: 2.5rem;
-    line-height: 2.75rem;
+    line-height: 4rem;
   }
 }
 
@@ -1591,6 +1591,13 @@ p.blog-meta span i {
 .excerpt {
   line-height: 1.8;
   color: #555;
+  display:block;
+  width:100%;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
 }
 
 .pagination-wrap {

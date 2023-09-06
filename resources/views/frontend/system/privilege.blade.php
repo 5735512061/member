@@ -16,10 +16,10 @@
                 <strong>สิทธิประโยชน์พิเศษ</strong>
             </h2>
             <div style="display: flex; justify-content: space-between;">
-                <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
+                <h4>กดรับคูปองส่วนลดพิเศษในเครือพันธมิตร</h4>
             </div>
         </div>
-        <div class="latest-news mb-150" style="margin-top: 50px;">
+        <div class="latest-news mb-100" style="margin-top: 50px;">
             <div class="row">
                 @foreach ($coupons as $coupon => $value)
                     @php
@@ -29,18 +29,21 @@
                     @endphp
                     <div class="col-lg-4 col-md-6">
                         <div class="single-latest-news" style="background-color: #ffffff;">
-                            <a href="single-news.html">
+                            <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">
                                 <img src="{{ url('images/campaign') }}/{{ $value->image }}"
                                     class="latest-news-bg img-responsive" width="100%">
                             </a>
                             <div class="news-text-box">
-                                <h1><a href="">{{ $value->name }}</a></h1>
+                                <h1><a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a></h1>
                                 <div>{!! $value->detail !!}</div>
                                 <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i> {{ $partner }}</p>
-                                <div class="excerpt">{!! $value->article !!}</div>
-                                <div class="flex space-between">
+                                <div style="border-bottom: 2px dashed #cac8c8;"></div>
+                                <div class="flex space-between mt-3" >
                                     <p class="blog-meta">
-                                        <strong style="color: red;">สิ้นสุดแคมเปญ {{ $value->expire_date }}</strong>
+                                        @php
+                                            $date_format = date('d-m-Y', strtotime($value->expire_date));
+                                        @endphp
+                                        <strong style="color: red;">สิ้นสุดแคมเปญ {{ $date_format }}</strong>
                                     </p>
                                     <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}"
                                         style="text-align:end;">รายละเอียดเพิ่มเติม
@@ -54,10 +57,10 @@
             </div>
         </div>
     </div>
-    <div class="container">
+    <div class="container mb-5">
         <center>
             <div class="header-title">
-                <h2 style="margin-top:15rem;">
+                <h2 style="margin-top: 5rem;">
                     <strong>สิทธิประโยชน์สมาชิก 1Choice</strong>
                 </h2>
             </div>
@@ -75,7 +78,7 @@
             </div>
             <div class="col-lg-4 col-md-4">
                 <div class="privilege text-center">
-                    <i class="fas fa-gift"></i>
+                    <i class="fas fa-ticket"></i>
                     <h4>รับส่วนลดพิเศษ</h4>
                     <p>
                         รับส่วนลดพิเศษในเครือข่ายพันธมิตร
@@ -88,15 +91,6 @@
                     <h4>ของรางวัลพรีเมี่ยม</h4>
                     <p>
                         แลกรับของรางวัลพรีเมี่ยม
-                    </p>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 mt-5 offset-4">
-                <div class="privilege text-center">
-                    <i class="fas fa-info-circle"></i>
-                    <h4>ตรวจสอบสิทธิพิเศษ</h4>
-                    <p>
-                        ตรวจสอบสิทธิประโยชน์ และพันธมิตรที่ร่วมรายการ ได้ผ่านทางเว็บไซต์
                     </p>
                 </div>
             </div>

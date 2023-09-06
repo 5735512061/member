@@ -14,22 +14,26 @@
             <div class="row">
                 @foreach ($partners as $partner => $value)
                     @php
-                        $image = DB::table('partner_shops')->where('id',$value->partner_id)->value('image');
-                        $name = DB::table('partner_shops')->where('id',$value->partner_id)->value('name');
+                        $name = DB::table('partner_shops')
+                            ->where('id', $value->partner_id)
+                            ->value('name');
                     @endphp
                     <div class="col-lg-4 col-md-6">
                         <div class="single-latest-news" style="background-color: #ffffff;">
                             <a href="{{ url('alliance') }}/{{ $value->id }}/{{ $name }}">
-                                <img src="{{ url('images/partner') }}/{{ $image }}"
+                                <img src="{{ url('images/partner') }}/{{ $value->image }}"
                                     class="latest-news-bg img-responsive" width="100%">
                             </a>
                             <div class="news-text-box">
                                 <h1><a
-                                        href="{{ url('alliance') }}/{{ $value->id }}/{{ $name }}">{{ $name }}</a>
+                                        href="{{ url('alliance') }}/{{ $value->id }}/{{ $value->name }}">{{ $name }}</a>
                                 </h1>
-                                <div class="excerpt">{!! $value->promotion !!}</div>
-                                <a href="{{ url('alliance') }}/{{ $value->id }}/{{ $name }}"
-                                    class="read-more-btn">รายละเอียดเพิ่มเติม <i class="fa fa-caret-right"></i></a>
+                                <div>{!! $value->promotion !!}</div><br>
+                                <div style="border-bottom: 2px dashed #cac8c8;"></div>
+                                <div style="text-align:right;">
+                                    <a href="{{ url('alliance') }}/{{ $value->id }}/{{ $name }}">รายละเอียดเพิ่มเติม
+                                        <i class="fa fa-caret-right"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -66,6 +66,7 @@
                                         <tr style="text-align: center;">
                                             <th>#</th>
                                             <th>โปรโมชั่น</th>
+                                            <th>รูปภาพ</th>
                                             <th>สถานะ</th>
                                             <th></th>
                                         </tr>
@@ -75,6 +76,8 @@
                                             <tr style="text-align:center;">
                                                 <td>{{ $NUM_PAGE * ($page - 1) + $promotion + 1 }}</td>
                                                 <td>{!! $value->promotion !!}</td>
+                                                <td><a href="{{url('/images/partner')}}/{{$value->image}}" class="singleImage2"><i
+                                                    class="fa fa-picture-o" style="color: green;"></i></a></td> 
                                                 <td>{{ $value->status }}</td>
                                                 <td>
                                                     <a href="{{ url('/promotion-edit') }}/{{ $value->id }}"><i
