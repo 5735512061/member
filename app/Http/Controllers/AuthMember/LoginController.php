@@ -38,7 +38,6 @@ class LoginController extends Controller
             ];
   
             if(Auth::guard('member')->attempt($credential, $request->member)){
-              // return Session::get('backUrl') ? redirect( Session::get('backUrl') ) : redirect()->intended(route('member.home'));
               return redirect()->intended(route('member.home'));
             } 
             $request->session()->flash('alert-danger', 'หมายเลขโทรศัพท์หรือรหัสผ่านไม่ถูกต้อง');

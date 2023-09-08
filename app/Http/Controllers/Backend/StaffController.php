@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Model\Point;
 use App\Model\Campaign;
+use App\Model\GetCoupon;
 
 use Validator;
 use Carbon\Carbon;
@@ -118,20 +119,57 @@ class StaffController extends Controller
             }
     }
 
-    public function coupon() {
+    public function searchMemberCoupon(Request $request) {
+        return view('backend/staff/coupon/search-member');
+    }
+
+    public function coupon($id) {
         $search = 'No Search';
-        return view('backend/staff/coupon/coupon')->with('search',$search);
+        $coupons = GetCoupon::where('member_id',$id)
+                            ->join('campaigns', 'campaigns.id', '=', 'get_coupons.coupon_id')
+                            ->select('campaigns.*', 'get_coupons.*','campaigns.status as status_coupon','get_coupons.status as status_get_coupon')
+                            ->orderBy('get_coupons.id','desc')->get();
+        $member_id = $id;
+        return view('backend/staff/coupon/coupon-index')->with('search',$search)
+                                                        ->with('member_id',$member_id)
+                                                        ->with('coupons',$coupons);
     }
 
     public function searchCoupon(Request $request) {
+        $member_id = $request->get('member_id');
         $search = $request->get('code');
-        $coupons = Campaign::where('code',$request->get('code'))->get();
-        $count = count($coupons);
+
+        $coupons = GetCoupon::where('member_id',$member_id)
+                            ->join('campaigns', 'campaigns.id', '=', 'get_coupons.coupon_id')
+                            ->where('campaigns.code', '=', $search)
+                            ->select('campaigns.*', 'get_coupons.*','campaigns.status as status_coupon','get_coupons.status as status_get_coupon')
+                            ->orderBy('get_coupons.id','desc')->get();
+
+        return view('backend/staff/coupon/coupon-index')->with('coupons',$coupons)
+                                                        ->with('search',$search)
+                                                        ->with('member_id',$member_id);
+    }
+
+    public function searchMemberCouponPost(Request $request) {
+        $search = $request->get('search');
+        $members = Member::where('tel',$search)->get();
+        $count = count($members);
             if($count == 0) {
                 $search = '0';
             }
-        return view('backend/staff/coupon/coupon')->with('coupons',$coupons)
+        return view('backend/staff/coupon/coupon')->with('members',$members)
                                                   ->with('search',$search);
+    }
+
+    public function useCoupon(Request $request, $id) {
+        $dateNow = Carbon::now()->format('d/m/Y');
+        $member_id = GetCoupon::where('id',$id)->value('member_id');
+        $get_coupon = GetCoupon::findOrFail($id);
+        $get_coupon->status = 'ใช้งานแล้ว';
+        $get_coupon->date_use_coupon = $dateNow;
+        $get_coupon->save();
+        $request->session()->flash('alert-success', 'ใช้คูปองสำเร็จ');
+        return back();
     }
 
     public function rules_register() {

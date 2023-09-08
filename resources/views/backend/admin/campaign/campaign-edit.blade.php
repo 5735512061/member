@@ -163,7 +163,7 @@
                                             <input type="date" name="expire_date" placeholder="" class="form-control" value="{{$campaign->expire_date}}">
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> เงื่อนไขในการใฃ้สิทธิ์ <span>(จำเป็นต้องกรอก)</span>
+                                            <p><span>*</span> รายละเอียดแคมเปญ <span>(จำเป็นต้องกรอก)</span>
                                                 @if ($errors->has('detail'))
                                                     <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('detail') }})</span></center>
                                                 @endif

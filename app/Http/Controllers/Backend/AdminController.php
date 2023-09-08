@@ -220,26 +220,32 @@ class AdminController extends Controller
     }
 
     public function memberList(Request $request) {
-        $members = Member::get();
+        $NUM_PAGE = 50;
+        $members = Member::paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list')->with('page',$page)
+                                                       ->with('NUM_PAGE',$NUM_PAGE)
                                                        ->with('members',$members);
     }
 
     public function memberListOn(Request $request) {
-        $members = Member::where('status',"ONLINE")->get();
+        $NUM_PAGE = 50;
+        $members = Member::where('status',"ONLINE")->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list-on')->with('page',$page)
+                                                          ->with('NUM_PAGE',$NUM_PAGE)
                                                           ->with('members',$members);
     }
 
     public function memberListOff(Request $request) {
-        $members = Member::where('status',"OFFLINE")->get();
+        $NUM_PAGE = 50;
+        $members = Member::where('status',"OFFLINE")->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list-off')->with('page',$page)
+                                                           ->with('NUM_PAGE',$NUM_PAGE)
                                                            ->with('members',$members);
     }
 
@@ -299,7 +305,7 @@ class AdminController extends Controller
             if($sumprice > 1000001) {
                 $members = Member::join('points', 'members.id', '=', 'points.member_id')
                        ->select('members.*', 'points.price')
-                       ->get();;
+                       ->get();
             } else {
                 $members = 0;
             }
@@ -425,7 +431,7 @@ class AdminController extends Controller
 
     public function reward(Request $request) {
         $NUM_PAGE = 20;
-        $rewards = Reward::paginate($NUM_PAGE);
+        $rewards = Reward::orderByRaw('FIELD(status,"กำลังใช้งาน","ปิดการใช้งาน","พักการใช้งาน","ยังไม่ใช้งาน")')->paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/reward/reward-dashboard')->with('NUM_PAGE',$NUM_PAGE)
@@ -548,6 +554,23 @@ class AdminController extends Controller
             $reward->save();
         }
         return redirect()->action('Backend\AdminController@reward'); 
+    }
+
+    public function redeemReward(Request $request) {
+        $NUM_PAGE = 20;
+        $redeem_rewards = RedeemReward::orderByRaw('FIELD(status,"รอดำเนินการ","แลกรางวัลสำเร็จ")')->orderBy('id','desc')->paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('backend/admin/member/redeem-reward')->with('NUM_PAGE',$NUM_PAGE)
+                                                         ->with('page',$page)
+                                                         ->with('redeem_rewards',$redeem_rewards);
+    }
+
+    public function confirmRedeemReward(Request $request) {
+        $redeem_reward = RedeemReward::findOrFail($request->get('id'));
+        $redeem_reward->status = $request->get('status');
+        $redeem_reward->save();
+        return redirect()->action('Backend\AdminController@redeemReward'); 
     }
 
     public function addTierPost(Request $request) {

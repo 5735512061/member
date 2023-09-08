@@ -56,10 +56,11 @@
                                             <div class="card-body">
                                                 <img src="{{ url('images/campaign') }}/{{ $value->image }}"
                                                     class="img-responsive" width="100%">
-                                                <p class="mb-0 mt-4">รหัสคูปอง <i class="fa fa-caret-right"
-                                                        style="color:#777777;"></i> {{ $value->code }}</p>
-                                                <p class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
-                                                    {{ $value->name }}</p>
+                                                <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i class="fa fa-caret-right"
+                                                        style="color:#ff0000;"></i> <strong>{{ $value->code }}</strong></p>
+                                                <h5 class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
+                                                    {{ $value->name }}</h5>
+                                                <div style="min-height: 60px;">{!! $value->detail !!}</div>
                                                 @if ($value->campaign_type == 'ไม่ระบุ')
                                                     <p>ประเภทคูปอง <i class="fa fa-caret-right" style="color:#777777;"></i>
                                                         {{ $value->campaign_type }} <span>(คูปองทั่วไป)</span></p>

@@ -29,6 +29,7 @@
                                     <th>วันที่</th>
                                     <th>ของรางวัล</th>
                                     <th>คะแนนที่ใช้</th>
+                                    <th>สถานะ</th>
                                 </tr>
                             </thead>
                             <tbody class="list">
@@ -46,6 +47,11 @@
                                         <td>{{ $value->date }}</td>
                                         <td>{{ $reward }}</td>
                                         <td>{{ $point }} คะแนน</td>
+                                        @if($value->status == "แลกรางวัลสำเร็จ")
+                                            <td style="color: green;">{{ $value->status }}</td>
+                                        @else
+                                            <td>{{ $value->status }}</td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

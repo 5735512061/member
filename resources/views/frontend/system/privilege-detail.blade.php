@@ -10,12 +10,19 @@
         $coupons = DB::table('campaigns')
             ->where('id', '!=', $coupon->id)
             ->paginate(10);
+        
         $partner = DB::table('partner_shops')
             ->where('id', $coupon->partner_id)
             ->value('name');
-        $count_get_coupon = DB::table('get_coupons')
-            ->where('member_id', Auth::guard('member')->user()->id)
-            ->count();
+        if (Auth::guard('member')->user() != null) {
+            $count_get_coupon = DB::table('get_coupons')
+                ->where('member_id', Auth::guard('member')->user()->id)
+                ->where('coupon_id', $coupon->id)
+                ->count();
+        } else {
+            $count_get_coupon = 0;
+        }
+        
     @endphp
     <div class="container" style="margin-bottom: 50px;">
 
@@ -59,21 +66,59 @@
                         <a href="{{ url('member/get-coupon/') }}/{{ $coupon->id }}"
                             class="btn btn-block btn-success mt-3">กดรับคูปอง</a>
                     @else
-                        <a href="{{ url('member/coupon/') }}" 
-                            class="btn btn-block btn-secondary mt-3">คุณได้รับคูปองแล้ว ตรวจสอบคูปองที่เมนู คูปองของฉัน</a>
+                        <a href="{{ url('member/coupon/') }}" class="btn btn-block btn-secondary mt-3">คุณได้รับคูปองแล้ว
+                            ตรวจสอบคูปองที่เมนู คูปองของฉัน</a>
                     @endif
                 </div>
                 <div class="col-lg-12 mt-5">
                     <div class="sidebar-section" style="margin-left: 0;">
                         <div class="recent-posts">
-                            <h4>Others Coupon</h4>
-                            <ul>
-                                @foreach ($coupons as $coupon => $value)
-                                    <li><a
-                                            href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a>
-                                    </li>
-                                @endforeach
-                            </ul>
+                            <div class="header-title">
+                                <h3 style="padding-top: 5rem; color:#F28123;">
+                                    <strong>OTHERS COUPON</strong>
+                                </h3>
+                            </div>
+                            <div class="latest-news" style="margin-top: 50px;">
+                                <div class="row">
+                                    @foreach ($coupons as $coupon => $value)
+                                        @php
+                                            $partner = DB::table('partner_shops')
+                                                ->where('id', $value->partner_id)
+                                                ->value('name');
+                                        @endphp
+                                        <div class="col-lg-4 col-md-6">
+                                            <div class="single-latest-news" style="background-color: #ffffff;">
+                                                <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">
+                                                    <img src="{{ url('images/campaign') }}/{{ $value->image }}"
+                                                        class="latest-news-bg img-responsive" width="100%">
+                                                </a>
+                                                <div class="news-text-box">
+                                                    <h1><a
+                                                            href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a>
+                                                    </h1>
+                                                    <div style="min-height: 50px;">{!! $value->detail !!}</div>
+                                                    <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i>
+                                                        {{ $partner }}</p>
+                                                    <div style="border-bottom: 2px dashed #cac8c8;"></div>
+                                                    <div class="flex space-between mt-3">
+                                                        <p class="blog-meta">
+                                                            @php
+                                                                $date_format = date('d-m-Y', strtotime($value->expire_date));
+                                                            @endphp
+                                                            <strong style="color: red;">สิ้นสุดแคมเปญ
+                                                                {{ $date_format }}</strong>
+                                                        </p>
+                                                        <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}"
+                                                            style="text-align:end;">รายละเอียดเพิ่มเติม
+                                                            <i class="fa fa-caret-right"></i></a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                         <div class="tag-section">
                             <h4>บทความ และข่าวสาร</h4>

@@ -7,9 +7,16 @@
             <center>
                 <h3 style="color:#e57d0d;">เข้าสู่ระบบ <br> สมาชิก</h3>
                 <hr style="border-bottom:2px solid #fff;">
-                <a href=""><p style="color: #fff;">ลืมรหัสผ่าน ?</p></a>
+                <a href="{{route('password.forget')}}"><p style="color: #fff;">ลืมรหัสผ่าน ?</p></a>
             </center>
             <div class="col-lg-4" style="color:#fff; border-left:3px solid #fff; margin-left:15px;">
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if(Session::has('alert-' . $msg))
+                            <div class="alert alert-{{ $msg }}" role="alert">{{ Session::get('alert-' . $msg) }}</div>
+                        @endif
+                    @endforeach
+                </div>
                 <form method="POST" action="{{ route('member.login.submit') }}">@csrf
                     <div class="form-group row">
                         <div class="col-md-12">

@@ -39,35 +39,57 @@
                 aria-hidden="true"></i> สิ้นสุดแคมเปญ</a>
     </div>
     <div class="container-fluid py-4">
-        <div class="reward">
+        <div class="campaign">
             <div class="row">
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div class="z-index-2 h-100">
                         <div class="card-body">
                             <div class="row">
                                 @foreach ($campaigns as $campaign => $value)
+                                    @php
+                                        $store_name = DB::table('partner_shops')
+                                            ->where('id', $value->partner_id)
+                                            ->value('name');
+                                    @endphp
                                     <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body">
                                                 <img src="{{ url('images/campaign') }}/{{ $value->image }}"
                                                     class="img-responsive" width="100%">
-                                                <p class="mb-0 mt-4">รหัสคูปอง <i class="fa fa-caret-right"
-                                                        style="color:#777777;"></i> {{ $value->code }}</p>
-                                                <p class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
-                                                    {{ $value->name }}</p>
-                                                <p>ประเภทคูปอง <i class="fa fa-caret-right" style="color:#777777;"></i>
-                                                    {{ $value->campaign_type }}</p>
+                                                <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i class="fa fa-caret-right"
+                                                        style="color:#ff0000;"></i> <strong>{{ $value->code }}</strong></p>
+                                                <h5 class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
+                                                    {{ $value->name }}</h5>
+                                                <div style="min-height: 60px;">{!! $value->detail !!}</div>
+                                                @if ($value->campaign_type == 'ไม่ระบุ')
+                                                    <p>ประเภทคูปอง <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                        {{ $value->campaign_type }} <span>(คูปองทั่วไป)</span></p>
+                                                @else
+                                                    <p>ประเภทคูปอง <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                        {{ $value->campaign_type }}</p>
+                                                @endif
                                                 <p style="border-bottom: 2px dashed #cac8c8;">สถานะ <i
                                                         class="fa fa-caret-right" style="color:#777777;"></i>
-                                                    {{ $value->status }}</p>
+                                                    {{ $value->status }}
+                                                </p>
+
+                                                @if ($store_name == 'ไม่ระบุ')
+                                                    <p>ใช้ได้ที่ <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                        {{ $store_name }} <span>(ใช้ได้ทุกร้านในเครือ)</span></p>
+                                                @else
+                                                    <p>ใช้ได้ที่ <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                                        {{ $store_name }}
+                                                @endif
+
                                                 @php
                                                     $date_format = date('d-m-Y', strtotime($value->expire_date));
                                                 @endphp
                                                 <p>สิ้นสุดแคมเปญ <i class="fa fa-caret-right" style="color:#777777;"></i>
                                                     {{ $date_format }}</p>
                                                 <div class="col" style="text-align: right;">
-                                                    <a href="#" class="btn btn-outline-primary radius-15"><i
-                                                            class="fa fa-pencil" aria-hidden="true"></i></a>
+                                                    <a href="{{ url('campaign-edit/') }}/{{ $value->id }}"
+                                                        class="btn btn-outline-primary radius-15"><i class="fa fa-pencil"
+                                                            aria-hidden="true"></i></a>
                                                     <a href="#" class="btn btn-outline-primary radius-15"><i
                                                             class="fa fa-trash" aria-hidden="true"></i></a>
                                                 </div>

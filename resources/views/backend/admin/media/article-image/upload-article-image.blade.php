@@ -118,9 +118,9 @@
                 @endforeach
             </div>
             <p>{{ $images->links() }}</p>
-            <form action="{{ url('upload-article-image') }}" enctype="multipart/form-data" method="post">@csrf
-                <div class="row">
-                    <div class="col-lg-3 col-12 mb-lg-0 mb-4">
+            <div class="row">
+                <div class="col-lg-3 col-12 mb-lg-0 mb-4">
+                    <form action="{{ url('upload-article-image') }}" enctype="multipart/form-data" method="post">@csrf
                         <div class="card z-index-2">
                             <div class="card-header pb-0 pt-3 bg-transparent">
                                 <div class="row">
@@ -144,50 +144,50 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="card z-index-2 h-100">
-                            <div class="card-body p-3">
-                                <div class="table-responsive">
-                                    <table class="table align-items-center">
-                                        <thead class="thead-light">
-                                            <tr style="text-align: center;">
-                                                <th>#</th>
-                                                <th>รูปภาพ</th>
-                                                <th>Get Link</th>
-                                                <th></th>
+                    </form>
+                </div>
+                <div class="col-lg-6 mb-lg-0 mb-4">
+                    <div class="card z-index-2">
+                        <div class="card-body p-3">
+                            <div class="table-responsive">
+                                <table class="table align-items-center">
+                                    <thead class="thead-light">
+                                        <tr style="text-align: center;">
+                                            <th>#</th>
+                                            <th>รูปภาพ</th>
+                                            <th>Get Link</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="list">
+                                        @foreach ($images as $image => $value)
+                                            <tr style="text-align:center;">
+                                                <td>{{ $NUM_PAGE * ($page - 1) + $image + 1 }}</td>
+                                                <td><a href="{{ url('/images/article_image') }}/{{ $value->image }}"
+                                                        class="singleImage2"><i class="fa fa-picture-o"
+                                                            style="color: green;"></i></a></td>
+                                                <td>
+                                                    <p id="{{ $value->id }}" style="display: none;">
+                                                        {{ url('/images/article_image') }}/{{ $value->image }}</p>
+                                                    <a href="" style="color: #1229f5;" onclick="copyToClipboard({{$value->id}})">COPY LINK</a>
+                                                </td>
+                                                <td>
+                                                    <a href="{{ url('/article-image-edit') }}/{{ $value->id }}"><i
+                                                            class="fa fa-pencil-square"
+                                                            style="color: rgb(68, 0, 255);"></i></a>
+                                                    <a href="{{ url('/article-image-delete') }}/{{ $value->id }}"
+                                                        onclick="return confirm('Are you sure to delete ?')"><i
+                                                            class="fa fa-trash-o" style="color: red;"></i></a>
+                                                </td>
                                             </tr>
-                                        </thead>
-                                        <tbody class="list">
-                                            @foreach ($images as $image => $value)
-                                                <tr style="text-align:center;">
-                                                    <td>{{ $NUM_PAGE * ($page - 1) + $image + 1 }}</td>
-                                                    <td><a href="{{ url('/images/article_image') }}/{{ $value->image }}"
-                                                            class="singleImage2"><i class="fa fa-picture-o"
-                                                                style="color: green;"></i></a></td>
-                                                    <td>
-                                                        <a id="btn"
-                                                            data-url="{{ url('/images/article_image') }}/{{ $value->image }}"
-                                                            style="color:#005cbf;" href="">GET LINK</a>
-                                                    </td>
-                                                    <td>
-                                                        <a href="{{ url('/article-image-edit') }}/{{ $value->id }}"><i
-                                                                class="fa fa-pencil-square"
-                                                                style="color: rgb(68, 0, 255);"></i></a>
-                                                        <a href="{{ url('/article-image-delete') }}/{{ $value->id }}"
-                                                            onclick="return confirm('Are you sure to delete ?')"><i
-                                                                class="fa fa-trash-o" style="color: red;"></i></a>
-                                                    </td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        @endforeach
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
         </div>
     </div>
     <script type="text/javascript" src="{{ asset('https://code.jquery.com/jquery-3.2.1.min.js') }}"></script>
@@ -222,17 +222,15 @@
 
         });
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            var $temp = $("<input>");
-            var $url = $('#btn').attr('data-url');
-            $('#btn').click(function() {
-                $("body").append($temp);
-                $temp.val($url).select();
-                document.execCommand("copy");
-                $temp.remove();
-            });
-        });
+        function copyToClipboard(elementId) {
+            var aux = document.createElement("input");
+            aux.setAttribute("value", document.getElementById(elementId).innerHTML);
+            document.body.appendChild(aux);
+            aux.select();
+            document.execCommand("copy");
+            document.body.removeChild(aux);
+        }
     </script>
 @endsection

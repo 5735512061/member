@@ -62,7 +62,7 @@
   </div>
   <div class="row mt-4">
     <div class="col-lg-4 col-12 mb-lg-0 mb-4">
-      <div class="card z-index-2">
+      <div class="card z-index-2 h-100">
         <div class="card-header pb-0 pt-3 bg-transparent">
           <center><h6 class="text-capitalize">จำนวนสมาชิก <br>( {{$count_member}} คน )</h6><br></center>
           <center><div id="piechart" style="width: 450px; height: 320px; margin-top:-2rem;"></div></center>
@@ -121,6 +121,7 @@
         <div class="card-body p-3 repeat-member" style="text-align:center;">
           <h3>{{$redeem_reward}}</h3>
           <p>ครั้ง</p>
+          <a href="{{url('redeem-reward')}}" class="btn btn-info btn-sm">ตรวจสอบการแลกของรางวัล</a>
         </div>
         <hr>
         <div class="card-header pb-0 pt-3 bg-transparent">
@@ -160,7 +161,7 @@
                     @foreach ($members as $member => $value)
                       @php
                           // point ที่ได้รับ
-                          $sumprice = DB::table('points')->where('member_id',$value->id)->sum('price');
+                          $sumprice = DB::table('points')->where('member_id',$value->id)->sum('price'); // ยอดจ่ายคิดระดับสมาชิก
                           $culPrice = floor(($sumprice)/100); 
 
                           // หักคะแนนจากการแลกของรางวัล
@@ -175,6 +176,14 @@
 
                           $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
                             
+                          // min_price, max_price ระดับสมาชิก
+                          $min_price_silver = DB::table('tiers')->where('tier','SILVER')->value('min_price');
+                          $max_price_silver = DB::table('tiers')->where('tier','SILVER')->value('max_price');
+                          $min_price_gold = DB::table('tiers')->where('tier','GOLD')->value('min_price');
+                          $max_price_gold = DB::table('tiers')->where('tier','GOLD')->value('max_price');
+                          $min_price_platinam = DB::table('tiers')->where('tier','PLATINAM')->value('min_price');
+                          $max_price_platinam = DB::table('tiers')->where('tier','PLATINAM')->value('max_price');
+                          $min_price_diamond = DB::table('tiers')->where('tier','DIAMOND')->value('min_price');
                       @endphp
                         <tr style="text-align:center;">
                             <td>{{$NUM_PAGE*($page-1) + $member+1}}</td>
@@ -182,13 +191,13 @@
                             <td>{{$value->tel}}</td>
                             <td>{{$value->name}} {{$value->surname}}</td>
                             <td>{{$point_balance}}</td>
-                            @if($sumprice == 0 || $sumprice < 100001)
+                            @if($sumprice == $min_price_silver || $sumprice < $max_price_silver)
                               <td>SILVER</td>
-                            @elseif($sumprice == 100001 || $sumprice < 500001)
+                            @elseif($sumprice == $min_price_gold || $sumprice < $max_price_gold)
                               <td>GOLD</td>
-                            @elseif($sumprice == 500001 || $sumprice < 1000001)
+                            @elseif($sumprice == $min_price_platinam || $sumprice < $max_price_platinam)
                               <td>PLATINAM</td>
-                            @elseif($sumprice > 1000001)
+                            @elseif($sumprice > $min_price_diamond)
                               <td>DIAMOND</td>
                             @endif
                             <td>{{$value->date}}</td>

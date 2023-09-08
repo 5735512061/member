@@ -35,8 +35,14 @@ Route::group(['prefix' => 'member'], function(){
     Route::post('login','AuthMember\LoginController@login')->name('member.login.submit');
     Route::post('logout', 'AuthMember\LoginController@logout')->name('member.logout');
 
+    // เปลี่ยนรหัสผ่าน
     Route::get('/change-password', 'AuthMember\ChangePasswordController@index')->name('password.change');
     Route::post('/change-password', 'AuthMember\ChangePasswordController@changePassword')->name('password.update');
+
+    // ลืมรหัสผ่าน
+    Route::get('/forget-password', 'AuthMember\ForgetPasswordController@index')->name('password.forget');
+    Route::post('/forget-password', 'AuthMember\ForgetPasswordController@forgetPassword')->name('password.forget.form');
+    Route::post('/update-password', 'AuthMember\ForgetPasswordController@updatePassword')->name('password.updateForget');
 
     Route::get('/tel-change','Frontend\MembersController@telChange');
     Route::post('/tel-update','Frontend\MembersController@telUpdate');
@@ -45,8 +51,13 @@ Route::group(['prefix' => 'member'], function(){
     Route::post('/profile-update','Frontend\MembersController@profileUpdate');
 
     Route::get('/profile','Frontend\MembersController@profile')->name('member.home');
+
+    // แลกของรางวัล
     Route::get('/reward-redem/{id}','Frontend\RewardsController@rewardRedem');
-    Route::get('/redeem-point','Frontend\MembersController@redeemPoint');
+    Route::get('/redeem-point','Frontend\RewardsController@redeemPoint');
+    Route::post('/reward-success','Frontend\RewardsController@rewardSuccess');
+
+    // คูปอง
     Route::get('/get-coupon/{id}','Frontend\CouponsController@getCoupon');
     Route::get('/coupon','Frontend\MembersController@coupon');
 });
@@ -107,6 +118,10 @@ Route::group(['prefix' => '/'], function(){
     Route::get('reward-delete/{id}','Backend\AdminController@rewardDelete'); //ลบของรางวัล
     Route::get('reward-edit/{id}','Backend\AdminController@rewardEdit'); //แก้ไขของรางวัล
     Route::post('update-reward','Backend\AdminController@updateReward'); //อัพเดตของรางวัล
+
+    // การแลกของรางวัล
+    Route::get('redeem-reward','Backend\AdminController@redeemReward'); //การแลกของรางวัล
+    Route::post('confirm-redeem-reward','Backend\AdminController@confirmRedeemReward'); //คอนเฟิร์มสถานะการแลกของรางวัล
 
     // จัดการแคมเปญ
     Route::get('create-campaign','Backend\AdminController@createCampaign'); //หน้าสร้างแคมเปญ
@@ -182,8 +197,11 @@ Route::group(['prefix' => 'admin'], function(){
     Route::post('create-account-staff','Backend\AdminStoreController@createAccountStaffPost'); //สร้างบัญชีพนักงาน
 
     // จัดการคูปอง
-    Route::get('coupon','Backend\AdminStoreController@coupon'); //หน้าจัดการคูปอง
-    Route::get('search-coupon','Backend\AdminStoreController@searchCoupon'); //หน้าค้นหาคูปอง
+    Route::get('search-member-coupon','Backend\AdminStoreController@searchMemberCoupon'); //หน้าค้นหาคูปอง
+    Route::get('search-member-coupon-post','Backend\AdminStoreController@searchMemberCouponPost'); //หน้าค้นหาข้อมูล ใช้คูปอง
+    Route::get('coupon/{id}','Backend\AdminStoreController@coupon'); 
+    Route::get('search-coupon','Backend\AdminStoreController@searchCoupon');
+    Route::get('use-coupon/{id}','Backend\AdminStoreController@useCoupon'); //กดใช้งานคูปอง
 });
 
 // Staff พนักงาน
@@ -209,8 +227,11 @@ Route::group(['prefix' => 'staff'], function(){
     Route::post('register-member','Backend\StaffController@registerMemberPost'); //สมัครสมาชิกใหม่
 
     // จัดการคูปอง
-    Route::get('coupon','Backend\StaffController@coupon'); //หน้าจัดการคูปอง
-    Route::get('search-coupon','Backend\StaffController@searchCoupon'); //หน้าค้นหาคูปอง
+    Route::get('search-member-coupon','Backend\StaffController@searchMemberCoupon'); //หน้าค้นหาคูปอง
+    Route::get('search-member-coupon-post','Backend\StaffController@searchMemberCouponPost'); //หน้าค้นหาข้อมูล ใช้คูปอง
+    Route::get('coupon/{id}','Backend\StaffController@coupon'); 
+    Route::get('search-coupon','Backend\StaffController@searchCoupon');
+    Route::get('use-coupon/{id}','Backend\StaffController@useCoupon'); //กดใช้งานคูปอง
 });
 
 

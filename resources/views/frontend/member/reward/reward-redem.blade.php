@@ -104,16 +104,16 @@
                         <div class="modal-body">
                             <div class="md-12">
                                 <center>
-                                    <h3 style="color:#092895 !important; font-weight:normal;">{{ $reward->reward_name }}
+                                    <h3 style="color:#092895 !important; font-weight:normal;">{{ $reward->name }}
                                     </h3>
                                 </center>
                                 <center>
-                                    <h3 style="color:#d85700 !important; font-weight:normal;">ใช้คะแนนสะสม
+                                    <h3 style="color:#d85700 !important; font-weight:normal;" class="mt-3">ใช้คะแนนสะสม
                                         {{ $reward_point }} คะแนน</u></h3>
                                 </center>
                                 <div class="photo">
                                     <center><img src="{{ url('/images/reward') }}/{{ $reward->image }}"
-                                            class="img-responsive" width="50%"></center>
+                                            class="img-responsive mt-5 mb-5" width="80%" style="border-radius: 10px;"></center>
                                 </div>
                                 <center>
                                     <div class="description">
@@ -144,7 +144,7 @@
                 <div class="modal-dialog modal-md modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-body">
-                            <p style="text-align: center;">คะแนนสะสมไม่เพียงพอ</p>
+                            <h3 style="text-align: center; color:#F28123;" class="mt-5 mb-5">คะแนนสะสมไม่เพียงพอ</h3>
                         </div>
                         <div class="modal-footer">
                             <button style="font-family: 'Prompt' !important;" type="button" class="btn btn-danger"

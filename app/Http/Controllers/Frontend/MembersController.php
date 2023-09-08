@@ -44,17 +44,6 @@ class MembersController extends Controller
     	return redirect()->action('Frontend\\MembersController@profile');
     }
 
-    public function redeemPoint(Request $request){
-        $NUM_PAGE = 20;
-        $member_id = Auth::guard('member')->user()->id;
-        $redeem_points = RedeemReward::where('member_id', $member_id)->paginate($NUM_PAGE);
-        $page = $request->input('page');
-        $page = ($page != null)?$page:1;
-        return view('frontend/member/account/redeem-point')->with('redeem_points',$redeem_points)
-                                                           ->with('NUM_PAGE',$NUM_PAGE)
-                                                           ->with('page',$page);
-    }
-
     public function coupon() {
         $member_id = Auth::guard('member')->user()->id;
         $coupons = GetCoupon::where('member_id',$member_id)->get();

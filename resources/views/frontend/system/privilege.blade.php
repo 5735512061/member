@@ -35,7 +35,7 @@
                             </a>
                             <div class="news-text-box">
                                 <h1><a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a></h1>
-                                <div>{!! $value->detail !!}</div>
+                                <div style="min-height: 60px;">{!! $value->detail !!}</div>
                                 <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i> {{ $partner }}</p>
                                 <div style="border-bottom: 2px dashed #cac8c8;"></div>
                                 <div class="flex space-between mt-3" >
