@@ -17,6 +17,13 @@
     line-height: 1.8em;
     margin-left: 30px;
   }
+
+  .accordion-content h5{
+    color: #000000;
+    line-height: 1.8em;
+    margin-left: 30px;
+  }
+
   label {
     font-size: 18px;
     display: flex;

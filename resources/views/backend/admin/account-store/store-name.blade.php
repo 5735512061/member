@@ -12,7 +12,7 @@
       <div class="col-md-4 mt-4">
         <div class="card">
           <div class="card-body p-3">
-            <center><h4>{{$value->store_name}} {{$value->branch}}</h4></center>
+            <center><h4>{{$value->store_name}} {{$value->branch}} <span style="font-size: 18px;"><a href="{{url('/edit-account-store')}}/{{$value->id}}"><i class="fa fa-pencil-square"></i></a></span></h4></center>
             <div class="row">
                 <div class="col-md-6">
                     <label>Username</label>

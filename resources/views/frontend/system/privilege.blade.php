@@ -61,7 +61,7 @@
         <center>
             <div class="header-title">
                 <h2 style="margin-top: 5rem;">
-                    <strong>สิทธิประโยชน์สมาชิก 1Choice</strong>
+                    <strong>สิทธิประโยชน์สมาชิก LOCK</strong>
                 </h2>
             </div>
         </center>

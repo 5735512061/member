@@ -90,6 +90,8 @@ Route::group(['prefix' => '/'], function(){
     Route::get('account-store/{store_name}','Backend\AdminController@accountStoreName'); //หน้าข้อมูลบัญชีร้านค้าแต่ละร้าน
     Route::get('create-account-store','Backend\AdminController@createAccountStore'); //หน้าสร้างบัญชีร้านค้า
     Route::post('create-account-store','Backend\AdminController@createAccountStorePost'); //สร้างบัญชีร้านค้า
+    Route::get('edit-account-store/{id}','Backend\AdminController@editAccountStore'); //แก้ไขบัญชีร้านค้า
+    Route::post('update-account-store','Backend\AdminController@updateAccountStore'); //อัพเดตบัญชีร้านค้า
 
     // ข้อมูลบัญชีพนักงาน
     Route::get('create-account-staff/{store_name}/{branch}','Backend\AdminController@createAccountStaff'); //หน้าสร้างบัญชีพนักงาน

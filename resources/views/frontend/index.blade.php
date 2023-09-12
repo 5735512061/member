@@ -4,14 +4,17 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
 @section('content')
     @php
-        $image_slides = DB::table('slide_image_mains')->where('status','เปิด')->get();
+        $image_slides = DB::table('slide_image_mains')
+            ->where('status', 'เปิด')
+            ->get();
     @endphp
     <section class="hero-slider hero-style">
         <div class="swiper-container">
             <div class="swiper-wrapper">
-                @foreach($image_slides as $image_slide => $value)
+                @foreach ($image_slides as $image_slide => $value)
                     <div class="swiper-slide">
-                        <div class="slide-inner slide-bg-image" data-background="{{ url('images/slide_main') }}/{{$value->image}}">
+                        <div class="slide-inner slide-bg-image"
+                            data-background="{{ url('images/slide_main') }}/{{ $value->image }}">
                         </div>
                     </div>
                 @endforeach
@@ -27,7 +30,7 @@
         <center>
             <div class="header-title">
                 <h2 style="margin-top:5rem;">
-                    <strong>สิทธิประโยชน์สมาชิก 1Choice</strong>
+                    <strong>สิทธิประโยชน์สมาชิก LOCK</strong>
                 </h2>
             </div>
         </center>
@@ -60,6 +63,21 @@
                     </p>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="container" style="margin-top:5rem;">
+        <div class="header-title">
+            <h2 style="color: #e57d0d;">
+                <strong>เครือข่าย LOCK</strong>
+            </h2>
+            <h4>สะสมคะแนนและรับสิทธิพิเศษในเครือ LOCK</h4>
+        </div>
+        <div class="row mt-5">
+            @foreach ($account_stores as $account_store => $value)
+                <div class="col-lg-2 col-md-2">
+                    <img src="{{ url('images/store-logo') }}/{{ $value->image }}">
+                </div>
+            @endforeach
         </div>
     </div>
     <div style="background-color:#313131; margin-top:10rem;">

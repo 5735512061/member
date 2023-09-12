@@ -11,7 +11,7 @@ class PartnerShop extends Authenticatable
 	protected $table = 'partner_shops';
 
 	protected $fillable = [
-    	'name', 'tel', 'password', 'type', 'status'
+    	'name', 'tel', 'password', 'type', 'status', 'image', 'branch'
     ];
 
     protected $primaryKey = 'id';

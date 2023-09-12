@@ -10,6 +10,7 @@ use App\Model\Campaign;
 use App\Model\Article;
 use App\Model\PartnerShopPromotion;
 use App\PartnerShop;
+use App\AccountStore;
 
 class SystemController extends Controller
 {
@@ -17,9 +18,11 @@ class SystemController extends Controller
         $rewards = Reward::where('status','กำลังใช้งาน')->paginate('6');
         $articles = Article::where('status','เปิด')->paginate('6');
         $partners = PartnerShopPromotion::where('status','เปิด')->paginate('6');
+        $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
         return view('frontend/index')->with('rewards',$rewards)
                                      ->with('articles',$articles)
-                                     ->with('partners',$partners);
+                                     ->with('partners',$partners)
+                                     ->with('account_stores',$account_stores);
     }
 
     public function condition() {
@@ -88,7 +91,8 @@ class SystemController extends Controller
 
 
     public function alliance() {
-        return view('frontend/system/alliance/index');
+        $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
+        return view('frontend/system/alliance/index')->with('partners',$partners);
     }
 
     public function allianceFoodAndDrink() {
@@ -137,10 +141,16 @@ class SystemController extends Controller
     }
 
     public function aboutUs() {
-        return view('frontend/system/about-us');
+        $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
+        $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
+        return view('frontend/system/about-us')->with('account_stores',$account_stores)
+                                               ->with('partners',$partners);
     }
 
     public function helpCenter() {
-        return view('frontend/system/help-center');
+        $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
+        $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
+        return view('frontend/system/help-center')->with('account_stores',$account_stores)
+                                                  ->with('partners',$partners);
     }
 }

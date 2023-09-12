@@ -107,6 +107,13 @@ class AdminController extends Controller
     }
 
     public function createAccountStorePost(Request $request) {
+        if($request->hasFile('image')) { 
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/store-logo/', $filename);
+            $path = 'images/'.$filename;
+        }
+
         foreach ($request->inputs as $key => $value) {
             $account_store = new AccountStore;
             $account_store->store_name = $request->get('store_name');
@@ -115,10 +122,42 @@ class AdminController extends Controller
             $account_store->username = $value['username'];
             $account_store->password_name = $value['password_name'];
             $account_store['password'] = bcrypt($value['password_name']);
+            $account_store->image = $filename;
             $account_store->save();
         }
+                
         return back();
     }
+
+    public function editAccountStore($id) {
+        $account_store = AccountStore::findOrFail($id);
+        return view('backend/admin/account-store/edit-account')->with('account_store',$account_store);
+    }
+
+    public function updateAccountStore(Request $request) {
+        $id = $request->get('id');
+        $account_store = AccountStore::findOrFail($id);
+        $account_store->update($request->all());
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/store-logo/', $filename);
+            $path = 'images/'.$filename;
+
+            $account_stores = AccountStore::get();
+            foreach($account_stores as $account_store => $value) {
+                if($value->store_name == $request->get('store_name')) {
+                    $account_store = AccountStore::findOrFail($value->id);
+                    $account_store->image = $filename; 
+                    $account_store->save();
+                }
+            }
+            
+        }
+        return redirect()->action('Backend\AdminController@accountStore'); 
+    }
+
 
     public function createAccountStaff($store_name, $branch) {
         return view('backend/admin/account-staff/create-account')->with('store_name',$store_name)
@@ -632,6 +671,15 @@ class AdminController extends Controller
             $partner['password'] = bcrypt($partner['tel']);
             $partner = PartnerShop::create($partner);
 
+            if($request->hasFile('image')) {
+                $image = $request->file('image');
+                $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+                $image->move('images/partner_shop/', $filename);
+                $path = 'images/'.$filename;
+                $partner->image = $filename;
+                $partner->save();
+            }
+
             $request->session()->flash('alert-success', 'เพิ่มเครือข่ายพันธมิตรสำเร็จ');
             return redirect()->action('Backend\AdminController@partner');
         }else{
@@ -650,6 +698,16 @@ class AdminController extends Controller
 
         $partner = PartnerShop::findOrFail($id);
         $partner->update($request->all());
+
+        if($request->hasFile('image')) {
+            $image = $request->file('image');
+            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+            $image->move('images/partner_shop/', $filename);
+            $path = 'images/'.$filename;
+            $partner = PartnerShop::findOrFail($id);
+            $partner->image = $filename; 
+            $partner->save();
+        }
         
         return redirect()->action('Backend\AdminController@partner'); 
     }
@@ -745,7 +803,7 @@ class AdminController extends Controller
             $image = $request->file('image');
             $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
             $image->move('images/article/', $filename);
-            $path = 'images/article/'.$filename;
+            $path = 'images/'.$filename;
             $article->image = $filename;
             $article->save();
         }
@@ -802,7 +860,7 @@ class AdminController extends Controller
             $image = $request->file('image');
             $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
             $image->move('images/slide_main/', $filename);
-            $path = 'images/slide_main/'.$filename;
+            $path = 'images/'.$filename;
             $slide_image->image = $filename;
             $slide_image->save();
         }
@@ -855,7 +913,7 @@ class AdminController extends Controller
             $image = $request->file('image');
             $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
             $image->move('images/article_image/', $filename);
-            $path = 'images/article_image/'.$filename;
+            $path = 'images/'.$filename;
             $article_image->image = $filename;
             $article_image->save();
         }

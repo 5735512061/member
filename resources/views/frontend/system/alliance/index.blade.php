@@ -56,5 +56,18 @@
                 </div>
             </div>
         </div>
+        <div class="header-title mt-5">
+            <h4 style="color: #e57d0d;">
+                <strong>เครือข่ายพันธมิตร</strong>
+            </h4>
+            <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
+        </div>
+        <div class="row mt-3">
+            @foreach ($partners as $partner => $value)
+                <div class="col-lg-2 col-md-2">
+                    <img src="{{ url('images/partner_shop') }}/{{ $value->image }}">
+                </div>
+            @endforeach
+        </div>
     </div>
 @endsection

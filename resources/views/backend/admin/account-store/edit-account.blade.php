@@ -96,7 +96,7 @@
                 <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
             </div>
         </div>
-        <form action="{{ url('/create-account-store') }}" enctype="multipart/form-data" method="post">@csrf
+        <form action="{{ url('/update-account-store') }}" enctype="multipart/form-data" method="post">@csrf
             <div class="row mt-4">
                 <div class="col-lg-3 col-12 mb-lg-0 mb-4">
                     <div class="account card z-index-2">
@@ -126,7 +126,7 @@
                             @endforeach
                         </div>
                         <div class="card-header pb-0 pt-5 bg-transparent center" style="font-size: 28px;">
-                            กรอกข้อมูลสำหรับการสร้างร้านค้า
+                            แก้ไขข้อมูลร้านค้า
                         </div>
 
                         <div class="card-body">
@@ -134,40 +134,47 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p><span>*</span> ชื่อร้านค้า <span>(จำเป็นต้องกรอก)</span></p>
-                                        <input class="form-control" type="text" placeholder="ชื่อร้านค้า"
+                                        <input class="form-control" type="text" value="{{ $account_store->store_name }}"
                                             name="store_name">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <p class="mt-2"><span>*</span><span> (จำเป็นต้องกรอก)</span></p>
                                 </div>
-                                <div id="show_item">
-                                    <div class="row">
-                                        <div class="col-md-5 col-9 mt-2">
-                                            <input class="form-control" type="text" placeholder="สาขา เช่น บายพาส"
-                                                name="inputs[0][branch]">
-                                        </div>
-                                        <div class="col-md-5 col-9 mt-2">
-                                            <input class="phone_format form-control" type="text"
-                                                placeholder="เบอร์โทรศัพท์" name="inputs[0][tel]">
-                                        </div>
-                                        <div class="col-md-5 col-9 mt-2">
-                                            <input class="form-control" type="text" placeholder="ชื่อเข้าใช้งาน"
-                                                name="inputs[0][username]">
-                                        </div>
-                                        <div class="col-md-5 col-9 mt-2">
-                                            <input class="form-control" type="password" placeholder="รหัสผ่าน"
-                                                name="inputs[0][password_name]">
-                                        </div>
-                                        <div class="col-md-2 col-2 mt-2" id="button">
-                                            <button type="button" class="btn btn-info add_item_btn"><i class="fa fa-plus"
-                                                    aria-hidden="true"></i></button>
-                                        </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-9 mt-2">
+                                        <p><span>*</span> สาขา <span></span></p>
+                                        <input class="form-control" type="text" value="{{ $account_store->branch }}"
+                                            name="branch">
+                                    </div>
+                                    <div class="col-md-5 col-9 mt-2">
+                                        <p><span>*</span> เบอร์โทรศัพท์ <span></span></p>
+                                        <input class="phone_format form-control" type="text"
+                                            value="{{ $account_store->tel }}" name="tel">
+                                    </div>
+                                    <div class="col-md-5 col-9 mt-2">
+                                        <p><span>*</span> ชื่อเข้าใช้งาน <span></span></p>
+                                        <input class="form-control" type="text" value="{{ $account_store->username }}"
+                                            name="username" readonly>
+                                    </div>
+                                    <div class="col-md-5 col-9 mt-2">
+                                        <p><span>*</span> รหัสผ่าน <span></span></p>
+                                        <input class="form-control" type="text" value="{{ $account_store->password_name }}"
+                                            name="password_name">
+                                    </div>
+                                    <div class="col-md-12 mt-2">
+                                        <p>สถานะ</p>
+                                        <select name="status" class="form-control">
+                                            <option value="{{$account_store->status}}">{{$account_store->status}}</option>
+                                            <option value="เปิด">เปิด</option>
+                                            <option value="ปิด">ปิด</option>
+                                        </select> 
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mt-3">
-                                        <button type="submit" class="btn btn-lg btn-success">สร้างร้านค้า</button>
+                                        <input type="hidden" name="id" value="{{$account_store->id}}">
+                                        <button type="submit" class="btn btn-lg btn-success">อัพเดตข้อมูลร้านค้า</button>
                                     </div>
                                 </div>
                             </div>
@@ -199,50 +206,6 @@
             });
         };
         $(phoneFormatter);
-    </script>
-
-    <script>
-        var i = 0;
-        $(document).ready(function() {
-            $('.add_item_btn').on('click', function(e) {
-                e.preventDefault();
-                ++i;
-
-                function phoneFormatter() {
-                    $('input.phone_format').on('input', function() {
-                        var number = $(this).val().replace(/[^\d]/g, '')
-                        if (number.length >= 5 && number.length < 10) {
-                            number = number.replace(/(\d{3})(\d{2})/, "$1-$2");
-                        } else if (number.length >= 10) {
-                            number = number.replace(/(\d{3})(\d{3})(\d{3})/, "$1-$2-$3");
-                        }
-                        $(this).val(number)
-                        $('input.phone_format').attr({
-                            maxLength: 12
-                        });
-                    });
-                };
-                $(phoneFormatter);
-
-                $("#show_item").append(
-                    '<div class="row"><div class="col-md-5 col-9 mt-2"><input class="form-control" type="text" placeholder="สาขา เช่น บายพาส" name="inputs[' +
-                    i +
-                    '][branch]"></div><div class="col-md-5 col-9 mt-2"><input class="phone_format form-control" type="text" placeholder="เบอร์โทรศัพท์" name="inputs[' +
-                    i +
-                    '][tel]"></div><div class="col-md-5 col-9 mt-2"><input class="form-control" type="text" placeholder="ชื่อเข้าใช้งาน" name="inputs[' +
-                    i +
-                    '][username]"></div><div class="col-md-5 col-9 mt-2"><input class="form-control" type="password" placeholder="รหัสผ่าน" name="inputs[' +
-                    i +
-                    '][password_name]"></div><div class="col-md-1 col-1 mt-2"><button type="button" class="btn btn-danger remove_item_btn">X</button></div></div>'
-                )
-            });
-
-            $(document).on('click', '.remove_item_btn', function(e) {
-                e.preventDefault();
-                let row_item = $(this).parent().parent();
-                $(row_item).remove();
-            });
-        });
     </script>
 
     <script type="text/javascript" src="{{ asset('https://code.jquery.com/jquery-3.2.1.min.js') }}"></script>

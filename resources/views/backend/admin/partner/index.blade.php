@@ -54,6 +54,7 @@
                                         <tr style="text-align: center;">
                                             <th>#</th>
                                             <th>พันธมิตร</th>
+                                            <th>สาขา</th>
                                             <th>เบอร์โทรศัพท์</th>
                                             <th>ประเภทพันธมิตร</th>
                                             <th>สถานะ</th>
@@ -65,6 +66,7 @@
                                             <tr style="text-align:center;">
                                                 <td>{{ $NUM_PAGE * ($page - 1) + $partner + 1 }}</td>
                                                 <td>{{ $value->name }}</td>
+                                                <td>{{ $value->branch }}</td>
                                                 <td>{{ $value->tel }}</td>
                                                 <td>{{ $value->type }}</td>
                                                 <td>{{ $value->status }}</td>

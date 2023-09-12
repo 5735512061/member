@@ -17,12 +17,17 @@
             <div class="accordion-item">
                 <input type="checkbox" id="item-1" />
                 <label for="item-1" class="accordion-header">
-                    <span>ระบบสมาชิก 1Choice คืออะไร ?</span>
+                    <span>ระบบสมาชิก LOCK คืออะไร ?</span>
                 </label>
                 <div class="accordion-content">
-                    <p>
-                        ระบบสมาชิก
-                    </p>
+                    <h5><Span style="color: red;"><strong>LOCK
+                                (ล็อค)</strong></Span>
+                        ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของ LOCK แลกคะแนนสะสมเป็นคูปองเงินสด
+                        ใช้ในเครือพันธมิตรทางธุรกิจ
+                        ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
+                        หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
+                        และยังครอบคลุมทุกไลฟ์สไตล์ของสมาชิก
+                    </h5>
                 </div>
             </div>
 
@@ -30,12 +35,24 @@
             <div class="accordion-item">
                 <input type="checkbox" id="item-2" />
                 <label for="item-2" class="accordion-header">
-                    <span>สมัครสมาชิก 1Choice ได้อย่างไร ?</span>
+                    <span>สมัครสมาชิก LOCK ได้อย่างไร ?</span>
                 </label>
                 <div class="accordion-content">
-                    <p>
-                        สมัครสมาชิก 1Choice ได้ง่าย ๆ ที่เครือข่ายพันธมิตรของทาง 1Choice
-                    </p>
+                    <h5>
+                        สมัครสมาชิก <Span style="color: red;"><strong>LOCK</strong></Span> เพื่อสะสมคะแนน และรับสิทธิพิเศษได้ง่าย ๆ ที่เครือข่าย <Span style="color: red;"><strong>LOCK</strong></Span>
+                    </h5>
+                    <div class="header-title">
+                        <h4 style="color: #e57d0d;">
+                            <strong>เครือข่าย LOCK</strong>
+                        </h4>
+                    </div>
+                    <div class="row mt-3">
+                        @foreach ($account_stores as $account_store => $value)
+                            <div class="col-lg-2 col-md-2 mb-5">
+                                <img src="{{ url('images/store-logo') }}/{{ $value->image }}">
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
             </div>
 
@@ -46,10 +63,10 @@
                     <span>ต้องใช้อะไรในการสมัครสมาชิกบ้าง ?</span>
                 </label>
                 <div class="accordion-content">
-                    <p>
-                        สำหรับการสมัครสมาชิก ใช้เพียงหมายเลขบัตรประชาชน และหมายเลขโทรศัพท์มือถือ ก็สามารถเป็นสมาชิก 1Choice
+                    <h5>
+                        สำหรับการสมัครสมาชิก ใช้เพียงหมายเลขบัตรประชาชน และหมายเลขโทรศัพท์มือถือ ก็สามารถเป็นสมาชิก <Span style="color: red;"><strong>LOCK</strong></Span>
                         ได้ง่าย ๆ
-                    </p>
+                    </h5>
                 </div>
             </div>
 
@@ -60,9 +77,9 @@
                     <span>คะแนนสะสมมีวันหมดอายุหรือไม่ ?</span>
                 </label>
                 <div class="accordion-content">
-                    <p>
+                    <h5>
                         คะแนนสะสมไม่มีวันหมดอายุ สามารถใช้คะแนนสะสมในการแลกของรางวัลพิเศษ และใช้สิทธิพิเศษพันธมิตรในเครือ
-                    </p>
+                    </h5>
                 </div>
             </div>
 
@@ -73,9 +90,9 @@
                     <span>สามารถเช็คคะแนนสะสมได้ที่ใดบ้าง ?</span>
                 </label>
                 <div class="accordion-content">
-                    <p>
+                    <h5>
                         สามารถเช็คคะแนนสะสมได้ผ่านทางเว็บไซต์
-                    </p>
+                    </h5>
                 </div>
             </div>
         </div>

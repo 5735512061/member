@@ -42,8 +42,8 @@
               <div class="col-md-12 mt-2">
                 <p>ตำแหน่ง</p>
                 <select name="position" class="form-control">
-                  <option value="Admin">ADMIN</option>
-                  <option value="User">USER</option>
+                  <option value="USER">USER</option>
+                  <option value="ADMIN">ADMIN</option>
                 </select>
               </div>
               <div class="col-md-12 mt-2">

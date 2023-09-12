@@ -68,7 +68,7 @@
                             <center>
                                 <a href="{{url('staff/coupon')}}/{{$value->id}}"
                                     class="mt-4 btn btn-outline-success btn-sm my-auto" style="color:#0c6640;">
-                                    <i class="fa fa-plus-circle" aria-hidden="true"></i> ค้นหาคูปอง</a>
+                                    <i class="fa fa-search" aria-hidden="true"></i> ค้นหาคูปอง</a>
                             </center>
                             @php
                                 $dateNow = Carbon\Carbon::now()->format('d/m/Y');
