@@ -48,7 +48,7 @@
             <div class="col-lg-4 col-md-4 mt-5">
                 <div class="privilege text-center">
                     <i class="fas fa-ticket"></i>
-                    <h4>รับส่วนลดพิเศษ</h4>
+                    <h4>รับส่วนลดพิเศษ</h4> 
                     <p>
                         รับส่วนลดพิเศษในเครือข่ายพันธมิตร
                     </p>

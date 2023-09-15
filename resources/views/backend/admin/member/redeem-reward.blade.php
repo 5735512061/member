@@ -23,11 +23,24 @@
         border-bottom: 2px solid #eeeeee;
         padding-bottom: 15px;
     }
+
+    .header a {
+        color: #ffffff;
+    }
+
+    .header a:hover {
+        color: #ffffff;
+    }
 </style>
 @section('content')
     <div class="container-fluid py-4">
         <div class="header">
-            <h4>การแลกของรางวัล</h4>
+            <div class="row">
+                <div class="col-lg-5 mb-lg-0 mb-4">
+                    <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+                </div>
+            </div>
+            <h4 class="mt-4">การแลกของรางวัล</h4>
         </div>
     </div>
 
