@@ -35,7 +35,7 @@
             </div>
         </center>
         <br>
-        <div class="row mt-5">
+        <div class="row mt-3">
             <div class="col-lg-4 col-md-4 mt-5">
                 <div class="privilege text-center">
                     <i class="fas fa-parking"></i>
@@ -74,13 +74,13 @@
         </div>
         <div class="row mt-5">
             @foreach ($account_stores as $account_store => $value)
-                <div class="col-lg-2 col-md-2">
-                    <img src="{{ url('images/store-logo') }}/{{ $value->image }}">
+                <div class="col-lg-2 col-md-2 col-6">
+                    <img src="{{ url('images/store-logo') }}/{{ $value->image }}" class="mt-3">
                 </div>
             @endforeach
         </div>
     </div>
-    <div style="background-color:#313131; margin-top:10rem;">
+    <div style="background-color:#313131; margin-top:5rem;">
         <div class="container" style="padding-bottom: 5rem;">
             <div class="header-title">
                 <h2 style="padding-top: 5rem;">
@@ -147,8 +147,8 @@
                 <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
             </div>
         </div>
-        <div class="row alliance mt-5 mb-5">
-            <div class="col-md-3">
+        <div class="row alliance mb-5">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-food">
                     <div class="card-body text-center centered-element">
                         <h3 class="text-center">Food And Drink</h3><br>
@@ -156,7 +156,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-lifestyle">
                     <div class="card-body text-center centered-element">
                         <div class="row">
@@ -169,7 +169,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-travel">
                     <div class="card-body text-center centered-element">
                         <div class="row">
@@ -181,7 +181,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-car">
                     <div class="card-body text-center centered-element">
                         <div class="row">

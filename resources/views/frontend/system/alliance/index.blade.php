@@ -10,7 +10,7 @@
             </div>
         </center><br>
         <div class="row alliance">
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-food">
                     <div class="card-body text-center centered-element">
                         <h3 class="text-center">Food And Drink</h3><br>
@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-lifestyle">
                     <div class="card-body text-center centered-element">
                         <div class="row">
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-travel">
                     <div class="card-body text-center centered-element">
                         <div class="row">
@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-3 mt-3">
                 <div class="card alliance-car">
                     <div class="card-body text-center centered-element">
                         <div class="row">
@@ -64,8 +64,8 @@
         </div>
         <div class="row mt-3">
             @foreach ($partners as $partner => $value)
-                <div class="col-lg-2 col-md-2">
-                    <img src="{{ url('images/partner_shop') }}/{{ $value->image }}">
+                <div class="col-lg-2 col-md-2 col-6">
+                    <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
                 </div>
             @endforeach
         </div>

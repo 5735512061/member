@@ -11,13 +11,15 @@
         </center>
         <br>
         <div class="row">
-            <h4 style="line-height: 1.4em;"><Span style="color: red;"><strong>LOCK (ล็อค)</strong></Span>
-                ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของ LOCK แลกคะแนนสะสมเป็นคูปองเงินสด
-                ใช้ในเครือพันธมิตรทางธุรกิจ
-                ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
-                หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
-                และยังครอบคลุมทุกไลฟ์สไตล์ของสมาชิก
-            </h4>
+            <div class="col-md-12">
+                <h4 style="line-height: 1.4em;"><Span style="color: red;"><strong>LOCK (ล็อค)</strong></Span>
+                    ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของ LOCK แลกคะแนนสะสมเป็นคูปองเงินสด
+                    ใช้ในเครือพันธมิตรทางธุรกิจ
+                    ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
+                    หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
+                    และยังครอบคลุมทุกไลฟ์สไตล์ของสมาชิก
+                </h4>
+            </div>
         </div>
     </div>
     <div style="background-color:#313131;">
@@ -77,8 +79,8 @@
             </div>
             <div class="row mt-3">
                 @foreach ($account_stores as $account_store => $value)
-                    <div class="col-lg-2 col-md-2">
-                        <img src="{{ url('images/store-logo') }}/{{ $value->image }}">
+                    <div class="col-lg-2 col-md-2 col-6">
+                        <img src="{{ url('images/store-logo') }}/{{ $value->image }}" class="mt-3">
                     </div>
                 @endforeach
             </div>
@@ -90,8 +92,8 @@
             </div>
             <div class="row mt-3">
                 @foreach ($partners as $partner => $value)
-                    <div class="col-lg-2 col-md-2">
-                        <img src="{{ url('images/partner_shop') }}/{{ $value->image }}">
+                    <div class="col-lg-2 col-md-2 col-6">
+                        <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
                     </div>
                 @endforeach
             </div>

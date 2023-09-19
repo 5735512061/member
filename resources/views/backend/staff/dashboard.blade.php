@@ -63,31 +63,6 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-5 mt-4 mb-lg-0 mb-4">
-                    <form action="{{ url('staff/search-member-list') }}">
-                        <div class="card z-index-2">
-                            <div class="card-header pb-0 pt-3 bg-transparent">
-                                <h6 class="text-capitalize">ระดับของสมาชิก</h6>
-                                @php
-                                    $tiers = DB::table('tiers')->get();
-                                @endphp
-                                <div class="row mb-2">
-                                    <div class="col-md-10">
-                                        <select name="tier" class="form-control">
-                                            @foreach ($tiers as $tier => $value)
-                                                <option value="{{ $value->tier }}">{{ $value->tier }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-outline-primary" type="submit"
-                                            id="button-addon2">ค้นหา</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>

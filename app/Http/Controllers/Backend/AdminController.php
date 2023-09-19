@@ -260,7 +260,8 @@ class AdminController extends Controller
 
     public function memberList(Request $request) {
         $NUM_PAGE = 50;
-        $members = Member::paginate($NUM_PAGE);
+        // $members = Member::paginate($NUM_PAGE);
+        $members = Member::get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list')->with('page',$page)
@@ -270,7 +271,8 @@ class AdminController extends Controller
 
     public function memberListOn(Request $request) {
         $NUM_PAGE = 50;
-        $members = Member::where('status',"ONLINE")->paginate($NUM_PAGE);
+        // $members = Member::where('status',"ONLINE")->paginate($NUM_PAGE);
+        $members = Member::where('status',"ONLINE")->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list-on')->with('page',$page)
@@ -280,7 +282,8 @@ class AdminController extends Controller
 
     public function memberListOff(Request $request) {
         $NUM_PAGE = 50;
-        $members = Member::where('status',"OFFLINE")->paginate($NUM_PAGE);
+        // $members = Member::where('status',"OFFLINE")->paginate($NUM_PAGE);
+        $members = Member::where('status',"OFFLINE")->get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list-off')->with('page',$page)

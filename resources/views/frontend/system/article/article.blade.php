@@ -12,13 +12,13 @@
         <br>
         <div class="latest-news mt-80 mb-150">
             <div style="margin-bottom: 2rem;">
-                <a href="{{ url('allarticle') }}" class="btn btn-secondary" style="margin-right: 1rem;">ทั้งหมด</a>
-                <a href="{{ url('article/food') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ อาหาร</a>
-                <a href="{{ url('article/lifeStyle') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ ไลฟ์สไตล์</a>
-                <a href="{{ url('article/beauty') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ บิวตี้</a>
-                <a href="{{ url('article/news') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ ข่าว</a>
-                <a href="{{ url('article/horoscope') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ ดูดวง</a>
-                <a href="{{ url('article/general') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ ทั่วไป</a>
+                <a href="{{ url('allarticle') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">ทั้งหมด</a>
+                <a href="{{ url('article/food') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">อาหาร</a>
+                <a href="{{ url('article/lifeStyle') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">ไลฟ์สไตล์</a>
+                <a href="{{ url('article/beauty') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บิวตี้</a>
+                <a href="{{ url('article/news') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">ข่าว</a>
+                <a href="{{ url('article/horoscope') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">ดูดวง</a>
+                <a href="{{ url('article/general') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">ทั่วไป</a>
             </div>
             <div class="row">
                 @foreach ($articles as $article => $value)
