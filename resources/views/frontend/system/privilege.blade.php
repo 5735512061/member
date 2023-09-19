@@ -26,33 +26,39 @@
                         $partner = DB::table('partner_shops')
                             ->where('id', $value->partner_id)
                             ->value('name');
+                        $dateNow = Carbon\Carbon::now()->format('Y-m-d');
                     @endphp
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-latest-news" style="background-color: #ffffff;">
-                            <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">
-                                <img src="{{ url('images/campaign') }}/{{ $value->image }}"
-                                    class="latest-news-bg img-responsive" width="100%">
-                            </a>
-                            <div class="news-text-box">
-                                <h1><a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a></h1>
-                                <div style="min-height: 60px;">{!! $value->detail !!}</div>
-                                <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i> {{ $partner }}</p>
-                                <div style="border-bottom: 2px dashed #cac8c8;"></div>
-                                <div class="flex space-between mt-3" >
-                                    <p class="blog-meta">
-                                        @php
-                                            $date_format = date('d-m-Y', strtotime($value->expire_date));
-                                        @endphp
-                                        <strong style="color: red;">สิ้นสุดแคมเปญ {{ $date_format }}</strong>
+                    @if ($value->expire_date > $dateNow)
+                        <div class="col-lg-4 col-md-6">
+                            <div class="single-latest-news" style="background-color: #ffffff;">
+                                <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">
+                                    <img src="{{ url('images/campaign') }}/{{ $value->image }}"
+                                        class="latest-news-bg img-responsive" width="100%">
+                                </a>
+                                <div class="news-text-box">
+                                    <h1><a
+                                            href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a>
+                                    </h1>
+                                    <div style="min-height: 60px;">{!! $value->detail !!}</div>
+                                    <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i> {{ $partner }}
                                     </p>
-                                    <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}"
-                                        style="text-align:end;">รายละเอียดเพิ่มเติม
-                                        <i class="fa fa-caret-right"></i></a>
-                                </div>
+                                    <div style="border-bottom: 2px dashed #cac8c8;"></div>
+                                    <div class="flex space-between mt-3">
+                                        <p class="blog-meta">
+                                            @php
+                                                $date_format = date('d-m-Y', strtotime($value->expire_date));
+                                            @endphp
+                                            <strong style="color: red;">สิ้นสุดแคมเปญ {{ $date_format }}</strong>
+                                        </p>
+                                        <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}"
+                                            style="text-align:end;">รายละเอียดเพิ่มเติม
+                                            <i class="fa fa-caret-right"></i></a>
+                                    </div>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
         </div>

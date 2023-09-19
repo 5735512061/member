@@ -50,14 +50,16 @@
                                         $store_name = DB::table('partner_shops')
                                             ->where('id', $value->partner_id)
                                             ->value('name');
+                                        $dateNow = Carbon\Carbon::now()->format('Y-m-d');
                                     @endphp
                                     <div class="col-md-3">
                                         <div class="card">
                                             <div class="card-body">
                                                 <img src="{{ url('images/campaign') }}/{{ $value->image }}"
                                                     class="img-responsive" width="100%">
-                                                <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i class="fa fa-caret-right"
-                                                        style="color:#ff0000;"></i> <strong>{{ $value->code }}</strong></p>
+                                                <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i
+                                                        class="fa fa-caret-right" style="color:#ff0000;"></i>
+                                                    <strong>{{ $value->code }}</strong></p>
                                                 <h5 class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
                                                     {{ $value->name }}</h5>
                                                 <div style="min-height: 60px;">{!! $value->detail !!}</div>
@@ -68,10 +70,18 @@
                                                     <p>ประเภทคูปอง <i class="fa fa-caret-right" style="color:#777777;"></i>
                                                         {{ $value->campaign_type }}</p>
                                                 @endif
-                                                <p style="border-bottom: 2px dashed #cac8c8;">สถานะ <i
-                                                        class="fa fa-caret-right" style="color:#777777;"></i>
-                                                    {{ $value->status }}
-                                                </p>
+
+                                                @if ($value->expire_date < $dateNow || $value->status == "สิ้นสุดแคมเปญ")
+                                                    <p style="border-bottom: 2px dashed #cac8c8; color: red;">สถานะ <i
+                                                            class="fa fa-caret-right" style="color:#ff0000;"></i>
+                                                        สิ้นสุดแคมเปญ
+                                                    </p>
+                                                @else
+                                                    <p style="border-bottom: 2px dashed #cac8c8;">สถานะ <i
+                                                            class="fa fa-caret-right" style="color:#777777;"></i>
+                                                        {{ $value->status }}
+                                                    </p>
+                                                @endif
 
                                                 @if ($store_name == 'ไม่ระบุ')
                                                     <p>ใช้ได้ที่ <i class="fa fa-caret-right" style="color:#777777;"></i>

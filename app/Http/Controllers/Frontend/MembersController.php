@@ -46,7 +46,7 @@ class MembersController extends Controller
 
     public function coupon() {
         $member_id = Auth::guard('member')->user()->id;
-        $coupons = GetCoupon::where('member_id',$member_id)->get();
+        $coupons = GetCoupon::where('member_id',$member_id)->where('status','ยังไม่ใช้งาน')->get();
         return view('frontend/member/coupon/coupon')->with('coupons',$coupons);
     }
 }

@@ -412,7 +412,7 @@ class AdminController extends Controller
 
     public function campaignOff(Request $request) {
         $NUM_PAGE = 20;
-        $campaigns = Campaign::where('status','สิ้นสุดแคมเปญ')->paginate($NUM_PAGE);
+        $campaigns = Campaign::paginate($NUM_PAGE);
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/campaign/campaign-dashboard-off')->with('NUM_PAGE',$NUM_PAGE)
