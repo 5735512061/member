@@ -62,7 +62,6 @@ Route::group(['prefix' => 'member'], function(){
     Route::get('/coupon','Frontend\MembersController@coupon');
 });
 
-
 // Super Admin
 Route::group(['prefix' => '/'], function(){
     // ข้อมูลการลงทะเบียนและเข้าสู่ระบบของ super admin

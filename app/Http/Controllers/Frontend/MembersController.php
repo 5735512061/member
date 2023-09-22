@@ -12,6 +12,11 @@ use Auth;
 
 class MembersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:member');
+    }
+    
     public function profile() {
         $member = Member::where('id',Auth::guard('member')->id())->orderBy('id','desc')->first();
         return view('frontend/member/account/profile')->with('member',$member);
