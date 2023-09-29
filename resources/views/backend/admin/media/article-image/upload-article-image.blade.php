@@ -117,7 +117,6 @@
                     @endif
                 @endforeach
             </div>
-            <p>{{ $images->links() }}</p>
             <div class="row">
                 <div class="col-lg-3 col-12 mb-lg-0 mb-4">
                     <form action="{{ url('upload-article-image') }}" enctype="multipart/form-data" method="post">@csrf
@@ -149,6 +148,7 @@
                 <div class="col-lg-6 mb-lg-0 mb-4">
                     <div class="card z-index-2">
                         <div class="card-body p-3">
+                            <p>{{ $images->links() }}</p>
                             <div class="table-responsive">
                                 <table class="table align-items-center">
                                     <thead class="thead-light">
@@ -164,8 +164,9 @@
                                             <tr style="text-align:center;">
                                                 <td>{{ $NUM_PAGE * ($page - 1) + $image + 1 }}</td>
                                                 <td><a href="{{ url('/images/article_image') }}/{{ $value->image }}"
-                                                        class="singleImage2"><i class="fa fa-picture-o"
-                                                            style="color: green;"></i></a></td>
+                                                        class="singleImage2">
+                                                        <img src="{{ url('/images/article_image') }}/{{ $value->image }}" width="10%">
+                                                    </a></td>
                                                 <td>
                                                     <p id="{{ $value->id }}" style="display: none;">
                                                         {{ url('/images/article_image') }}/{{ $value->image }}</p>

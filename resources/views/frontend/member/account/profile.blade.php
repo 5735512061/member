@@ -10,15 +10,16 @@
             display: none;
         }
     }
-    .card-profile h5{
+
+    .card-profile h5 {
         color: #777777;
     }
 
-    .card-profile h4{
+    .card-profile h4 {
         color: #777777;
     }
 
-    .card-profile h3{
+    .card-profile h3 {
         color: #777777;
     }
 </style>
@@ -29,7 +30,7 @@
             ->sum('price');
         $point_balance = floor($sumprice / 100);
     @endphp
-    <div class="container " id="desktop" style="margin-top: 15rem;">
+    <div class="container" id="desktop" style="margin-top: 15rem;">
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -88,74 +89,68 @@
         </div>
     </div>
 
-    <div class="container card-profile" id="mobile" style="display:none;">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="card z-index-2">
-                    <div class="card-header pb-0 pt-3 bg-transparent card-profile">
-                        <div class="row mb-4 mt-4">
+    <div class="container" id="mobile" style="display:none;">
+        <div class="card z-index-2">
+            <div class="card-header pb-0 pt-3 bg-transparent card-profile">
+                <div class="row mb-4 mt-4">
 
-                            <div class="col-md-12">
-                                <center><img src="{{ url('assets/image/profile.png') }}" width="40%;"></center>
-                            </div>
-                            @php
-                                $member_new = count(
-                                    DB::table('members')
-                                        ->where('id', $member->id)
-                                        ->where(
-                                            'created_at',
-                                            '>',
-                                            now()
-                                                ->subDays(30)
-                                                ->endOfDay(),
-                                        )
-                                        ->get(),
-                                );
-                            @endphp
-                            <div class="col-md-5">
+                    <div class="col-md-12">
+                        <center><img src="{{ url('assets/image/profile.png') }}" width="40%;"></center>
+                    </div>
+                    @php
+                        $member_new = count(
+                            DB::table('members')
+                                ->where('id', $member->id)
+                                ->where(
+                                    'created_at',
+                                    '>',
+                                    now()
+                                        ->subDays(30)
+                                        ->endOfDay(),
+                                )
+                                ->get(),
+                        );
+                    @endphp
+                    <div class="col-md-5">
 
-                                @if ($member->status == 'ONLINE')
-                                    <center><button class="btn btn-success btn-sm"
-                                            style="color:#fff; margin-top:10px;">{{ $member->status }}</button></center>
-                                @else
-                                    <center><button class="btn btn-danger btn-sm my-auto"
-                                            style="color:#fff;">{{ $member->status }}</button></center>
-                                @endif
+                        @if ($member->status == 'ONLINE')
+                            <center><button class="btn btn-success btn-sm"
+                                    style="color:#fff; margin-top:10px;">{{ $member->status }}</button></center>
+                        @else
+                            <center><button class="btn btn-danger btn-sm my-auto"
+                                    style="color:#fff;">{{ $member->status }}</button></center>
+                        @endif
 
-                                @if ($member_new != 0)
-                                    <button class="btn btn-warning btn-sm my-auto" style="color:#fff;">ลูกค้าใหม่</button>
-                                @endif
-                                <div class="container" style="text-align: center;">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h5 class="mt-2">หมายเลขสมาชิก <i class="fa fa-caret-down"
-                                                    style="color:#777777;"></i><br>{{ $member->serialnumber }}</h5>
-                                            <h3>คุณ{{ $member->name }} {{ $member->surname }}</h3>
-                                        </div>
-                                    </div>
+                        @if ($member_new != 0)
+                            <button class="btn btn-warning btn-sm my-auto" style="color:#fff;">ลูกค้าใหม่</button>
+                        @endif
+                        <div class="container" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h5 class="mt-2">หมายเลขสมาชิก <i class="fa fa-caret-down"
+                                            style="color:#777777;"></i><br>{{ $member->serialnumber }}</h5>
+                                    <h3>คุณ{{ $member->name }} {{ $member->surname }}</h3>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <div class="container mt-3" style="text-align: center;">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <h4 class="mb-1">พอยท์คงเหลือ <i class="fa fa-caret-right"
-                                                    style="color:#777777;"></i><span style="font-size:22px;">
-                                                    {{ $point_balance }}</span> พอยท์</h4>
-                                            <h5 class="mb-1">เบอร์โทรศัพท์ <i class="fa fa-caret-right"
-                                                    style="color:#777777;"></i> {{ $member->tel }}</h5>
-                                            <h5>วัน/เดือน/ปีเกิด <i class="fa fa-caret-right" style="color:#777777;"></i>
-                                                {{ $member->bday }}</h5>
-                                        </div>
-                                    </div>
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="container mt-3" style="text-align: center;">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h4 class="mb-1">พอยท์คงเหลือ <i class="fa fa-caret-right"
+                                            style="color:#777777;"></i><span style="font-size:22px;">
+                                            {{ $point_balance }}</span> พอยท์</h4>
+                                    <h5 class="mb-1">เบอร์โทรศัพท์ <i class="fa fa-caret-right"
+                                            style="color:#777777;"></i> {{ $member->tel }}</h5>
+                                    <h5>วัน/เดือน/ปีเกิด <i class="fa fa-caret-right" style="color:#777777;"></i>
+                                        {{ $member->bday }}</h5>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-2"></div>
         </div>
     </div>
     {{--  --}}

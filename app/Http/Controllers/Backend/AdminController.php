@@ -260,8 +260,8 @@ class AdminController extends Controller
 
     public function memberList(Request $request) {
         $NUM_PAGE = 50;
-        // $members = Member::paginate($NUM_PAGE);
-        $members = Member::get();
+        $members = Member::paginate($NUM_PAGE);
+        // $members = Member::get();
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/member/member-list')->with('page',$page)

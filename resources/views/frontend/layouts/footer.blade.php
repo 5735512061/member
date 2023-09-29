@@ -2,7 +2,7 @@
 	<div class="footer-area">
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6 col-6">
 					<div class="footer-box">
 						<h2 class="widget-title">LOCK (ล็อค)</h2>
 						<ul>
@@ -13,7 +13,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6 col-6">
 					<div class="footer-box">
 						<h2 class="widget-title">สมาชิก</h2>
 						<ul>
@@ -32,7 +32,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6 col-6">
 					<div class="footer-box">
 						<h2 class="widget-title about-us">ติดตามเรา</h2>
 						<ul>
@@ -41,7 +41,7 @@
 						</ul>
 					</div>
 				</div>
-				<div class="col-lg-3 col-md-6">
+				<div class="col-lg-3 col-md-6 col-6">
 					<div class="footer-box">
 						<h2 class="widget-title">ศูนย์บริการสมาชิก</h2>
 						<p>082-628-2244</p>

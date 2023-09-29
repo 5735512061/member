@@ -118,6 +118,14 @@
                 </p>
                 <input class="phone_format form-control" type="text" value="{{$member->tel}}" name="tel" readonly>
               </div>
+              <div class="col-md-6 mt-2">
+                <p>สถานะ</p>
+                <select name="status" class="form-control">
+                    <option value="{{$member->status}}">{{$member->status}}</option>
+                    <option value="ONLINE">ONLINE</option>
+                    <option value="OFFLINE">OFFLINE</option>
+                </select>
+            </div>
             </div>
             <div class="row">
               <div class="col-md-12 mt-3">
