@@ -258,15 +258,27 @@ class AdminController extends Controller
                                                     ->with('search',$search);
     }
 
+    // public function memberList(Request $request) {
+    //     $NUM_PAGE = 50;
+    //     // $members = Member::paginate($NUM_PAGE);
+    //     $members = Member::get();
+    //     $page = $request->input('page');
+    //     $page = ($page != null)?$page:1;
+    //     return view('backend/admin/member/member-list')->with('page',$page)
+    //                                                    ->with('NUM_PAGE',$NUM_PAGE)
+    //                                                    ->with('members',$members);
+    // }
+
     public function memberList(Request $request) {
         $NUM_PAGE = 50;
-        $members = Member::paginate($NUM_PAGE);
-        // $members = Member::get();
-        $page = $request->input('page');
-        $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list')->with('page',$page)
-                                                       ->with('NUM_PAGE',$NUM_PAGE)
-                                                       ->with('members',$members);
+        $members = Member::paginate(50);
+        if ($request->ajax()) {
+            $view = view('backend/admin/member/data', compact('members'))->render();
+            return response()->json(['html' => $view]);
+        }
+        // $page = $request->input('page');
+        // $page = ($page != null)?$page:1;
+        return view('backend/admin/member/member-list', compact('members'))->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function memberListOn(Request $request) {
