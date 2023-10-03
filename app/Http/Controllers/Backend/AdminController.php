@@ -821,6 +821,16 @@ class AdminController extends Controller
         return redirect()->action('Backend\AdminController@partner'); 
     }
 
+    public function reportPartner(Request $request) {
+        $NUM_PAGE = 20;
+        $redeem_points = RedeemPoint::paginate($NUM_PAGE);
+        $page = $request->input('page');
+        $page = ($page != null)?$page:1;
+        return view('/backend/admin/partner/report-partner')->with('NUM_PAGE',$NUM_PAGE)
+                                                            ->with('page',$page)
+                                                            ->with('redeem_points',$redeem_points);
+    }
+
     public function article(Request $request) {
         $NUM_PAGE = 20;
         $articles = Article::paginate($NUM_PAGE);

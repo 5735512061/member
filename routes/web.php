@@ -153,6 +153,9 @@ Route::group(['prefix' => '/'], function(){
     Route::get('promotion-edit/{id}','Backend\AdminController@promotionEdit'); //แก้ไขโปรโมชั่น
     Route::post('update-promotion','Backend\AdminController@updatePromotion'); //อัพเดตโปรโมชั่น
 
+    // รายงานข้อมูลร้านค้าพันธมิตร
+    Route::get('report-partner','Backend\AdminController@reportPartner');
+
     // บทความ ข่าวสาร
     Route::get('article','Backend\AdminController@article'); 
     Route::get('create-article','Backend\AdminController@createArticle'); 
