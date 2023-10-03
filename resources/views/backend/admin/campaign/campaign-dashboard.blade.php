@@ -42,6 +42,13 @@
         <div class="campaign">
             <div class="row">
                 <div class="col-lg-12 mb-lg-0 mb-4">
+                    <div class="flash-message">
+                        @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                            @if(Session::has('alert-' . $msg))
+                                <p class="alertdesign alert alert-{{ $msg }}">{{ Session::get('alert-' . $msg) }}</p>
+                            @endif
+                        @endforeach
+                    </div>
                     <div class="z-index-2 h-100">
                         <div class="card-body">
                             <div class="row">
@@ -59,7 +66,8 @@
                                                     class="img-responsive" width="100%">
                                                 <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i
                                                         class="fa fa-caret-right" style="color:#ff0000;"></i>
-                                                    <strong>{{ $value->code }}</strong></p>
+                                                    <strong>{{ $value->code }}</strong>
+                                                </p>
                                                 <h5 class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
                                                     {{ $value->name }}</h5>
                                                 <div style="min-height: 60px;">{!! $value->detail !!}</div>
@@ -71,7 +79,7 @@
                                                         {{ $value->campaign_type }}</p>
                                                 @endif
 
-                                                @if ($value->expire_date < $dateNow || $value->status == "สิ้นสุดแคมเปญ")
+                                                @if ($value->expire_date < $dateNow || $value->status == 'สิ้นสุดแคมเปญ')
                                                     <p style="border-bottom: 2px dashed #cac8c8; color: red;">สถานะ <i
                                                             class="fa fa-caret-right" style="color:#ff0000;"></i>
                                                         สิ้นสุดแคมเปญ
@@ -100,8 +108,10 @@
                                                     <a href="{{ url('campaign-edit/') }}/{{ $value->id }}"
                                                         class="btn btn-outline-primary radius-15"><i class="fa fa-pencil"
                                                             aria-hidden="true"></i></a>
-                                                    <a href="#" class="btn btn-outline-primary radius-15"><i
-                                                            class="fa fa-trash" aria-hidden="true"></i></a>
+                                                    <a href="{{ url('/campaign-delete') }}/{{ $value->id }}"
+                                                        onclick="return confirm('Are you sure to delete ?')"
+                                                        class="btn btn-outline-primary radius-15"><i class="fa fa-trash"
+                                                            aria-hidden="true"></i></a>
                                                 </div>
                                             </div>
                                         </div>

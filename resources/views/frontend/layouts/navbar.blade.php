@@ -18,7 +18,8 @@
 							<li><a href="{{url('about-us')}}" style="color: #e57d0d; font-weight:bold;">LOCK</a></li>
 							<li><a href="{{url('rewards')}}">ของรางวัล</a></li>
 							<li><a href="{{url('alliance')}}">พันธมิตรในเครือ</a></li>
-							<li><a href="{{url('privilege')}}">สิทธิประโยชน์</a></li>
+							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>
+							{{-- <li><a href="{{url('privilege')}}">สิทธิประโยชน์</a></li> --}}
 							@if(Auth::guard('member')->user() == NULL)
 								<li><a href="{{url('member/login')}}">เข้าสู่ระบบ</a></li>
 							@endif

@@ -48,7 +48,7 @@
             <div class="col-lg-4 col-md-4 mt-5">
                 <div class="privilege text-center">
                     <i class="fas fa-ticket"></i>
-                    <h4>รับส่วนลดพิเศษ</h4> 
+                    <h4>รับส่วนลดพิเศษ</h4>
                     <p>
                         รับส่วนลดพิเศษในเครือข่ายพันธมิตร
                     </p>
@@ -68,14 +68,14 @@
     <div class="container" style="margin-top:5rem;">
         <div class="header-title">
             <h2 style="color: #e57d0d;">
-                <strong>เครือข่าย LOCK</strong>
+                <strong>เครือข่ายพันธมิตร</strong>
             </h2>
-            <h4>สะสมคะแนนและรับสิทธิพิเศษในเครือ LOCK</h4>
+            <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
         </div>
         <div class="row mt-5">
-            @foreach ($account_stores as $account_store => $value)
+            @foreach ($partners as $partner => $value)
                 <div class="col-lg-2 col-md-2 col-6">
-                    <img src="{{ url('images/store-logo') }}/{{ $value->image }}" class="mt-3">
+                    <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
                 </div>
             @endforeach
         </div>

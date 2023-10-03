@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use App\Member;
 use App\Model\RedeemReward;
 use App\Model\GetCoupon;
+use App\Model\Point;
+use App\Model\RedeemPoint;
+use App\PartnerShop;
 use Auth;
 
 class MembersController extends Controller
@@ -19,7 +22,28 @@ class MembersController extends Controller
     
     public function profile() {
         $member = Member::where('id',Auth::guard('member')->id())->orderBy('id','desc')->first();
-        return view('frontend/member/account/profile')->with('member',$member);
+        $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
+        $member_id = Auth::guard('member')->user()->id;
+
+         // หักคะแนนจากการแลกของรางวัล
+         $redeem_rewards = RedeemReward::where('member_id',$member_id)
+                                       ->join('reward_points', 'redeem_rewards.point_id', '=', 'reward_points.id')
+                                       ->select('reward_points.*', 'redeem_rewards.*')->get();
+
+        // คะแนนสะสม
+        $points = Point::where('member_id',$member_id)->get();
+
+        // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
+        $redeem_points = RedeemPoint::where('member_id',$member_id)
+                                    ->join('partner_shop_points', 'redeem_points.point_id', '=', 'partner_shop_points.id')
+                                    ->where('redeem_points.updated_at','>','2022-02-01 00:00:00')
+                                    ->select('partner_shop_points.*','redeem_points.*')->orderBy('partner_shop_points.id','desc')->get();
+
+        return view('frontend/member/account/profile')->with('member',$member)
+                                                      ->with('partners',$partners)
+                                                      ->with('redeem_rewards',$redeem_rewards)
+                                                      ->with('points',$points)
+                                                      ->with('redeem_points',$redeem_points);
     }
 
     public function telChange(){

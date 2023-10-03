@@ -17,7 +17,7 @@ class SystemController extends Controller
     public function index() {
         $rewards = Reward::where('status','กำลังใช้งาน')->paginate('6');
         $articles = Article::where('status','เปิด')->paginate('6');
-        $partners = PartnerShopPromotion::where('status','เปิด')->paginate('6');
+        $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
         $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
         return view('frontend/index')->with('rewards',$rewards)
                                      ->with('articles',$articles)

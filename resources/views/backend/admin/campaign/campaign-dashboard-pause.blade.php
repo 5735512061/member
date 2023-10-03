@@ -99,12 +99,13 @@
                                                         <a href="{{ url('campaign-edit/') }}/{{ $value->id }}"
                                                             class="btn btn-outline-primary radius-15"><i
                                                                 class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn btn-outline-primary radius-15"><i
-                                                                class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        <a href="{{ url('/campaign-delete') }}/{{ $value->id }}"
+                                                            onclick="return confirm('Are you sure to delete ?')"
+                                                            class="btn btn-outline-primary radius-15"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div><br>
+                                            </div><br>
                                     @endif
                                 @endforeach
                             </div>

@@ -60,6 +60,9 @@ Route::group(['prefix' => 'member'], function(){
     // คูปอง
     Route::get('/get-coupon/{id}','Frontend\CouponsController@getCoupon');
     Route::get('/coupon','Frontend\MembersController@coupon');
+
+    // พันธมิตรในเครือ
+    Route::get('/alliance-redem/{id}','Frontend\PartnersController@allianceRedem');
 });
 
 // Super Admin
@@ -134,6 +137,7 @@ Route::group(['prefix' => '/'], function(){
     Route::get('campaign-off','Backend\AdminController@campaignOff'); //หน้าสิ้นสุดแคมเปญ
     Route::get('campaign-edit/{id}','Backend\AdminController@campaignEdit'); //แก้ไขแคมเปญ
     Route::post('update-campaign','Backend\AdminController@updateCampaign'); //อัพเดตแคมเปญ
+    Route::get('campaign-delete/{id}','Backend\AdminController@campaignDelete'); //ลบแคมเปญ
 
     // พันธมิตรในเครือ
     Route::get('partner','Backend\AdminController@partner'); //หน้าพันธมิตรในเครือทั้งหมด

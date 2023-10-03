@@ -21,6 +21,8 @@ use App\Model\Article;
 use App\Model\SlideImageMain;
 use App\Model\ArticleImage;
 use App\PartnerShop;
+use App\Model\GetCoupon;
+use App\Model\PartnerShopPoint;
 
 use Carbon\Carbon;
 use Validator;
@@ -483,6 +485,18 @@ class AdminController extends Controller
         return redirect()->action('Backend\AdminController@campaign'); 
     }
 
+    public function campaignDelete(Request $request, $id) {
+        $coupon = GetCoupon::where('coupon_id',$id)->get();
+        if(count($coupon) != 0) {
+            $request->session()->flash('alert-danger', 'ลบข้อมูลคูปองไม่สำเร็จ เนื่องจากข้อมูลมีการใช้งาน');
+            return redirect()->action('Backend\AdminController@campaign');
+        } else {
+            $campaign = Campaign::destroy($id);
+            $request->session()->flash('alert-success', 'ลบข้อมูลคูปองสำเร็จ');
+            return redirect()->action('Backend\AdminController@campaign');
+        }
+    }
+
     public function reward(Request $request) {
         $NUM_PAGE = 20;
         $rewards = Reward::orderByRaw('FIELD(status,"กำลังใช้งาน","ปิดการใช้งาน","พักการใช้งาน","ยังไม่ใช้งาน")')->paginate($NUM_PAGE);
@@ -747,6 +761,15 @@ class AdminController extends Controller
                 $promotion->save();
             }
 
+            // เก็บคะแนนในตาราง partner_shop_points
+            $id = PartnerShopPromotion::orderBy('id','desc')->value('id');
+
+            $point = new PartnerShopPoint;
+            $point->partner_id = $id;
+            $point->point = $request->get('point');
+            $point->date = Carbon::now()->format('d/m/Y');
+            $point->save();
+
             $request->session()->flash('alert-success', 'เพิ่มโปรโมชั่นสำเร็จ');
             return redirect()->action('Backend\AdminController@partner');
         }else{
@@ -767,6 +790,7 @@ class AdminController extends Controller
     }
 
     public function deletePromotion(Request $request, $id) {
+        $point = PartnerShopPoint::where('partner_id',$id)->delete();
         $promotion = PartnerShopPromotion::destroy($id);
         $request->session()->flash('alert-success', 'ลบข้อมูลโปรโมชั่นสำเร็จ');
         return redirect()->action('Backend\AdminController@partner');

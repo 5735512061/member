@@ -60,7 +60,8 @@
                                                         class="img-responsive" width="100%">
                                                     <p class="mb-0 mt-4" style="color: red;">รหัสคูปอง <i
                                                             class="fa fa-caret-right" style="color:#ff0000;"></i>
-                                                        <strong>{{ $value->code }}</strong></p>
+                                                        <strong>{{ $value->code }}</strong>
+                                                    </p>
                                                     <h5 class="mb-0 mt-2 mb-3" style="border-bottom: 2px dashed #cac8c8;">
                                                         {{ $value->name }}</h5>
                                                     <div style="min-height: 60px;">{!! $value->detail !!}</div>
@@ -98,8 +99,10 @@
                                                         <a href="{{ url('campaign-edit/') }}/{{ $value->id }}"
                                                             class="btn btn-outline-primary radius-15"><i
                                                                 class="fa fa-pencil" aria-hidden="true"></i></a>
-                                                        <a href="#" class="btn btn-outline-primary radius-15"><i
-                                                                class="fa fa-trash" aria-hidden="true"></i></a>
+                                                        <a href="{{ url('/campaign-delete') }}/{{ $value->id }}"
+                                                            onclick="return confirm('Are you sure to delete ?')"
+                                                            class="btn btn-outline-primary radius-15"><i class="fa fa-trash"
+                                                                aria-hidden="true"></i></a>
                                                     </div>
                                                 </div>
                                             </div>

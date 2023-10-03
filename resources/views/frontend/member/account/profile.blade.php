@@ -25,10 +25,43 @@
 </style>
 @section('content')
     @php
+        $redeem_reward_point = 0;
+        $sumpoint = 0;
+        $redeem_point_sum = 0;
+        $balance_point = 0;
+    @endphp
+
+    @php
         $sumprice = DB::table('points')
-            ->where('member_id', $member->id)
-            ->sum('price');
-        $point_balance = floor($sumprice / 100);
+                      ->where('member_id', $member->id)
+                      ->sum('price');
+    @endphp
+
+    {{-- point ที่ได้รับ --}}
+    @foreach ($points as $point => $value)
+        @php
+            $price = floor($value->price / 100);
+            $sumpoint += $price;
+        @endphp
+    @endforeach
+
+    {{-- หักคะแนนจากการแลกของรางวัล --}}
+    @foreach ($redeem_rewards as $redeem_reward => $value)
+        @php
+            $redeem_reward_point += $value->point;
+        @endphp
+    @endforeach
+
+    {{-- หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร --}}
+    @foreach ($redeem_points as $redeem_point => $value)
+        @php
+            $redeem_point_sum += $value->point;
+        @endphp
+    @endforeach
+
+    {{-- point คงเหลือ --}}
+    @php
+        $point_balance = $sumpoint - $redeem_reward_point - $redeem_point_sum;
     @endphp
     <div class="container" id="desktop" style="margin-top: 15rem;">
         <div class="row">
@@ -220,6 +253,22 @@
                 </div>
             </div>
             <div class="col-md-2"></div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top:5rem; margin-bottom:10rem;">
+        <div class="header-title">
+            <h2 style="color: #e57d0d;">
+                <strong>เครือข่ายพันธมิตร</strong>
+            </h2>
+            <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
+        </div>
+        <div class="row mt-5">
+            @foreach ($partners as $partner => $value)
+                <div class="col-lg-2 col-md-2 col-6">
+                    <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
+                </div>
+            @endforeach
         </div>
     </div>
 @endsection

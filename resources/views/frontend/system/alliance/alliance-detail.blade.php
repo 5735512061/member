@@ -5,6 +5,9 @@
         $partner = DB::table('partner_shops')
             ->where('id', $promotion->partner_id)
             ->value('name');
+        $branch = DB::table('partner_shops')
+            ->where('id', $promotion->partner_id)
+            ->value('branch');
         $partner_type = DB::table('partner_shops')
             ->where('id', $promotion->partner_id)
             ->value('type');
@@ -22,7 +25,10 @@
             <div class="col-lg-6 mt-5">
                 <div class="single-article-section">
                     <div class="single-article-text">
-                        <h1 class="article-title">{{ $partner }}</h1>
+                        <h1 class="article-title">{{ $partner }} @if ($branch != null)
+                                สาขา{{ $branch }}
+                            @endif
+                        </h1>
                         <div class="article-detail">{!! $promotion->promotion !!}</div>
                         <h5 class="mt-5">เงื่อนไขการใช้สิทธิพิเศษ</h5>
                         <ui>
@@ -33,6 +39,8 @@
                         </ui>
                     </div>
                 </div>
+                <a href="{{ url('member/alliance-redem/') }}/{{ $promotion->id }}" class="btn btn-block btn-success mt-3"
+                    style="color: #ffffff;">กดใช้สิทธิพิเศษ</a>
             </div>
         </div>
         <!-- end single article section -->
@@ -63,6 +71,9 @@
                         $name = DB::table('partner_shops')
                             ->where('id', $value->partner_id)
                             ->value('name');
+                        $branch = DB::table('partner_shops')
+                            ->where('id', $value->partner_id)
+                            ->value('branch');
                     @endphp
                     <div class="col-lg-12">
                         <div class="single-latest-news" style="background-color: #ffffff;">
@@ -71,8 +82,10 @@
                                     class="latest-news-bg img-responsive" width="100%">
                             </a>
                             <div class="news-text-box">
-                                <h1><a
-                                        href="{{ url('alliance') }}/{{ $value->id }}/{{ $value->name }}">{{ $name }}</a>
+                                <h1><a href="{{ url('alliance') }}/{{ $value->id }}/{{ $value->name }}">{{ $name }}
+                                        @if ($branch != null)
+                                            สาขา{{ $branch }} @endif
+                                    </a>
                                 </h1>
                                 <div>{!! $value->promotion !!}</div><br>
                                 <div style="border-bottom: 2px dashed #cac8c8;"></div>
