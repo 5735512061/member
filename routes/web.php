@@ -155,6 +155,7 @@ Route::group(['prefix' => '/'], function(){
 
     // รายงานข้อมูลร้านค้าพันธมิตร
     Route::get('report-partner','Backend\AdminController@reportPartner');
+    Route::get('export-report-partner', 'Backend\AdminController@exportReportPartner')->name('export');
 
     // บทความ ข่าวสาร
     Route::get('article','Backend\AdminController@article'); 

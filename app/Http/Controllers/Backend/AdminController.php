@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ReportExport;
 
 use App\AccountStore;
 use App\AccountStaff;
@@ -829,6 +831,10 @@ class AdminController extends Controller
         return view('/backend/admin/partner/report-partner')->with('NUM_PAGE',$NUM_PAGE)
                                                             ->with('page',$page)
                                                             ->with('redeem_points',$redeem_points);
+    }
+
+    public function exportReportPartner(){
+        return Excel::download(new ReportExport, 'รายงานการใช้พันธมิตร.xlsx');
     }
 
     public function article(Request $request) {

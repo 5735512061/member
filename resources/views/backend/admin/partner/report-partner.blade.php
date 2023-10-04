@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-lg-12 mb-lg-0 mb-4">
                     <div style="text-align: right;">
-                        <a href="#" class="btn btn-md btn-success"><i class="fa fa-download"></i> EXPORT EXCEL</a>
+                        <a href="{{route('export')}}" class="btn btn-md btn-success"><i class="fa fa-download"></i> EXPORT EXCEL</a>
                     </div>
                     <div class="card z-index-2 h-100">
                         <div class="card-header pb-0 pt-3 bg-transparent">
