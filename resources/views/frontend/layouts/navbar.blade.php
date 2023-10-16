@@ -15,7 +15,7 @@
 					<nav class="main-menu">
 						<ul>
 							<li><a href="{{url('/')}}">หน้าหลัก</a></li>
-							<li><a href="{{url('about-us')}}" style="color: #e57d0d; font-weight:bold;">LOCK</a></li>
+							<li><a href="{{url('about-us')}}" style="color: #e57d0d; font-weight:bold;">อิสระ</a></li>
 							<li><a href="{{url('rewards')}}">ของรางวัล</a></li>
 							<li><a href="{{url('alliance')}}">พันธมิตรในเครือ</a></li>
 							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\ReportExport;
+use App\Exports\ReportMemberExport;
 
 use App\AccountStore;
 use App\AccountStaff;
@@ -1003,6 +1004,11 @@ class AdminController extends Controller
 
         return redirect()->action('Backend\AdminController@uploadArticleImage'); 
     }
+
+    public function exportReportMember(){
+        return Excel::download(new ReportMemberExport, 'ข้อมูลสมาชิก ISSARA.xlsx');
+    }
+
     public function rules_editProfile() {
         return [
             'name' => 'required',

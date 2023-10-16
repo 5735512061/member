@@ -30,7 +30,7 @@
         <center>
             <div class="header-title">
                 <h2 style="margin-top:5rem;">
-                    <strong>สิทธิประโยชน์สมาชิก LOCK</strong>
+                    <strong>ISSARA MEMBER PRIVILEGE</strong>
                 </h2>
             </div>
         </center>

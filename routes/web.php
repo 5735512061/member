@@ -86,6 +86,7 @@ Route::group(['prefix' => '/'], function(){
     Route::get('member/profile/{id}','Backend\AdminController@memberProfile'); //หน้าโปรไฟล์สมาชิก
     Route::get('editProfile/{id}','Backend\AdminController@editProfile'); //หน้าแก้ไขโปรไฟล์สมาชิก
     Route::post('editProfile','Backend\AdminController@editProfilePost'); //แก้ไขโปรไฟล์สมาชิก
+    Route::get('export-report-member', 'Backend\AdminController@exportReportMember')->name('export-member');
 
     // ข้อมูลบัญชีร้านค้า
     Route::get('account-store','Backend\AdminController@accountStore'); //หน้าข้อมูลบัญชีร้านค้า

@@ -4,7 +4,7 @@
 			<div class="row">
 				<div class="col-lg-3 col-md-6 col-6">
 					<div class="footer-box">
-						<h2 class="widget-title">LOCK (ล็อค)</h2>
+						<h2 class="widget-title">ISSARA</h2>
 						<ul>
 							<li><a href="{{url('about-us')}}">เกี่ยวกับเรา</a></li>
 							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>
