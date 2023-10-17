@@ -36,7 +36,7 @@
                             <li>เงื่อนไขเป็นไปตามที่บริษัทฯ กำหนด ขอสงวนสิทธิ์ในการเปลี่ยนแปลง แก้ไข
                                 โดยไม่ต้องแจ้งให้ทราบล่วงหน้า</li>
                         </ui>
-                        <a href="{{ url('member/reward-redem/') }}/{{ $reward->id }}"
+                        <a href="{{ url('member/reward-redeem/') }}/{{ $reward->id }}"
                             class="btn btn-block btn-success mt-3" style="color: #ffffff;">กดแลกคะแนนสะสม</a>
                     </div>
                 </div>

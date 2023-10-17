@@ -3,30 +3,41 @@
 namespace App\Exports;
 
 use App\Member;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ReportMemberExport implements FromCollection,WithHeadings
+class ReportMemberExport implements FromView,WithColumnWidths,WithStyles
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection(){
-        return Member::all();
+
+    public function view(): View
+    {
+        return view('exports.report-member', [
+            'members' => Member::all()
+        ]);
     }
 
-    public function headings(): array{
+    public function columnWidths(): array
+    {
         return [
-            '#',
-            'รหัสสมาชิก',
-            'หมายเลขบัตรประชาชน',
-            'คำนำหน้า',
-            'ชื่อ',
-            'นามสกุล',
-            'วัน/เดือน/ปีเกิด',
-            'เบอร์โทรศัพท์',
-            'วันที่สมัครสมาชิก',
-            'สถานะ',
+            'A' => 25,            
+            'B' => 30,            
+            'C' => 13,            
+            'D' => 25,            
+            'E' => 25,            
+            'F' => 20,            
+            'G' => 15,                       
+            'H' => 20,                       
         ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1    => ['font' => ['bold' => true, 'size' => 12]],
+        ];
+        $sheet->getStyle('1')->getFont()->setBold(true);
     }
 }

@@ -32,7 +32,7 @@ class RewardsController extends Controller
                                                            ->with('page',$page);
     }
 
-    public function rewardRedem($id) {
+    public function rewardRedeem($id) {
         $reward = Reward::findOrFail($id);
         
         $member_id = Auth::guard('member')->user()->id;
@@ -51,10 +51,9 @@ class RewardsController extends Controller
         // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
         $redeem_points = RedeemPoint::where('member_id',$member_id)
                                      ->join('partner_shop_points', 'redeem_points.point_id', '=', 'partner_shop_points.id')
-                                     ->where('redeem_points.updated_at','>','2022-02-01 00:00:00')
                                      ->select('partner_shop_points.*','redeem_points.*')->orderBy('partner_shop_points.id','desc')->get();
 
-        return view('frontend/member/reward/reward-redem')->with('member',$member)
+        return view('frontend/member/reward/reward-redeem')->with('member',$member)
                                                           ->with('dateNow',$dateNow)
                                                           ->with('points',$points)
                                                           ->with('reward',$reward)
@@ -89,7 +88,6 @@ class RewardsController extends Controller
         // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
         $redeem_points = RedeemPoint::where('member_id',$member_id)
                                      ->join('partner_shop_points', 'redeem_points.point_id', '=', 'partner_shop_points.id')
-                                     ->where('redeem_points.updated_at','>','2022-02-01 00:00:00')
                                      ->select('partner_shop_points.*','redeem_points.*')->orderBy('partner_shop_points.id','desc')->get();
 
         

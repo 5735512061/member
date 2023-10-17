@@ -3,27 +3,37 @@
 namespace App\Exports;
 
 use App\Model\RedeemPoint;
-use Maatwebsite\Excel\Concerns\FromCollection;
-use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
+use Maatwebsite\Excel\Concerns\WithColumnWidths;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ReportExport implements FromCollection,WithHeadings
+class ReportExport implements FromView,WithColumnWidths,WithStyles
 {
-    /**
-    * @return \Illuminate\Support\Collection
-    */
-    public function collection(){
-        return RedeemPoint::all();
+    public function view(): View
+    {
+        return view('exports.report-partner', [
+            'redeem_points' => RedeemPoint::all()
+        ]);
     }
 
-    public function headings(): array{
+    public function columnWidths(): array
+    {
         return [
-            '#',
-            'ชื่อสมาชิก',
-            'พันธมิตร',
-            'โปรโมชั่น',
-            '',
-            'วันที่รับสิทธิ์',
-            'CODE',
+            'A' => 25,            
+            'B' => 40,            
+            'C' => 40,            
+            'D' => 15,            
+            'E' => 15,                       
         ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1    => ['font' => ['bold' => true, 'size' => 12]],
+        ];
+        $sheet->getStyle('1')->getFont()->setBold(true);
     }
 }

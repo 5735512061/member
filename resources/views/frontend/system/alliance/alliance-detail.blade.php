@@ -39,7 +39,7 @@
                         </ui>
                     </div>
                 </div>
-                <a href="{{ url('member/alliance-redem/') }}/{{ $promotion->id }}" class="btn btn-block btn-success mt-3"
+                <a href="{{ url('member/alliance-redeem/') }}/{{ $promotion->id }}" class="btn btn-block btn-success mt-3"
                     style="color: #ffffff;">กดใช้สิทธิพิเศษ</a>
             </div>
         </div>
@@ -85,7 +85,7 @@
                                 <h1><a href="{{ url('alliance') }}/{{ $value->id }}/{{ $value->name }}">{{ $name }}
                                         @if ($branch != null)
                                             สาขา{{ $branch }} @endif
-                                    </a>
+                                    </a>    
                                 </h1>
                                 <div>{!! $value->promotion !!}</div><br>
                                 <div style="border-bottom: 2px dashed #cac8c8;"></div>

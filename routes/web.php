@@ -53,7 +53,7 @@ Route::group(['prefix' => 'member'], function(){
     Route::get('/profile','Frontend\MembersController@profile')->name('member.home');
 
     // แลกของรางวัล
-    Route::get('/reward-redem/{id}','Frontend\RewardsController@rewardRedem');
+    Route::get('/reward-redeem/{id}','Frontend\RewardsController@rewardRedeem');
     Route::get('/redeem-point','Frontend\RewardsController@redeemPoint');
     Route::post('/reward-success','Frontend\RewardsController@rewardSuccess');
 
@@ -62,7 +62,8 @@ Route::group(['prefix' => 'member'], function(){
     Route::get('/coupon','Frontend\MembersController@coupon');
 
     // พันธมิตรในเครือ
-    Route::get('/alliance-redem/{id}','Frontend\PartnersController@allianceRedem');
+    Route::get('/alliance-redeem/{id}','Frontend\PartnersController@allianceRedeem');
+    Route::post('/alliance-success','Frontend\PartnersController@allianceSuccess');
 });
 
 // Super Admin
