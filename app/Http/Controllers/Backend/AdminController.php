@@ -37,8 +37,8 @@ class AdminController extends Controller
     }
 
     public function dashboard(Request $request) {
-        $NUM_PAGE = 10;
-        $members = Member::paginate($NUM_PAGE);
+        $NUM_PAGE = 20;
+        $members = Member::sortable()->paginate($NUM_PAGE);
 
         $member_tires = Member::get();
         $groupMembers = array();

@@ -13,7 +13,7 @@
       <li class="nav-item">
         <a class="nav-link" href="{{url('/dashboard')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-pie-chart text-primary text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-pie-chart text-info text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">ภาพรวม (Dashboard)</span>
         </a>
@@ -21,7 +21,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/addpoint')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-plus-circle text-warning text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-plus-circle text-success text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">เพิ่มพอยท์</span>
         </a>
@@ -29,7 +29,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/member/list')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-users text-info text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-users text-dark text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">สมาชิก</span>
         </a>
@@ -37,7 +37,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/campaign')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-ticket text-primary text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-ticket text-danger text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">แคมเปญ</span>
         </a>
@@ -45,7 +45,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/reward')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-gift text-danger text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-gift text-info text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">ของรางวัล</span>
         </a>
@@ -61,7 +61,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/partner')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-handshake-o text-dark text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-handshake-o text-warning text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">เครือข่ายพันธมิตร</span>
         </a>
@@ -69,7 +69,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/report-partner')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-file-pdf-o text-dark text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-file-pdf-o text-danger text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">รายงานข้อมูลร้านค้าพันธมิตร</span>
         </a>
@@ -85,7 +85,7 @@
       <li class="nav-item">
         <a class="nav-link " href="{{url('/media')}}">
           <div class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-            <i class="fa fa-image text-dark text-sm opacity-10 mb-2"></i>
+            <i class="fa fa-image text-success text-sm opacity-10 mb-2"></i>
           </div>
           <span class="nav-link-text ms-1">Media</span>
         </a>

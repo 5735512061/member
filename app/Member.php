@@ -4,10 +4,11 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Kyslik\ColumnSortable\Sortable;
 
 class Member extends Authenticatable 
 {
-    use Notifiable;
+    use Notifiable, Sortable;
     protected $table = 'members';
 
     protected $guard = 'member';
@@ -16,6 +17,8 @@ class Member extends Authenticatable
     protected $fillable = [
         'serialnumber', 'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status',
     ];
+
+    public $sortable = ['id', 'serialnumber', 'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status', 'created_at', 'updated_at'];
 
     protected $primaryKey = 'id';
 
