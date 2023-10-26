@@ -17,12 +17,12 @@
             <div class="accordion-item">
                 <input type="checkbox" id="item-1" />
                 <label for="item-1" class="accordion-header">
-                    <span>ระบบสมาชิกอิสระ คืออะไร ?</span>
+                    <span>ระบบสมาชิกเดอะซีเคร็ท คืออะไร ?</span>
                 </label>
                 <div class="accordion-content">
-                    <h5><Span style="color: red;"><strong>ISSARA MEMBER
-                                (สมาชิกอิสระ)</strong></Span>
-                        ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของอิสระ แลกคะแนนสะสมเป็นคูปองเงินสด
+                    <h5><Span style="color: red;"><strong>THE SECRET
+                                (สมาชิกเดอะซีเคร็ท)</strong></Span>
+                        ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของเดอะซีเคร็ท แลกคะแนนสะสมเป็นคูปองเงินสด
                         ใช้ในเครือพันธมิตรทางธุรกิจ
                         ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
                         หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
@@ -35,15 +35,15 @@
             <div class="accordion-item">
                 <input type="checkbox" id="item-2" />
                 <label for="item-2" class="accordion-header">
-                    <span>สมัครสมาชิกอิสระ ได้อย่างไร ?</span>
+                    <span>สมัครสมาชิกเดอะซีเคร็ท ได้อย่างไร ?</span>
                 </label>
                 <div class="accordion-content">
                     <h5>
-                        สมัครสมาชิก <Span style="color: red;"><strong> ISSARA</strong></Span> เพื่อสะสมคะแนน และรับสิทธิพิเศษได้ง่าย ๆ ที่เครือข่าย <Span style="color: red;"><strong> ISSARA</strong></Span>
+                        สมัครสมาชิก <Span style="color: red;"><strong> THE SECRET</strong></Span> เพื่อสะสมคะแนน และรับสิทธิพิเศษได้ง่าย ๆ ที่เครือข่าย <Span style="color: red;"><strong> THE SECRET</strong></Span>
                     </h5>
                     <div class="header-title">
                         <h4 style="color: #e57d0d;">
-                            <strong>เครือข่ายอิสระ</strong>
+                            <strong>เครือข่ายเดอะซีเคร็ท</strong>
                         </h4>
                     </div>
                     <div class="row mt-3">
@@ -64,7 +64,7 @@
                 </label>
                 <div class="accordion-content">
                     <h5>
-                        สำหรับการสมัครสมาชิก ใช้เพียงหมายเลขบัตรประชาชน และหมายเลขโทรศัพท์มือถือ ก็สามารถเป็นสมาชิก <Span style="color: red;"><strong>ISSARA</strong></Span>
+                        สำหรับการสมัครสมาชิก ใช้เพียงหมายเลขบัตรประชาชน และหมายเลขโทรศัพท์มือถือ ก็สามารถเป็นสมาชิก <Span style="color: red;"><strong>THE SECRET</strong></Span>
                         ได้ง่าย ๆ
                     </h5>
                 </div>

@@ -288,24 +288,26 @@ class AdminController extends Controller
 
     public function memberListOn(Request $request) {
         $NUM_PAGE = 50;
-        // $members = Member::where('status',"ONLINE")->paginate($NUM_PAGE);
-        $members = Member::where('status',"ONLINE")->get();
-        $page = $request->input('page');
-        $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list-on')->with('page',$page)
-                                                          ->with('NUM_PAGE',$NUM_PAGE)
-                                                          ->with('members',$members);
+        $members = Member::where('status',"ONLINE")->paginate(50);
+        if ($request->ajax()) {
+            $view = view('backend/admin/member/data', compact('members'))->render();
+            return response()->json(['html' => $view]);
+        }
+        // $page = $request->input('page');
+        // $page = ($page != null)?$page:1;
+        return view('backend/admin/member/member-list-on', compact('members'))->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function memberListOff(Request $request) {
         $NUM_PAGE = 50;
-        // $members = Member::where('status',"OFFLINE")->paginate($NUM_PAGE);
-        $members = Member::where('status',"OFFLINE")->get();
-        $page = $request->input('page');
-        $page = ($page != null)?$page:1;
-        return view('backend/admin/member/member-list-off')->with('page',$page)
-                                                           ->with('NUM_PAGE',$NUM_PAGE)
-                                                           ->with('members',$members);
+        $members = Member::where('status',"OFFLINE")->paginate(50);
+        if ($request->ajax()) {
+            $view = view('backend/admin/member/data', compact('members'))->render();
+            return response()->json(['html' => $view]);
+        }
+        // $page = $request->input('page');
+        // $page = ($page != null)?$page:1;
+        return view('backend/admin/member/member-list-off', compact('members'))->with('NUM_PAGE',$NUM_PAGE);
     }
 
     public function searchMemberList(Request $request) {
@@ -1006,7 +1008,7 @@ class AdminController extends Controller
     }
 
     public function exportReportMember(){
-        return Excel::download(new ReportMemberExport, 'ข้อมูลสมาชิก ISSARA.xlsx');
+        return Excel::download(new ReportMemberExport, 'ข้อมูลสมาชิกเดอะซีเคร็ท.xlsx');
     }
 
     public function rules_editProfile() {

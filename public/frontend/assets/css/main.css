@@ -164,6 +164,12 @@ p:last-child {
 # All Common Styles
 
 ----------------------------------------------------------------------------- */
+.gradient-text {
+	background: linear-gradient(to bottom right, #B87333, #C8713C);;
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
 .loader {
   bottom: 0;
   height: 100%;
@@ -2765,7 +2771,7 @@ table.order-details tbody td {
 }
 
 .header-title h2{
-  color: #e57d0d;
+  /* color: #e57d0d; */
   font-family: "Noto Sans Thai", "Poppins", sans-serif;
 }
 

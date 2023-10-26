@@ -29,6 +29,10 @@ Route::get('/contact-us','Frontend\SystemController@contactUs');
 Route::get('/about-us','Frontend\SystemController@aboutUs');
 Route::get('/help-center','Frontend\SystemController@helpCenter');
 
+// สมัครสมาชิกใหม่
+Route::get('register-member','Frontend\SystemController@registerMember'); //หน้าสมัครสมาชิกใหม่
+Route::post('register-member','Frontend\SystemController@registerMemberPost'); //สมัครสมาชิกใหม่
+
 Route::group(['prefix' => 'member'], function(){
     // ข้อมูลการเข้าสู่ระบบของ member
     Route::get('login','AuthMember\LoginController@ShowLoginForm')->name('member.login');

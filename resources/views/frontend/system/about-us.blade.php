@@ -12,8 +12,8 @@
         <br>
         <div class="row">
             <div class="col-md-12">
-                <h4 style="line-height: 1.4em;"><Span style="color: red;"><strong>ISSARA MEMBER (สมาชิกอิสระ)</strong></Span>
-                    ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของ ISSARA แลกคะแนนสะสมเป็นคูปองเงินสด
+                <h4 style="line-height: 1.4em;"><Span style="color: red;"><strong>THE SECRET (สมาชิกเดอะซีเคร็ท)</strong></Span>
+                    ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของเดอะซีเคร็ท แลกคะแนนสะสมเป็นคูปองเงินสด
                     ใช้ในเครือพันธมิตรทางธุรกิจ
                     ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
                     หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
@@ -27,7 +27,7 @@
             <center>
                 <div class="header-title">
                     <h2 style="padding-top: 5rem;">
-                        <strong>ISSARA MEMBER PRIVILEGE</strong>
+                        <strong>THE SECRET PRIVILEGE</strong>
                     </h2>
                 </div>
             </center>
@@ -67,14 +67,14 @@
         <div class="container" style="padding-bottom: 5rem;">
             <div class="header-title">
                 <h2 style="padding-top: 5rem;">
-                    <strong>เครือข่าย ISSARA และเครือข่ายพันธมิตร</strong>
+                    <strong>เครือข่าย THE SECRET และเครือข่ายพันธมิตร</strong>
                 </h2>
                 <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
             </div>
             <br>
             <div class="header-title">
                 <h4 style="color: #e57d0d;">
-                    <strong>เครือข่าย ISSARA</strong>
+                    <strong>เครือข่าย THE SECRET</strong>
                 </h4>
             </div>
             <div class="row mt-3">

@@ -14,15 +14,63 @@ use App\AccountStore;
 
 class SystemController extends Controller
 {
+    public function registerMember(Request $request) {
+        return view('frontend/member/register');
+    }
+
+    public function registerMemberPost(Request $request) {
+        $validator = Validator::make($request->all(), $this->rules_register(), $this->messages_register());
+        if($validator->passes()) {
+            // ข้อมูลของตาราง members
+            $random = rand(1111111111111111,9999999999999999);  
+            $serialnumber = wordwrap($random , 4 , '-' , true );
+
+            $card_id = $request->get('card_id');
+            $title = $request->get('title');
+            $name = $request->get('name');
+            $surname = $request->get('surname');
+            $bday = $request->get('bday');
+            $tel = $request->get('tel');
+            $status = $request->get('status');
+            $password = $request->get('tel');
+            $date = Carbon::now()->format('d/m/Y');
+
+            $member = new Member;
+            $member->serialnumber = $serialnumber;
+            $member->card_id = $card_id;
+            $member->title = $title;
+            $member->name = $name;
+            $member->surname = $surname;
+            $member->bday = $bday;
+            $member->tel = $tel;
+            $member->date = $date;
+            $member->status = $status;
+            $member->password = $password;
+            $member->save();
+
+            $request->session()->flash('alert-success', 'ลงทะเบียนสมัครสมาชิกสำเร็จ');
+            return back();
+        }
+        else{
+                $request->session()->flash('alert-danger', 'สมัครสมาชิกไม่สำเร็จ กรุณากรอกข้อมูลให้ถูกต้องครบถ้วน');
+                return redirect('/register-member')->withErrors($validator)->withInput();   
+            }
+    }
+
     public function index() {
         $rewards = Reward::where('status','กำลังใช้งาน')->paginate('6');
         $articles = Article::where('status','เปิด')->paginate('6');
         $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
         $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
+        $partner_promotions = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                                         ->where('partner_shops.status','=','เปิด')
+                                         ->where('partner_shop_promotions.status','=','เปิด')
+                                         ->select('partner_shops.*','partner_shop_promotions.*')->paginate('6');
         return view('frontend/index')->with('rewards',$rewards)
                                      ->with('articles',$articles)
                                      ->with('partners',$partners)
-                                     ->with('account_stores',$account_stores);
+                                     ->with('account_stores',$account_stores)
+                                     ->with('partner_promotions',$partner_promotions);
     }
 
     public function condition() {
@@ -91,8 +139,13 @@ class SystemController extends Controller
 
 
     public function alliance() {
+        $partner_promotions = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                                         ->where('partner_shops.status','=','เปิด')
+                                         ->where('partner_shop_promotions.status','=','เปิด')
+                                         ->select('partner_shops.*','partner_shop_promotions.*')->paginate('6');
         $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
-        return view('frontend/system/alliance/index')->with('partners',$partners);
+        return view('frontend/system/alliance/index')->with('partners',$partners)
+                                                     ->with('partner_promotions',$partner_promotions);
     }
 
     public function allianceFoodAndDrink() {
@@ -133,7 +186,12 @@ class SystemController extends Controller
 
     public function allianceDetail($id) {
         $promotion = PartnerShopPromotion::findOrFail($id);
-        return view('frontend/system/alliance/alliance-detail')->with('promotion',$promotion);
+        $partner_promotions = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
+                                         ->where('partner_shops.status','=','เปิด')
+                                         ->where('partner_shop_promotions.status','=','เปิด')
+                                         ->select('partner_shops.*','partner_shop_promotions.*')->paginate('6');
+        return view('frontend/system/alliance/alliance-detail')->with('promotion',$promotion)
+                                                               ->with('partner_promotions',$partner_promotions);
     }
 
     public function contactUs() {
@@ -153,4 +211,38 @@ class SystemController extends Controller
         return view('frontend/system/help-center')->with('account_stores',$account_stores)
                                                   ->with('partners',$partners);
     }
+
+    public function rules_register() {
+        return [
+            'serialnumber' => 'unique:members',
+            'card_id' => 'required|unique:members',
+            'name' => 'required',
+            'surname' => 'required',
+            'bday' => 'required',
+            'tel' => 'required|unique:members',
+            'address' => 'required',
+            'district' => 'required',
+            'amphoe' => 'required',
+            'province' => 'required',
+            'zipcode' => 'required',
+        ];
+    }
+
+    public function messages_register() {
+        return [
+            'serialnumber.unique' => 'หมายเลขสมาชิกใช้ในการลงทะเบียนแล้ว',
+            'telcard_id.required' => 'กรุณากรอกหมายเลขบัตรประชาชน',
+            'card_id.unique' => 'หมายเลขบัตรประชาชนใช้ในการลงทะเบียนแล้ว',
+            'name.required' => 'กรุณากรอกชื่อ',
+            'surname.required' => 'กรุณากรอกนามสกุล',
+            'bday.required' => 'กรุณากรอกวันเดือนปีเกิด',
+            'tel.required' => 'กรุณากรอกเบอร์โทรศัพท์',
+            'tel.unique' => 'เบอร์โทรศัพท์ใช้ในการลงทะเบียนแล้ว',
+            'address.required' => 'กรุณากรอกที่อยู่',
+            'district.required' => 'กรุณากรอกตำบล',
+            'amphoe.required' => 'กรุณากรอกอำเภอ',
+            'province.required' => 'กรุณากรอกจังหวัด',
+            'zipcode.required' => 'กรุณากรอกรหัสไปรษณีย์',
+        ];
+    }  
 }
