@@ -35,25 +35,27 @@
                 <div class="header">
                     <h2>สมัครสมาชิกใหม่</h2>
                 </div>
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if (Session::has('alert-' . $msg))
+                            <p class="mt-5 alertdesign alert alert-{{ $msg }}">
+                                {{ Session::get('alert-' . $msg) }}</p>
+                        @endif
+                    @endforeach
+                </div>
             </div>
             <div class="col-lg-2 mb-lg-0"></div>
         </div>
+
         <div class="account">
             <div class="row mt-4">
                 <div class="col-lg-2 mb-lg-0 mb-4"></div>
                 <div class="col-lg-8 mb-lg-0 mb-4">
                     <div class="card z-index-2 h-100">
-                        <form action="{{ url('staff/register-member') }}" enctype="multipart/form-data" method="post">
+                        <form action="{{ url('register-member') }}" enctype="multipart/form-data" method="post">
                             @csrf
                             <div class="card-body">
-                                <div class="flash-message">
-                                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                                        @if (Session::has('alert-' . $msg))
-                                            <p class="alertdesign alert alert-{{ $msg }}">
-                                                {{ Session::get('alert-' . $msg) }}</p>
-                                        @endif
-                                    @endforeach
-                                </div>
+
                                 <h3>ข้อมูลผู้สมัครสมาชิก <i class="fa fa-caret-down" style="color:#777777;"></i></h3>
                                 <div class="row">
                                     <div class="col-md-2 mt-4">
@@ -61,9 +63,12 @@
                                     </div>
                                     <div class="col-md-3 mt-3">
                                         <select name="title" class="form-control">
-                                            <option value="นาย">นาย</option>
-                                            <option value="นาง">นาง</option>
-                                            <option value="นางสาว">นางสาว</option>
+                                            <option value="นาย" {{ old('title') == 'นาย' ? 'selected' : '' }}>นาย
+                                            </option>
+                                            <option value="นาง" {{ old('title') == 'นาง' ? 'selected' : '' }}>นาง
+                                            </option>
+                                            <option value="นางสาว" {{ old('title') == 'นางสาว' ? 'selected' : '' }}>นางสาว
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -71,64 +76,65 @@
                                     <div class="col-md-6 mt-2">
                                         <p>
                                             <span>*</span> หมายเลขบัตรประชาชน <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i>
+                                                style="color:#777777;"></i><br>
                                             @if ($errors->has('card_id'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('card_id') }})</span>
                                             @endif
                                         </p>
                                         <input onkeyup="autoTab(this)" id="txtID" type="text"
-                                            placeholder="หมายเลขบัตรประชาชน" name="card_id" class="form-control">
+                                            placeholder="หมายเลขบัตรประชาชน" name="card_id" class="form-control"
+                                            value="{{ old('card_id') }}">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mt-2">
                                         <p>
                                             <span>*</span> ชื่อ ตามบัตรประชาชน <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i>
+                                                style="color:#777777;"></i><br>
                                             @if ($errors->has('name'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('name') }})</span>
                                             @endif
                                         </p>
                                         <input class="form-control" type="text" placeholder="กรอกชื่อ ตามบัตรประชาชน"
-                                            name="name">
+                                            name="name" value="{{ old('name') }}">
                                     </div>
                                     <div class="col-md-6 mt-2">
                                         <p>
                                             <span>*</span> นามสกุล ตามบัตรประชาชน <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i>
+                                                style="color:#777777;"></i><br>
                                             @if ($errors->has('surname'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('surname') }})</span>
                                             @endif
                                         </p>
                                         <input class="form-control" type="text" placeholder="กรอกนามสกุล ตามบัตรประชาชน"
-                                            name="surname">
+                                            name="surname" value="{{ old('surname') }}">
                                     </div>
                                     <div class="col-md-6 mt-2">
                                         <p>
                                             <span>*</span> วัน/เดือน/ปี ค.ศ เกิด <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i>
+                                                style="color:#777777;"></i><br>
                                             @if ($errors->has('bday'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('bday') }})</span>
                                             @endif
                                         </p>
                                         <input class="form-control" type="text" placeholder="กรอกวัน/เดือน/ปี ค.ศ เกิด"
-                                            name="bday">
+                                            name="bday" value="{{ old('bday') }}">
                                     </div>
                                     <div class="col-md-6 mt-2">
                                         <p>
                                             <span>*</span> เบอร์โทรศัพท์ <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i>
+                                                style="color:#777777;"></i><br>
                                             @if ($errors->has('tel'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('tel') }})</span>
                                             @endif
                                         </p>
                                         <input class="phone_format form-control" type="text"
-                                            placeholder="กรอกเบอร์โทรศัพท์" name="tel">
+                                            placeholder="กรอกเบอร์โทรศัพท์" name="tel" value="{{ old('tel') }}">
                                     </div>
                                 </div>
                                 <div class="row">

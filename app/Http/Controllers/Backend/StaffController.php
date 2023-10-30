@@ -15,6 +15,10 @@ use Carbon\Carbon;
 
 class StaffController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:staff');
+    }
+
     public function dashboard(Request $request) {
         $NUM_PAGE = 10;
         $members = Member::paginate($NUM_PAGE);
@@ -191,7 +195,7 @@ class StaffController extends Controller
     public function messages_register() {
         return [
             'serialnumber.unique' => 'หมายเลขสมาชิกใช้ในการลงทะเบียนแล้ว',
-            'telcard_id.required' => 'กรุณากรอกหมายเลขบัตรประชาชน',
+            'card_id.required' => 'กรุณากรอกหมายเลขบัตรประชาชน',
             'card_id.unique' => 'หมายเลขบัตรประชาชนใช้ในการลงทะเบียนแล้ว',
             'name.required' => 'กรุณากรอกชื่อ',
             'surname.required' => 'กรุณากรอกนามสกุล',

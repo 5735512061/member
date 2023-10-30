@@ -12,6 +12,8 @@ use App\Model\PartnerShopPromotion;
 use App\PartnerShop;
 use App\AccountStore;
 
+use Validator;
+
 class SystemController extends Controller
 {
     public function registerMember(Request $request) {
@@ -231,7 +233,7 @@ class SystemController extends Controller
     public function messages_register() {
         return [
             'serialnumber.unique' => 'หมายเลขสมาชิกใช้ในการลงทะเบียนแล้ว',
-            'telcard_id.required' => 'กรุณากรอกหมายเลขบัตรประชาชน',
+            'card_id.required' => 'กรุณากรอกหมายเลขบัตรประชาชน',
             'card_id.unique' => 'หมายเลขบัตรประชาชนใช้ในการลงทะเบียนแล้ว',
             'name.required' => 'กรุณากรอกชื่อ',
             'surname.required' => 'กรุณากรอกนามสกุล',

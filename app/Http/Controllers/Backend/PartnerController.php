@@ -10,6 +10,10 @@ use App\Model\Campaign;
 
 class PartnerController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:partner');
+    }
+
     public function dashboard() {
         $search = 'No Search';
         return view('backend/partner/dashboard')->with('search',$search);
