@@ -22,7 +22,12 @@
 </style>
 @section("content")
 <div class="container-fluid py-4">
-    <div class="media">
+    <div class="row">
+        <div class="col-lg-5 mb-lg-0 mb-4">
+            <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+        </div>
+    </div>
+    <div class="media mt-4">
         <h4>Media</h4>
     </div>
     <a href="{{ url('/upload-slide-image') }}" class="btn btn-success mt-3" type="submit">รูปภาพสไลด์หน้าหลัก</a>

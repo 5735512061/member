@@ -196,30 +196,30 @@
                         <div class="col-md-12 mb-3">
                             <label class="form-label">ชื่อระดับ</label>
                             <input type="text" name="tier" class="form-control"
-                                placeholder="เช่น SILVER, GOLD, PLATINAM, DIAMOND" />
+                                placeholder="เช่น STANDARD, PREMIUM, SUPREME" />
                         </div>
                         <div class="col-md-12 mb-3">
                             <label class="form-label">คำอธิบายระดับสมาชิก</label>
                             <textarea name="detail" class="form-control"
-                                placeholder="เช่น ระดับ SILVER สมาชิกที่มียอดค่าใช้จ่ายตั้งแต่ 0-100000 บาท"></textarea>
+                                placeholder="เช่น ระดับ STANDARD สมาชิกที่มียอดค่าใช้จ่ายตั้งแต่ 0-200000 บาท"></textarea>
                         </div>
                         <div class="col-md-12 mb-3">
                             <label class="form-label">ยอดค่าใช้จ่ายเริ่มต้น</label>
                             <input type="text" name="min_price" class="form-control"
-                                placeholder="เช่น 0 ( ยอดสะสมที่เป็นค่าเริ่มต้นของระดับ SILVER ยอดค่าใช้จ่าย 0.- )" />
+                                placeholder="เช่น 0 ( ยอดสะสมที่เป็นค่าเริ่มต้นของระดับ STANDARD ยอดค่าใช้จ่าย 0.- )" />
                         </div>
                         <div class="col-md-12 mb-3">
                             <label class="form-label">ยอดค่าใช้จ่ายสูงสุด</label>
                             <input type="text" name="max_price" class="form-control"
-                                placeholder="เช่น 100000 ( ยอดสะสมที่เป็นค่าสูงสุดของระดับ ยอดค่าใช้จ่าย 100000.- )" />
+                                placeholder="เช่น 200000 ( ยอดสะสมที่เป็นค่าสูงสุดของระดับ ยอดค่าใช้จ่าย 200000.- )" />
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                        style="font-family:'Prompt';">ปิด</button>
+                        style="font-family:'Noto Sans Thai';">ปิด</button>
                     <button type="submit" class="btn btn-primary"
-                        style="font-family:'Prompt';">เพิ่มระดับสมาชิก</button>
+                        style="font-family:'Noto Sans Thai';">เพิ่มระดับสมาชิก</button>
                 </div>
             </form>
         </div>

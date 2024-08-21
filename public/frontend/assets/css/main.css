@@ -27,6 +27,7 @@ body {
   line-height: 1.8;
   color: #ffffff;
   overflow-x: hidden;
+  background-color: #2e5b55 !important;
 }
 
 body img {
@@ -165,9 +166,10 @@ p:last-child {
 
 ----------------------------------------------------------------------------- */
 .gradient-text {
-	background: linear-gradient(to bottom right, #B87333, #C8713C);;
+	background: linear-gradient(to bottom right, #f0b6b5, #f0b6b5);;
 	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
+	-webkit-text-fill-color: #f0b6b5;
+  font-weight: bolder;
 }
 
 .loader {
@@ -495,6 +497,7 @@ nav.main-menu ul li a {
   font-weight: 700;
   display: block;
   padding: 15px;
+  font-size: 1.2rem;
 }
 
 nav.main-menu ul > li {
@@ -561,7 +564,7 @@ ul.sub-menu li:last-child {
 }
 
 .mean-bar a.meanmenu-reveal {
-  background-color: #F28123;
+  background-color: #f0b6b5;
 }
 
 .main-menu-wrap {
@@ -797,8 +800,8 @@ a.mobile-show {
 }
 
 .footer-area {
-  background-color: #161616;
-  color: #fff;
+  background-color: #2e5b55;
+  color: #f0b6b5;
   padding: 100px 0;
 }
 
@@ -807,7 +810,7 @@ h2.widget-title {
   font-weight: 500;
   position: relative;
   padding-bottom: 20px;
-  color: #fff;
+  color: #f0b6b5;
 }
 
 h2.widget-title:after {
@@ -816,7 +819,7 @@ h2.widget-title:after {
   bottom: 0;
   width: 30%;
   height: 2px;
-  background-color: #F28123;
+  background-color: #f0b6b5;
   content: "";
   top: 50px;
 }
@@ -1034,6 +1037,10 @@ a.tof-btn:hover i {
 .news-text-box h1 {
   font-size: 20px;
   line-height: 1.5;
+}
+
+.news-text-box a {
+  color: #2e5b55 !important;
 }
 
 .single-latest-news {
@@ -1649,6 +1656,7 @@ p.blog-meta span i {
   font-weight: 600;
   line-height: 1.4;
   margin-bottom: 10px;
+  color: #2e5b55;
 }
 
 .single-article-text p {
@@ -1660,7 +1668,7 @@ p.blog-meta span i {
 .single-article-text .article-title {
   font-size: 2em;
   line-height: 1.6;
-  color: #f28123;
+  color: #2e5b55;
   margin-top: 20px;
 }
 
@@ -1797,7 +1805,7 @@ span.comment-date {
 }
 
 .sidebar-section ul li a {
-  color: #9d9d9d;
+  color: #2e5b55;
   font-size: 15px;
 }
 
@@ -2776,7 +2784,7 @@ table.order-details tbody td {
 }
 
 .header-title h4 {
-  color: #ffffff52;
+  color: #ffffff;
 }
 
 .header-title {

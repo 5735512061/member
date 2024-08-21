@@ -7,7 +7,7 @@
 					<!-- logo -->
 					<div class="site-logo">
 						<a href="{{url('/')}}">
-							<img src="{{ asset('frontend/assets/img/logo.png')}}" alt="">
+							<img src="{{ asset('frontend/assets/img/logo.png')}}" alt="touchjai-logo" width="50%" style="margin-top: -1rem;">
 						</a>
 					</div>
 					<!-- logo -->
@@ -15,12 +15,13 @@
 					<nav class="main-menu">
 						<ul>
 							<li><a href="{{url('/')}}">หน้าหลัก</a></li>
-							<li><a href="{{url('about-us')}}" style="font-weight:bolder !important;" class="gradient-text">THE SECRET</a></li>
-							<li><a href="{{url('rewards')}}">ของรางวัล</a></li>
-							<li><a href="{{url('alliance')}}">พันธมิตรในเครือ</a></li>
+							<li><a href="{{url('about-us')}}" class="gradient-text">TOUCHJAI</a></li>
+							{{-- <li><a href="{{url('rewards')}}">REWARD</a></li> --}}
+							<li><a href="{{url('alliance')}}">สิทธิพิเศษ</a></li>
 							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>
-							{{-- <li><a href="{{url('privilege')}}">สิทธิประโยชน์</a></li> --}}
-							@if(Auth::guard('member')->user() == NULL)
+							<li><a href="https://ctp.is/8/9138713" target="_blank">E-COUPON</a></li>
+							<li><a href="https://ctp.is/8/9138713" target="_blank">เข้าสู่ระบบสมาชิก</a></li>
+							{{-- @if(Auth::guard('member')->user() == NULL)
 								<li><a href="{{url('member/login')}}">เข้าสู่ระบบ</a></li>
 							@endif
 
@@ -28,7 +29,7 @@
 								<li>
 									<a href="{{url('member/profile')}}">บัญชีสมาชิก</a>
 								</li>
-							@endauth
+							@endauth --}}
 						</ul>
 					</nav>
 					<div class="mobile-menu"></div>

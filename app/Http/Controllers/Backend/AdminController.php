@@ -48,42 +48,35 @@ class AdminController extends Controller
             array_push($groupMembers, $sumprice);    
         }
 
-        $silver = 0;
-        $gold = 0;
-        $platinum = 0;
-        $diamond = 0;
+        $standard = 0;
+        $premium = 0;
+        $supreme = 0;
 
         for($i = 0; $i < count($groupMembers); $i++) {
-            if($groupMembers[$i] == 0 || $groupMembers[$i] < 100001) {
-                // SILVER
-                $silver++;    
+            if($groupMembers[$i] == 0 || $groupMembers[$i] < 200001) {
+                // STANDARD
+                $standard++;    
             }
-            elseif($groupMembers[$i] == 100001 || $groupMembers[$i] < 500001) {
-                // GOLD
-                $gold++;
+            elseif($groupMembers[$i] == 200001 || $groupMembers[$i] < 500001) {
+                // PREMIUM
+                $premium++;
             }
-            elseif($groupMembers[$i] == 500001 || $groupMembers[$i] < 1000001) {
-                // PLATINUM
-                $platinum++;
-            }
-            elseif($groupMembers[$i] > 1000001) {
-                // DIAMOND
-                $diamond++;
-            }
-            
+            elseif($groupMembers[$i] > 500001) {
+                // SUPREME
+                $supreme++;
+            }            
         }
         $data_tier = "";
-        $data_tier .= "['SILVER', $silver],['GOLD', $gold],['PLATINUM', $platinum],['DIAMOND', $diamond]";
+        $data_tier .= "['STANDARD', $standard],['PREMIUM', $premium],['SUPREME', $supreme]";
 
         $page = $request->input('page');
         $page = ($page != null)?$page:1;
         return view('backend/admin/dashboard')->with('NUM_PAGE',$NUM_PAGE)
                                               ->with('page',$page)
                                               ->with('members',$members)
-                                              ->with('silver',$silver)
-                                              ->with('gold',$gold)
-                                              ->with('platinum',$platinum)
-                                              ->with('diamond',$diamond)
+                                              ->with('standard',$standard)
+                                              ->with('premium',$premium)
+                                              ->with('supreme',$supreme)
                                               ->with('data_tier',$data_tier);
     }
 
@@ -332,8 +325,8 @@ class AdminController extends Controller
         $search = $request->get('tier');
         $sumprice = Point::groupBy('member_id')->sum('price');
 
-        if($search == "SILVER") {
-            if ($sumprice == 0 || $sumprice < 100001) {
+        if($search == "STANDARD") {
+            if ($sumprice == 0 || $sumprice < 200001) {
                 $members = Member::join('points', 'members.id', '=', 'points.member_id')
                        ->select('members.*', 'points.price')
                        ->get();
@@ -342,18 +335,8 @@ class AdminController extends Controller
             }
         }
 
-        if($search == "GOLD") {
-            if($sumprice == 100001 || $sumprice < 500001) {
-                $members = Member::join('points', 'members.id', '=', 'points.member_id')
-                       ->select('members.*', 'points.price')
-                       ->get();
-            } else {
-                $members = 0;
-            }
-        }
-
-        if($search == "PLATINAM") {
-            if($sumprice == 500001 || $sumprice < 1000001) {dd($sumprice);
+        if($search == "PREMIUM") {
+            if($sumprice == 200001 || $sumprice < 500001) {
                 $members = Member::join('points', 'members.id', '=', 'points.member_id')
                        ->select('members.*', 'points.price')
                        ->get();
@@ -362,8 +345,8 @@ class AdminController extends Controller
             }
         }
         
-        if($search == "DIAMOND") {
-            if($sumprice > 1000001) {
+        if($search == "SUPREME") {
+            if($sumprice > 500001) {
                 $members = Member::join('points', 'members.id', '=', 'points.member_id')
                        ->select('members.*', 'points.price')
                        ->get();
@@ -731,7 +714,14 @@ class AdminController extends Controller
         $id = $request->get('id');
 
         $partner = PartnerShop::findOrFail($id);
-        $partner->update($request->all());
+
+        $partner['name'] = $request->get('name');
+        $partner['branch'] = $request->get('branch');
+        $partner['tel'] = $request->get('tel');
+        $partner['password'] = bcrypt($request->get('tel'));
+        $partner['type'] = $request->get('type');
+        $partner['status'] = $request->get('status');
+        $partner->update();
 
         if($request->hasFile('image')) {
             $image = $request->file('image');
@@ -1008,7 +998,7 @@ class AdminController extends Controller
     }
 
     public function exportReportMember(){
-        return Excel::download(new ReportMemberExport, 'ข้อมูลสมาชิกเดอะซีเคร็ท.xlsx');
+        return Excel::download(new ReportMemberExport, 'ข้อมูลสมาชิก TOUCHJAI.xlsx');
     }
 
     public function rules_editProfile() {

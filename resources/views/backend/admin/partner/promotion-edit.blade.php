@@ -103,9 +103,9 @@
 @endphp
 <div class="container-fluid py-4">
     <div class="campaign">
-        <div class="row">   
+        <div class="row">
             <div class="col-lg-5 mb-lg-0 mb-4">
-                <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
             </div>
         </div>
         <h4 class="mt-4">แก้ไขโปรโมชั่น {{$partner}}</h4>

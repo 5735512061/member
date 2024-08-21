@@ -60,8 +60,8 @@ class SystemController extends Controller
     }
 
     public function index() {
-        $rewards = Reward::where('status','กำลังใช้งาน')->paginate('6');
-        $articles = Article::where('status','เปิด')->paginate('6');
+        $rewards = Reward::where('status','กำลังใช้งาน')->paginate('3');
+        $articles = Article::where('status','เปิด')->paginate('3');
         $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
         $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
         $partner_promotions = PartnerShop::join('partner_shop_promotions', 'partner_shops.id', '=', 'partner_shop_promotions.partner_id')
@@ -146,8 +146,10 @@ class SystemController extends Controller
                                          ->where('partner_shop_promotions.status','=','เปิด')
                                          ->select('partner_shops.*','partner_shop_promotions.*')->paginate('6');
         $partners = PartnerShop::groupBy('name')->orderBy('id','desc')->get(); 
+        $account_stores = AccountStore::groupBy('store_name')->orderBy('id','asc')->get(); 
         return view('frontend/system/alliance/index')->with('partners',$partners)
-                                                     ->with('partner_promotions',$partner_promotions);
+                                                     ->with('partner_promotions',$partner_promotions)
+                                                     ->with('account_stores',$account_stores);
     }
 
     public function allianceFoodAndDrink() {

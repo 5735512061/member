@@ -5,7 +5,7 @@
 <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Thai&display=swap');
 </style>
 
 <link rel="stylesheet" type="text/css" href="{{ asset('css/halkaBox.min.css')}}">

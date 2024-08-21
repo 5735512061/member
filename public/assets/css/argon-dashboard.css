@@ -49,8 +49,8 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 103, 116, 142;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Prompt","Open Sans", sans-serif;
-  --bs-font-monospace: "Prompt", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-font-sans-serif: "Noto Sans Thai","Open Sans", sans-serif;
+  --bs-font-monospace: "Noto Sans Thai", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
   --bs-body-font-size: 1rem;
@@ -116,8 +116,8 @@ hr {
   display: none;
 }
 
-.Prompt {
-  font-family: 'Prompt';
+.NotoSansThai {
+  font-family: 'Noto Sans Thai';
 }
 
 .center {
@@ -411,7 +411,7 @@ select,
 optgroup,
 textarea {
   margin: 0;
-  font-family: "Prompt";
+  font-family: "Noto Sans Thai";
   font-size: inherit;
   line-height: inherit;
 }
@@ -3605,7 +3605,7 @@ textarea.form-control.is-invalid {
 .btn {
   --bs-btn-padding-x: 1.25rem;
   --bs-btn-padding-y: 0.625rem;
-  --bs-btn-font-family: "Prompt";
+  --bs-btn-font-family: "Noto Sans Thai";
   --bs-btn-font-size: 0.875rem;
   --bs-btn-font-weight: 700;
   --bs-btn-line-height: 1.5;
@@ -3698,7 +3698,7 @@ fieldset:disabled .btn {
   --bs-btn-disabled-color: #000;
   --bs-btn-disabled-bg: #5e72e4;
   --bs-btn-disabled-border-color: #5e72e4;
-  font-family: "Prompt";
+  font-family: "Noto Sans Thai";
 }
 
 .btn-secondary {
@@ -5687,7 +5687,7 @@ fieldset:disabled .btn {
   background-color: var(--bs-alert-bg);
   border: var(--bs-alert-border);
   border-radius: var(--bs-alert-border-radius, 0);
-  font-family: 'Prompt';
+  font-family: 'Noto Sans Thai';
 }
 
 .alert-heading {
@@ -20884,7 +20884,7 @@ fieldset:disabled .btn {
 }
 
 .card .card-body {
-  font-family: "Prompt", "Open Sans", sans-serif;
+  font-family: "Noto Sans Thai", "Open Sans", sans-serif;
   padding: 1.5rem;
 }
 
@@ -24965,11 +24965,11 @@ p {
 }
 
 .text-sans-serif {
-  font-family: "Prompt","Open Sans", sans-serif !important;
+  font-family: "Noto Sans Thai","Open Sans", sans-serif !important;
 }
 
 .text-monospace {
-  font-family: "Prompt", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
+  font-family: "Noto Sans Thai", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace !important;
 }
 
 .text-justify {
@@ -25776,7 +25776,7 @@ body.dark-version {
 }
 
 .flatpickr-current-month span.cur-month {
-  font-family: "Prompt",inherit;
+  font-family: "Noto Sans Thai",inherit;
   font-weight: 700;
   color: inherit;
   display: inline-block;
@@ -25812,7 +25812,7 @@ body.dark-version {
   margin: 0;
   display: inline-block;
   font-size: inherit;
-  font-family: "Prompt",inherit;
+  font-family: "Noto Sans Thai",inherit;
   font-weight: 300;
   line-height: inherit;
   height: auto;
@@ -25845,7 +25845,7 @@ body.dark-version {
   color: inherit;
   cursor: pointer;
   font-size: inherit;
-  font-family: "Prompt",inherit;
+  font-family: "Noto Sans Thai",inherit;
   font-weight: 300;
   height: auto;
   line-height: inherit;
@@ -26712,7 +26712,7 @@ pre[class*="language-"] {
   color: black;
   background: none;
   text-shadow: 0 1px white;
-  font-family: "Prompt",Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+  font-family: "Noto Sans Thai",Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
   font-size: 1em;
   text-align: left;
   white-space: pre;

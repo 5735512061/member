@@ -107,26 +107,20 @@
                                 $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
                                 
                                 // min_price, max_price ระดับสมาชิก
-                                $min_price_silver = DB::table('tiers')
-                                    ->where('tier', 'SILVER')
+                                $min_price_standard = DB::table('tiers')
+                                    ->where('tier', 'STANDARD')
                                     ->value('min_price');
-                                $max_price_silver = DB::table('tiers')
-                                    ->where('tier', 'SILVER')
+                                $max_price_standard = DB::table('tiers')
+                                    ->where('tier', 'STANDARD')
                                     ->value('max_price');
-                                $min_price_gold = DB::table('tiers')
-                                    ->where('tier', 'GOLD')
+                                $min_price_premium = DB::table('tiers')
+                                    ->where('tier', 'PREMIUM')
                                     ->value('min_price');
-                                $max_price_gold = DB::table('tiers')
-                                    ->where('tier', 'GOLD')
+                                $max_price_premium = DB::table('tiers')
+                                    ->where('tier', 'PREMIUM')
                                     ->value('max_price');
-                                $min_price_platinam = DB::table('tiers')
-                                    ->where('tier', 'PLATINAM')
-                                    ->value('min_price');
-                                $max_price_platinam = DB::table('tiers')
-                                    ->where('tier', 'PLATINAM')
-                                    ->value('max_price');
-                                $min_price_diamond = DB::table('tiers')
-                                    ->where('tier', 'DIAMOND')
+                                $min_price_supreme = DB::table('tiers')
+                                    ->where('tier', 'SUPREME')
                                     ->value('min_price');
                             @endphp
                             <div class="card z-index-2 mt-4">
@@ -180,18 +174,15 @@
                                                     <h4>คุณ{{ $value->name }} {{ $value->surname }}</h4>
                                         </div>
                                         <div class="col-md-4">
-                                            @if ($sumprice == $min_price_silver || $sumprice < $max_price_silver)
+                                            @if ($sumprice == $min_price_standard || $sumprice < $max_price_standard)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>SILVER</h5>
-                                            @elseif($sumprice == $min_price_gold || $sumprice < $max_price_gold)
+                                                        style="color:#777777;"></i><br>STANDARD</h5>
+                                            @elseif($sumprice == $min_price_premium || $sumprice < $max_price_premium)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>GOLD</h5>
-                                            @elseif($sumprice == $min_price_platinam || $sumprice < $max_price_platinam)
+                                                        style="color:#777777;"></i><br>PREMIUM</h5>
+                                            @elseif($sumprice > $min_price_supreme)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>PLATINAM</h5>
-                                            @elseif($sumprice > $min_price_diamond)
-                                                <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>DIAMOND</h5>
+                                                        style="color:#777777;"></i><br>SUPREME</h5>
                                             @endif
                                             <h4 class="mb-1">พอยท์คงเหลือ <i class="fa fa-caret-down"
                                                     style="color:#777777;"></i><br><span style="font-size:30;">
@@ -255,9 +246,9 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                                    style="font-family:'Prompt';">ปิด</button>
+                                    style="font-family: 'Noto Sans Thai';">ปิด</button>
                                 <button type="submit" class="btn btn-primary"
-                                    style="font-family:'Prompt';">เพิ่มพอยท์</button>
+                                    style="font-family: 'Noto Sans Thai';">เพิ่มพอยท์</button>
                             </div>
                         </form>
                     </div>

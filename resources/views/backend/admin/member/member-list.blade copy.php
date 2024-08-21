@@ -270,9 +270,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal"
-                        style="font-family:'Prompt';">ปิด</button>
+                        style="font-family:'Noto Sans Thai';">ปิด</button>
                     <button type="submit" class="btn btn-primary"
-                        style="font-family:'Prompt';">เพิ่มระดับสมาชิก</button>
+                        style="font-family:'Noto Sans Thai';">เพิ่มระดับสมาชิก</button>
                 </div>
             </form>
         </div>

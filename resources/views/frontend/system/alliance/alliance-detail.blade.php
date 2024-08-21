@@ -46,7 +46,7 @@
     <div class="container">
         <div class="header-title">
             <h2 style="padding-top: 5rem;">
-                <strong>เครือข่ายพันธมิตร</strong>
+                <strong>สิทธิพิเศษ</strong>
             </h2>
             <div style="display: flex; justify-content: space-between;">
                 <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>

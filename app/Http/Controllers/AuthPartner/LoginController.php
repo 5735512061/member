@@ -30,7 +30,7 @@ class LoginController extends Controller
 
           $tel = $request->tel;
           $status = PartnerShop::where('tel',$tel)->value('status');
-
+          
           if($status == "เปิด") {
             if(Auth::guard('partner')->attempt($credential, $request->member)){
               return redirect()->intended(route('partner.home'));

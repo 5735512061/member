@@ -36,19 +36,19 @@
             ->where('member_id', $member->id)
             ->sum('price');
         $culPrice = floor($sumprice / 100);
-        
+
         // หักคะแนนจากการแลกของรางวัล
         $redeem_reward_point = DB::table('redeem_rewards')
             ->join('reward_points', 'reward_points.id', '=', 'redeem_rewards.point_id')
             ->where('member_id', $member->id)
             ->sum('reward_points.point');
-        
+
         // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
         $redeem_point = DB::table('redeem_points')
             ->join('partner_shop_points', 'partner_shop_points.id', '=', 'redeem_points.point_id')
             ->where('member_id', $member->id)
             ->sum('partner_shop_points.point');
-        
+
         $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
     @endphp
     <div class="container-fluid py-4">
@@ -90,26 +90,20 @@
                                             ->get(),
                                     );
                                     // min_price, max_price ระดับสมาชิก
-                                    $min_price_silver = DB::table('tiers')
-                                        ->where('tier', 'SILVER')
+                                    $min_price_standard = DB::table('tiers')
+                                        ->where('tier', 'STANDARD')
                                         ->value('min_price');
-                                    $max_price_silver = DB::table('tiers')
-                                        ->where('tier', 'SILVER')
+                                    $max_price_standard = DB::table('tiers')
+                                        ->where('tier', 'STANDARD')
                                         ->value('max_price');
-                                    $min_price_gold = DB::table('tiers')
-                                        ->where('tier', 'GOLD')
+                                    $min_price_premium = DB::table('tiers')
+                                        ->where('tier', 'PREMIUM')
                                         ->value('min_price');
-                                    $max_price_gold = DB::table('tiers')
-                                        ->where('tier', 'GOLD')
+                                    $max_price_premium = DB::table('tiers')
+                                        ->where('tier', 'PREMIUM')
                                         ->value('max_price');
-                                    $min_price_platinam = DB::table('tiers')
-                                        ->where('tier', 'PLATINAM')
-                                        ->value('min_price');
-                                    $max_price_platinam = DB::table('tiers')
-                                        ->where('tier', 'PLATINAM')
-                                        ->value('max_price');
-                                    $min_price_diamond = DB::table('tiers')
-                                        ->where('tier', 'DIAMOND')
+                                    $min_price_supreme = DB::table('tiers')
+                                        ->where('tier', 'SUPREME')
                                         ->value('min_price');
                                 @endphp
                                 <div class="col-md-4" style="border-right: 2px dashed #9e9e9e;">
@@ -142,18 +136,15 @@
                                             <h4>คุณ{{ $member->name }} {{ $member->surname }}</h4>
                                 </div>
                                 <div class="col-md-4">
-                                    @if ($sumprice == $min_price_silver || $sumprice < $max_price_silver)
+                                    @if ($sumprice == $min_price_standard || $sumprice < $max_price_standard)
                                         <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i><br>SILVER</h5>
-                                    @elseif($sumprice == $min_price_gold || $sumprice < $max_price_gold)
+                                                style="color:#777777;"></i><br>STANDARD</h5>
+                                    @elseif($sumprice == $min_price_premium || $sumprice < $max_price_premium)
                                         <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i><br>GOLD</h5>
-                                    @elseif($sumprice == $min_price_platinam || $sumprice < $max_price_platinam)
+                                                style="color:#777777;"></i><br>PREMIUM</h5>
+                                    @elseif($sumprice > $min_price_supreme)
                                         <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i><br>PLATINAM</h5>
-                                    @elseif($sumprice > $min_price_diamond)
-                                        <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                style="color:#777777;"></i><br>DIAMOND</h5>
+                                                style="color:#777777;"></i><br>SUPREME</h5>
                                     @endif
                                     <h4 class="mb-1">พอยท์คงเหลือ <i class="fa fa-caret-down"
                                             style="color:#777777;"></i><br><span> {{ $point_balance }} </span>พอยท์</h4>
@@ -258,9 +249,9 @@
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-outline-secondary"
                                                                 data-bs-dismiss="modal"
-                                                                style="font-family:'Prompt';">ปิด</button>
+                                                                style="font-family:'Noto Sans Thai';">ปิด</button>
                                                             <button type="submit" class="btn btn-primary"
-                                                                style="font-family:'Prompt';">แก้ไขบิล</button>
+                                                                style="font-family:'Noto Sans Thai';">แก้ไขบิล</button>
                                                         </div>
                                                     </form>
                                                 </div>

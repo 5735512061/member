@@ -10,10 +10,13 @@
         $coupons = DB::table('campaigns')
             ->where('id', '!=', $coupon->id)
             ->paginate(10);
-        
+
         $partner = DB::table('partner_shops')
             ->where('id', $coupon->partner_id)
             ->value('name');
+        $branch = DB::table('partner_shops')
+            ->where('id', $coupon->partner_id)
+            ->value('branch');
         if (Auth::guard('member')->user() != null) {
             $count_get_coupon = DB::table('get_coupons')
                 ->where('member_id', Auth::guard('member')->user()->id)
@@ -22,7 +25,7 @@
         } else {
             $count_get_coupon = 0;
         }
-        
+
     @endphp
     <div class="container" style="margin-bottom: 50px;">
 
@@ -46,7 +49,7 @@
                         <h1 class="article-title" style="font-size: 3.5rem; color: #F28123;">{{ $coupon->name }}</h1>
                         <div class="article-detail">{!! $coupon->detail !!}</div>
                         <p class="mt-3" style="color:#ffffff;">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i>
-                            {{ $partner }}</p>
+                            {{ $partner }} สาขา{{ $branch }}</p>
                         <p class="blog-meta">
                             @php
                                 $date_format = date('d-m-Y', strtotime($coupon->expire_date));
@@ -72,64 +75,20 @@
                 </div>
                 <div class="col-lg-12 mt-5">
                     <div class="sidebar-section" style="margin-left: 0;">
-                        <div class="recent-posts">
-                            <div class="header-title">
-                                <h3 style="padding-top: 5rem; color:#F28123;">
-                                    <strong>OTHERS COUPON</strong>
-                                </h3>
-                            </div>
-                            <div class="latest-news" style="margin-top: 50px;">
-                                <div class="row">
-                                    @foreach ($coupons as $coupon => $value)
-                                        @php
-                                            $partner = DB::table('partner_shops')
-                                                ->where('id', $value->partner_id)
-                                                ->value('name');
-                                        @endphp
-                                        <div class="col-lg-4 col-md-6">
-                                            <div class="single-latest-news" style="background-color: #ffffff;">
-                                                <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">
-                                                    <img src="{{ url('images/campaign') }}/{{ $value->image }}"
-                                                        class="latest-news-bg img-responsive" width="100%">
-                                                </a>
-                                                <div class="news-text-box">
-                                                    <h1><a
-                                                            href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}">{{ $value->name }}</a>
-                                                    </h1>
-                                                    <div style="min-height: 50px;">{!! $value->detail !!}</div>
-                                                    <p class="mt-3">ใช้คูปองได้ที่ <i class="fa fa-caret-right"></i>
-                                                        {{ $partner }}</p>
-                                                    <div style="border-bottom: 2px dashed #cac8c8;"></div>
-                                                    <div class="flex space-between mt-3">
-                                                        <p class="blog-meta">
-                                                            @php
-                                                                $date_format = date('d-m-Y', strtotime($value->expire_date));
-                                                            @endphp
-                                                            <strong style="color: red;">สิ้นสุดแคมเปญ
-                                                                {{ $date_format }}</strong>
-                                                        </p>
-                                                        <a href="{{ url('privilege') }}/{{ $value->id }}/{{ $value->name }}"
-                                                            style="text-align:end;">รายละเอียดเพิ่มเติม
-                                                            <i class="fa fa-caret-right"></i></a>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
                         <div class="tag-section">
                             <h4>บทความ และข่าวสาร</h4>
-                            <ul>
-                                <li><a href="{{ url('article/food') }}">บทความ อาหาร</a></li>
-                                <li><a href="{{ url('article/lifeStyle') }}">บทความ ไลฟ์สไตล์</a></li>
-                                <li><a href="{{ url('article/beauty') }}">บทความ บิวตี้</a></li>
-                                <li><a href="{{ url('article/news') }}">บทความ ข่าว</a></li>
-                                <li><a href="{{ url('article/horoscope') }}">บทความ ดูดวง</a></li>
-                                <li><a href="{{ url('article/general') }}">บทความ ทั่วไป</a></li>
-                            </ul>
+                            <a href="{{ url('article/food') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ อาหาร</a>
+                            <a href="{{ url('article/lifeStyle') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ ไลฟ์สไตล์</a>
+                            <a href="{{ url('article/beauty') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ บิวตี้</a>
+                            <a href="{{ url('article/news') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ ข่าว</a>
+                            <a href="{{ url('article/horoscope') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ ดูดวง</a>
+                            <a href="{{ url('article/general') }}" class="btn btn-secondary mt-2"
+                                style="margin-right: 1rem;">บทความ ทั่วไป</a>
                         </div>
                     </div>
                 </div>

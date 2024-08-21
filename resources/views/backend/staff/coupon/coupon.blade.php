@@ -1,4 +1,4 @@
-@extends("backend/layouts/staff/template")
+@extends('backend/layouts/staff/template')
 <style>
     .coupon h4 {
         color: #616161e1;
@@ -27,7 +27,12 @@
 @section('content')
 
     <div class="container-fluid py-4">
-        <div class="header">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="header mt-4">
             <h4>ใช้คูปอง</h4>
         </div>
         <div class="coupon">
@@ -66,13 +71,13 @@
                     @else
                         @foreach ($members as $member => $value)
                             <center>
-                                <a href="{{url('staff/coupon')}}/{{$value->id}}"
+                                <a href="{{ url('staff/coupon') }}/{{ $value->id }}"
                                     class="mt-4 btn btn-outline-success btn-sm my-auto" style="color:#0c6640;">
                                     <i class="fa fa-search" aria-hidden="true"></i> ค้นหาคูปอง</a>
                             </center>
                             @php
                                 $dateNow = Carbon\Carbon::now()->format('d/m/Y');
-                                
+
                                 $sumprice = DB::table('points')
                                     ->where('member_id', $value->id)
                                     ->sum('price');
@@ -118,18 +123,15 @@
                                                     style="color:#777777;"></i><br>{{ $value->serialnumber }}</h5>
                                             <h4>คุณ{{ $value->name }} {{ $value->surname }}</h4>
 
-                                            @if ($sumprice == 0 || $sumprice < 100001)
+                                            @if ($sumprice == 0 || $sumprice < 200001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>SILVER</h5><br>
-                                            @elseif($sumprice == 100001 || $sumprice < 500001)
+                                                        style="color:#777777;"></i><br>STANDARD</h5><br>
+                                            @elseif($sumprice == 200001 || $sumprice < 500001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>GOLD</h5><br>
-                                            @elseif($sumprice == 500001 || $sumprice < 1000001)
+                                                        style="color:#777777;"></i><br>PREMIUM</h5><br>
+                                            @elseif($sumprice > 500001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>PLATINAM</h5><br>
-                                            @elseif($sumprice > 1000001)
-                                                <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>DIAMOND</h5><br>
+                                                        style="color:#777777;"></i><br>SUPREME</h5><br>
                                             @endif
                                         </div>
                                         <div class="col-md-4">

@@ -1,4 +1,4 @@
-@extends("backend/layouts/staff/template")
+@extends('backend/layouts/staff/template')
 <style>
     .coupon h4 {
         color: #fff;
@@ -32,7 +32,12 @@
 </style>
 @section('content')
     <div class="container-fluid py-4">
-        <div class="header">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="header mt-4">
             <h4>ใช้คูปอง</h4>
         </div>
         <div class="coupon">
@@ -60,7 +65,7 @@
                 </div>
                 <div class="col-lg-3 mt-4 mb-lg-0 mb-4"></div>
             </div>
-            @if(count($coupons) == 0)
+            @if (count($coupons) == 0)
                 <h3 class="mt-4" style="text-align:center;">- - ไม่พบข้อมูลคูปองในระบบ - -</h3>
             @else
                 <div class="row">
@@ -109,11 +114,12 @@
                                                 $value->status_coupon == 'กำลังจัดแคมเปญ' &&
                                                     $expire_date_format > $dateNow &&
                                                     $value->status_get_coupon == 'ยังไม่ใช้งาน')
-                                                <a href="{{ url('staff/use-coupon') }}/{{$value->id}}" class="mt-2 btn btn-success btn-lg my-auto"
+                                                <a href="{{ url('staff/use-coupon') }}/{{ $value->id }}"
+                                                    class="mt-2 btn btn-success btn-lg my-auto"
                                                     style="color:#fff;">กดใช้คูปอง</a>
                                             @else
-                                                <button class="mt-2 btn btn-secondary btn-lg my-auto"
-                                                    style="color:#fff;" disabled>ไม่สามารถกดใช้คูปองได้</button>
+                                                <button class="mt-2 btn btn-secondary btn-lg my-auto" style="color:#fff;"
+                                                    disabled>ไม่สามารถกดใช้คูปองได้</button>
                                             @endif
                                         </div>
                                     </div>

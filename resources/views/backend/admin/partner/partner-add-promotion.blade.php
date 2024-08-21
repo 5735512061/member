@@ -105,6 +105,9 @@
         $partner = DB::table('partner_shops')
             ->where('id', $id)
             ->value('name');
+        $branch = DB::table('partner_shops')
+            ->where('id', $id)
+            ->value('branch');
     @endphp
     <div class="container-fluid py-4">
         <div class="campaign">
@@ -113,7 +116,7 @@
                     <a href="javascript:history.back();"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
                 </div>
             </div>
-            <h4 class="mt-4">เพิ่มโปรโมชั่น {{ $partner }}</h4>
+            <h4 class="mt-4">เพิ่มโปรโมชั่น {{ $partner }} สาขา{{$branch}}</h4>
             <div class="row mt-4">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">

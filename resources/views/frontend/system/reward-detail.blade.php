@@ -54,14 +54,12 @@
                         </div>
                         <div class="tag-section">
                             <h4>Tags</h4>
-                            <ul>
-                                <li><a href="{{ url('article/food') }}">บทความ อาหาร</a></li>
-                                <li><a href="{{ url('article/lifeStyle') }}">บทความ ไลฟ์สไตล์</a></li>
-                                <li><a href="{{ url('article/beauty') }}">บทความ บิวตี้</a></li>
-                                <li><a href="{{ url('article/news') }}">บทความ ข่าว</a></li>
-                                <li><a href="{{ url('article/horoscope') }}">บทความ ดูดวง</a></li>
-                                <li><a href="{{ url('article/general') }}">บทความ ทั่วไป</a></li>
-                            </ul>
+                            <a href="{{ url('article/food') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ อาหาร</a>
+                            <a href="{{ url('article/lifeStyle') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ ไลฟ์สไตล์</a>
+                            <a href="{{ url('article/beauty') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ บิวตี้</a>
+                            <a href="{{ url('article/news') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ ข่าว</a>
+                            <a href="{{ url('article/horoscope') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ ดูดวง</a>
+                            <a href="{{ url('article/general') }}" class="btn btn-secondary mt-2" style="margin-right: 1rem;">บทความ ทั่วไป</a>
                         </div>
                     </div>
                 </div>

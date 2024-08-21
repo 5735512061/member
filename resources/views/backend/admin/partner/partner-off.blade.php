@@ -22,11 +22,18 @@
 </style>
 @section('content')
     <div class="container-fluid py-4">
-        <div class="partner">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="partner mt-4">
             <h4>เครือข่ายพันธมิตร</h4>
         </div>
         <a href="{{ url('/create-partner') }}" class="btn btn-success mt-5" type="submit"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i> สร้างพันธมิตร</a><br>
+                aria-hidden="true"></i> สร้างพันธมิตร</a>
+        <a href="{{ url('/report-partner') }}" class="btn btn-success mt-5"><i class="fa fa-file-pdf-o"
+                aria-hidden="true"></i> รายงานข้อมูลร้านค้าพันธมิตร</a><br>
         <a href="{{ url('/partner') }}" class="btn btn-secondary mt-5" type="submit"><i class="fa fa-gift"
                 aria-hidden="true"></i> พันธมิตรทั้งหมด</a>
         <a href="{{ url('/partner-off') }}" class="btn btn-danger mt-5" type="submit"><i class="fa fa-hourglass-half"

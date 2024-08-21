@@ -267,10 +267,10 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button style="font-family: 'Prompt' !important;" type="button" class="btn btn-danger"
+                            <button style="font-family: 'Noto Sans Thai' !important;" type="button" class="btn btn-danger"
                                 data-dismiss="modal">ยกเลิก</button>
                             <input type="hidden" value="{{ $partner_promotion->id }}" name="id">
-                            <button style="font-family: 'Prompt' !important;" type="submit"
+                            <button style="font-family: 'Noto Sans Thai' !important;" type="submit"
                                 class="btn btn-success">ใช้สิทธิพิเศษ</button>
                         </div>
                     </div>
@@ -284,7 +284,7 @@
                             <h3 style="text-align: center; color:#F28123;" class="mt-5 mb-5">คะแนนสะสมไม่เพียงพอ</h3>
                         </div>
                         <div class="modal-footer">
-                            <button style="font-family: 'Prompt' !important;" type="button" class="btn btn-danger"
+                            <button style="font-family: 'Noto Sans Thai' !important;" type="button" class="btn btn-danger"
                                 data-dismiss="modal">ยกเลิก</button>
                         </div>
                     </div>

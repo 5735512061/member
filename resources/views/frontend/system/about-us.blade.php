@@ -1,10 +1,10 @@
 @extends('frontend/layouts/template')
 
 @section('content')
-    <div class="container" style="margin-bottom: 50px;">
+    <div class="container" style="padding-bottom: 50px;">
         <center>
             <div class="header-title">
-                <h2 style="margin-top:15rem;">
+                <h2 style="padding-top:5rem;">
                     <strong>เกี่ยวกับเรา</strong>
                 </h2>
             </div>
@@ -12,69 +12,21 @@
         <br>
         <div class="row">
             <div class="col-md-12">
-                <h4 style="line-height: 1.4em;"><Span style="color: red;"><strong>THE SECRET (สมาชิกเดอะซีเคร็ท)</strong></Span>
-                    ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของเดอะซีเคร็ท แลกคะแนนสะสมเป็นคูปองเงินสด
-                    ใช้ในเครือพันธมิตรทางธุรกิจ
+                <h4 style="line-height: 1.4em;"><Span style="color: #f0b6b5;"><strong>TOUCHJAI (สมาชิกทัชใจ)</strong></Span>
+                    ระบบสมาชิกลอยัลตี้ ที่สามารถสะสมคะแนนได้ทุกยอดการใช้จ่ายในเครือของทัชใจ
+                    รับส่วนลดพิเศษในเครือข่ายพันธมิตรทางธุรกิจ
                     ไม่ว่าจะเป็นอาหาร เครื่องดื่ม ไลฟ์สไตล์ การท่องเที่ยว บริการด้านรถยนต์ และอื่นๆอีกมากมาย
-                    หรือจะแลกเป็นของรางวัลสุดพรีเมี่ยม
-                    และยังครอบคลุมทุกไลฟ์สไตล์ของสมาชิก
+                    ครอบคลุมทุกไลฟ์สไตล์ของสมาชิกทัชใจ อิสระทุกความรู้สึก ทัชใจทุกครั้งที่ใช้
                 </h4>
             </div>
         </div>
     </div>
-    <div style="background-color:#313131;">
+    <div style="background-color:#f0b6b5;">
         <div class="container" style="padding-bottom: 5rem;">
-            <center>
-                <div class="header-title">
-                    <h2 style="padding-top: 5rem;">
-                        <strong>THE SECRET PRIVILEGE</strong>
-                    </h2>
-                </div>
-            </center>
-            <br>
-            <div class="row mt-5">
-                <div class="col-lg-4 col-md-4">
-                    <div class="privilege text-center">
-                        <i class="fas fa-parking"></i>
-                        <h4>สะสมคะแนน</h4>
-                        <p>
-                            คะแนนสะสมไม่มีวันหมดอายุ
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="privilege text-center">
-                        <i class="fas fa-ticket"></i>
-                        <h4>รับส่วนลดพิเศษ</h4>
-                        <p>
-                            รับส่วนลดพิเศษในเครือข่ายพันธมิตร
-                        </p>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4">
-                    <div class="privilege text-center">
-                        <i class="fas fa-gift"></i>
-                        <h4>ของรางวัลพรีเมี่ยม</h4>
-                        <p>
-                            แลกรับของรางวัลพรีเมี่ยม
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div>
-        <div class="container" style="padding-bottom: 5rem;">
-            <div class="header-title">
-                <h2 style="padding-top: 5rem;">
-                    <strong>เครือข่าย THE SECRET และเครือข่ายพันธมิตร</strong>
-                </h2>
-                <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
-            </div>
             <br>
             <div class="header-title">
-                <h4 style="color: #e57d0d;">
-                    <strong>เครือข่าย THE SECRET</strong>
+                <h4 style="color: #2e5b55;">
+                    <strong>อัพเกรดสมาชิก และสะสมคะแนน ได้ที่เครือข่ายของทัชใจ</strong>
                 </h4>
             </div>
             <div class="row mt-3">
@@ -86,8 +38,8 @@
             </div>
             <br>
             <div class="header-title">
-                <h4 style="color: #e57d0d;">
-                    <strong>เครือข่ายพันธมิตร</strong>
+                <h4 style="color: #2e5b55;">
+                    <strong>รับส่วนลดพิเศษ ได้ที่เครือข่ายพันธมิตร</strong>
                 </h4>
             </div>
             <div class="row mt-3">

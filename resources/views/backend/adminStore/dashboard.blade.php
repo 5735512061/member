@@ -100,42 +100,36 @@
                                                     ->where('member_id', $value->id)
                                                     ->sum('price'); // ยอดจ่ายคิดระดับสมาชิก
                                                 $culPrice = floor($sumprice / 100);
-                                                
+
                                                 // หักคะแนนจากการแลกของรางวัล
                                                 $redeem_reward_point = DB::table('redeem_rewards')
                                                     ->join('reward_points', 'reward_points.id', '=', 'redeem_rewards.point_id')
                                                     ->where('member_id', $value->id)
                                                     ->sum('reward_points.point');
-                                                
+
                                                 // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
                                                 $redeem_point = DB::table('redeem_points')
                                                     ->join('partner_shop_points', 'partner_shop_points.id', '=', 'redeem_points.point_id')
                                                     ->where('member_id', $value->id)
                                                     ->sum('partner_shop_points.point');
-                                                
+
                                                 $point_balance = $culPrice - $redeem_reward_point - $redeem_point;
-                                                
+
                                                 // min_price, max_price ระดับสมาชิก
-                                                $min_price_silver = DB::table('tiers')
-                                                    ->where('tier', 'SILVER')
+                                                $min_price_standard = DB::table('tiers')
+                                                    ->where('tier', 'STANDARD')
                                                     ->value('min_price');
-                                                $max_price_silver = DB::table('tiers')
-                                                    ->where('tier', 'SILVER')
+                                                $max_price_standard = DB::table('tiers')
+                                                    ->where('tier', 'STANDARD')
                                                     ->value('max_price');
-                                                $min_price_gold = DB::table('tiers')
-                                                    ->where('tier', 'GOLD')
+                                                $min_price_premium = DB::table('tiers')
+                                                    ->where('tier', 'PREMIUM')
                                                     ->value('min_price');
-                                                $max_price_gold = DB::table('tiers')
-                                                    ->where('tier', 'GOLD')
+                                                $max_price_premium = DB::table('tiers')
+                                                    ->where('tier', 'PREMIUM')
                                                     ->value('max_price');
-                                                $min_price_platinam = DB::table('tiers')
-                                                    ->where('tier', 'PLATINAM')
-                                                    ->value('min_price');
-                                                $max_price_platinam = DB::table('tiers')
-                                                    ->where('tier', 'PLATINAM')
-                                                    ->value('max_price');
-                                                $min_price_diamond = DB::table('tiers')
-                                                    ->where('tier', 'DIAMOND')
+                                                $min_price_supreme = DB::table('tiers')
+                                                    ->where('tier', 'SUPREME')
                                                     ->value('min_price');
                                             @endphp
                                             <tr style="text-align:center;">
@@ -144,14 +138,12 @@
                                                 <td>{{ $value->tel }}</td>
                                                 <td>{{ $value->name }} {{ $value->surname }}</td>
                                                 <td>{{ $point_balance }}</td>
-                                                @if ($sumprice == $min_price_silver || $sumprice < $max_price_silver)
-                                                    <td>SILVER</td>
-                                                @elseif($sumprice == $min_price_gold || $sumprice < $max_price_gold)
-                                                    <td>GOLD</td>
-                                                @elseif($sumprice == $min_price_platinam || $sumprice < $max_price_platinam)
-                                                    <td>PLATINAM</td>
-                                                @elseif($sumprice > $min_price_diamond)
-                                                    <td>DIAMOND</td>
+                                                @if ($sumprice == $min_price_standard || $sumprice < $max_price_standard)
+                                                    <td>STANDARD</td>
+                                                @elseif($sumprice == $min_price_premium || $sumprice < $max_price_premium)
+                                                    <td>PREMIUM</td>
+                                                @elseif($sumprice > $min_price_supreme)
+                                                    <td>SUPREME</td>
                                                 @endif
                                                 <td>{{ $value->date }}</td>
                                                 @if ($value->status == 'ONLINE')

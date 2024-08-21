@@ -11,7 +11,7 @@
         </center>
         <br>
         @if (count($rewards) != 0)
-            <div class="reward">
+            <div class="reward mt-5">
                 <div class="row">
                     @foreach ($rewards as $reward => $value)
                         @php

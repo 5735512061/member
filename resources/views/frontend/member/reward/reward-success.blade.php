@@ -106,7 +106,7 @@
                     </div>
                     <form action="{{ url('/member/redeem-point') }}">
                         <div class="modal-footer">
-                            <input style="font-family: 'Prompt' !important;" data-target="#myModal" data-toggle="modal"
+                            <input style="font-family: 'Noto Sans Thai' !important;" data-target="#myModal" data-toggle="modal"
                                 data-backdrop="static" data-keyboard="false" type="submit" class="btn btn-success btn-sm"
                                 value="ปิด">
                         </div>

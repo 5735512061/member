@@ -64,7 +64,7 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <div class="input-group">
-                                        <span class="input-group-text Prompt">สถานะ</span>
+                                        <span class="input-group-text NotoSansThai">สถานะ</span>
                                         <select name="status" class="form-control" style="padding-left: 10px;">
                                             <option value="เปิด">เปิด</option>
                                             <option value="ปิด">ปิด</option>

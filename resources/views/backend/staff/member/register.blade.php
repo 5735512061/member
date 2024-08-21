@@ -26,7 +26,12 @@
 </style>
 @section('content')
     <div class="container-fluid py-4">
-        <div class="header">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="header mt-4">
             <h4>สมัครสมาชิกใหม่</h4>
         </div>
         <div class="account">

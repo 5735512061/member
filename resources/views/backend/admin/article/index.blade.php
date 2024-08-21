@@ -22,7 +22,12 @@
 </style>
 @section('content')
     <div class="container-fluid py-4">
-        <div class="partner">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="partner mt-4">
             <h4>บทความและข่าวสาร</h4>
         </div>
         <a href="{{ url('/create-article') }}" class="btn btn-success mt-5" type="submit"><i class="fa fa-plus-circle"

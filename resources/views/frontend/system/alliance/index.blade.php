@@ -1,15 +1,55 @@
 @extends('frontend/layouts/template')
 
 @section('content')
-    <div class="container" style="margin-bottom: 50px;">
-        {{-- <center>
+    {{-- <div style="background-color:#2e5b55;">
+        <div class="container" style="padding-bottom: 5rem; padding-top: 5rem;">
+            <br>
+            <div class="header-title">
+                <h4 style="color: #f0b6b5;">
+                    <strong>PARTNER</strong>
+                </h4>
+            </div>
+        </div>
+    </div> --}}
+    <div style="background-color:#f0b6b5;">
+        <div class="container" style="padding-bottom: 5rem; padding-top: 5rem;">
+            <br>
+            <div class="header-title">
+                <h4 style="color: #2e5b55;">
+                    <strong>อัพเกรดสมาชิก และสะสมคะแนน ได้ที่เครือข่ายของทัชใจ</strong>
+                </h4>
+            </div>
+            <div class="row mt-3">
+                @foreach ($account_stores as $account_store => $value)
+                    <div class="col-lg-2 col-md-2 col-6">
+                        <img src="{{ url('images/store-logo') }}/{{ $value->image }}" class="mt-3">
+                    </div>
+                @endforeach
+            </div>
+            <br>
+            <div class="header-title">
+                <h4 style="color: #2e5b55;">
+                    <strong>รับส่วนลดพิเศษ ได้ที่เครือข่ายพันธมิตร</strong>
+                </h4>
+            </div>
+            <div class="row mt-3">
+                @foreach ($partners as $partner => $value)
+                    <div class="col-lg-2 col-md-2 col-6">
+                        <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+    {{-- <div class="container" style="margin-bottom: 50px;"> --}}
+    {{-- <center>
             <div class="header-title">
                 <h2 style="margin-top:15rem;">
                     <strong>พันธมิตรที่ร่วมรายการ</strong>
                 </h2>
             </div>
         </center><br> --}}
-        {{-- <div class="row alliance">
+    {{-- <div class="row alliance">
             <div class="col-md-3 mt-3">
                 <div class="card alliance-food">
                     <div class="card-body text-center centered-element">
@@ -56,15 +96,15 @@
                 </div>
             </div>
         </div> --}}
-        <div class="header-title">
+    {{-- <div class="header-title">
             <h2 style="padding-top: 5rem;">
-                <strong>เครือข่ายพันธมิตร</strong>
+                <strong>สิทธิพิเศษ</strong>
             </h2>
             <div style="display: flex; justify-content: space-between;">
                 <h4>รับส่วนลดพิเศษในเครือข่ายพันธมิตร</h4>
             </div>
         </div>
-        <div class="latest-news mt-80 mb-100">
+        <div class="latest-news mt-5">
             <div class="row">
                 @foreach ($partner_promotions as $partner_promotion => $value)
                     @php
@@ -122,6 +162,6 @@
                     <img src="{{ url('images/partner_shop') }}/{{ $value->image }}" class="mt-3">
                 </div>
             @endforeach
-        </div>
-    </div>
+        </div> --}}
+    {{-- </div> --}}
 @endsection

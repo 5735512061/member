@@ -1,4 +1,4 @@
-@extends("backend/layouts/staff/template")
+@extends('backend/layouts/staff/template')
 <style>
     .coupon h4 {
         color: #616161e1;
@@ -25,9 +25,13 @@
     }
 </style>
 @section('content')
-
     <div class="container-fluid py-4">
-        <div class="header">
+        <div class="row">
+            <div class="col-lg-5 mb-lg-0 mb-4">
+                <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
+            </div>
+        </div>
+        <div class="header mt-4">
             <h4>ใช้คูปอง</h4>
         </div>
         <div class="coupon">
@@ -60,7 +64,7 @@
                             </form>
                         </div><br>
                     </div>
-                    
+
                 </div>
                 <div class="col-lg-2 mt-4 mb-lg-0 mb-4"></div>
             </div>

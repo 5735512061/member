@@ -142,9 +142,9 @@
                                                                 <input type="hidden" name="id" value="{{$value->id}}">
                                                                 <button type="button" class="btn btn-outline-secondary btn-sm"
                                                                     data-bs-dismiss="modal"
-                                                                    style="font-family:'Prompt';">ปิด</button>
+                                                                    style="font-family:'Noto Sans Thai';">ปิด</button>
                                                                 <button type="submit" class="btn btn-warning btn-sm"
-                                                                    style="font-family:'Prompt';">ยืนยันสถานะ</button>
+                                                                    style="font-family:'Noto Sans Thai';">ยืนยันสถานะ</button>
                                                             </div>
                                                         </form>
                                                     </div>

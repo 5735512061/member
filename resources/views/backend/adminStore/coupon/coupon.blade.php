@@ -118,18 +118,15 @@
                                                     style="color:#777777;"></i><br>{{ $value->serialnumber }}</h5>
                                             <h4>คุณ{{ $value->name }} {{ $value->surname }}</h4>
 
-                                            @if ($sumprice == 0 || $sumprice < 100001)
+                                            @if ($sumprice == 0 || $sumprice < 200001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>SILVER</h5><br>
-                                            @elseif($sumprice == 100001 || $sumprice < 500001)
+                                                        style="color:#777777;"></i><br>STANDARD</h5><br>
+                                            @elseif($sumprice == 200001 || $sumprice < 500001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>GOLD</h5><br>
-                                            @elseif($sumprice == 500001 || $sumprice < 1000001)
+                                                        style="color:#777777;"></i><br>PREMIUM</h5><br>
+                                            @elseif($sumprice > 500001)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>PLATINAM</h5><br>
-                                            @elseif($sumprice > 1000001)
-                                                <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>DIAMOND</h5><br>
+                                                        style="color:#777777;"></i><br>SUPREME</h5><br>
                                             @endif
                                         </div>
                                         <div class="col-md-4">

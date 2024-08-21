@@ -67,6 +67,7 @@ class PartnersController extends Controller
         $redeem_point->promotion_id = $partner_promotion_id;
         $redeem_point->date = $date;
         $redeem_point->code = $code;
+        $redeem_point->status = "ยังไม่ใช้งาน";
         $redeem_point->save(); 
 
         // หักคะแนนจากการแลกของรางวัล

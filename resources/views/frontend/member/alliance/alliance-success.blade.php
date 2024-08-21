@@ -107,7 +107,7 @@
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
+                        {{-- <div class="swal2-icon swal2-success swal2-animate-success-icon" style="display: flex;">
                             <div class="swal2-success-circular-line-left" style="background-color: rgb(255, 255, 255);">
                             </div>
                             <span class="swal2-success-line-tip"></span>
@@ -117,7 +117,7 @@
                             <div class="swal2-success-circular-line-right" style="background-color: rgb(255, 255, 255);">
                             </div>
                         </div>
-                        <h5 style="text-align: center; color:#F28123;">กดรับสิทธิพิเศษสำเร็จ</h5>
+                        <h5 style="text-align: center; color:#F28123;">กดรับสิทธิพิเศษสำเร็จ</h5> --}}
                         <div class="single-article-section">
                             <div class="single-article-text">
                                 <h1 class="article-title" style="text-align: center;">{{ $partner_name }} @if ($partner_branch != null)
@@ -150,7 +150,7 @@
                     </div>
                     <form action="{{ url('/') }}">
                         <div class="modal-footer">
-                            <input style="font-family: 'Prompt' !important;" data-target="#myModal" data-toggle="modal"
+                            <input style="font-family: 'Noto Sans Thai' !important;" data-target="#myModal" data-toggle="modal"
                                 data-backdrop="static" data-keyboard="false" type="submit" class="btn btn-success btn-sm"
                                 value="ปิด">
                         </div>

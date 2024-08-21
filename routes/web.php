@@ -257,9 +257,11 @@ Route::group(['prefix' => 'partner'], function(){
     Route::post('/login','AuthPartner\LoginController@login')->name('partner.login.submit');
     Route::post('/logout', 'AuthPartner\LoginController@logout')->name('partner.logout');
 
-    Route::get('dashboard','Backend\PartnerController@dashboard')->name('partner.home'); //หน้า dashboard
     Route::get('search-member','Backend\PartnerController@searchMember'); //หน้าค้นหาข้อมูลสมาชิก
-
+    Route::get('report-partner','Backend\PartnerController@reportPartner')->name('partner.home'); //หน้ารายงานข้อมูลการใช้
+    Route::get('update-status-alliance/{id}','Backend\PartnerController@updateStatusAlliance');
+    Route::post('update-status-alliance','Backend\PartnerController@updateStatusAlliancePost');
+    
     // จัดการคูปอง
     Route::get('coupon','Backend\PartnerController@coupon'); //หน้าจัดการคูปอง
     Route::get('search-coupon','Backend\PartnerController@searchCoupon'); //หน้าค้นหาคูปอง

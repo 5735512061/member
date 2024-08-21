@@ -1,16 +1,17 @@
 @extends('frontend/layouts/template')
 
 @section('content')
-    <div class="container" style="margin-bottom: 50px;">
+<div style="background-color:#f0b6b5;">
+    <div class="container" style="padding-bottom: 50px;">
         <center>
             <div class="header-title">
-                <h2 style="margin-top:15rem;">
-                    <strong>บทความ ข่าวสาร</strong>
+                <h2 style="padding-top:5rem; color: #2e5b55;">
+                    <strong>บทความ ไลฟ์สไตล์</strong>
                 </h2>
             </div>
         </center>
         <br>
-        <div class="latest-news mt-80 mb-150">
+        <div class="latest-news mt-80">
             <div style="margin-bottom: 2rem;">
                 <a href="{{ url('allarticle') }}" class="btn btn-secondary" style="margin-right: 1rem;">ทั้งหมด</a>
                 <a href="{{ url('article/food') }}" class="btn btn-secondary" style="margin-right: 1rem;">บทความ อาหาร</a>
@@ -45,4 +46,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

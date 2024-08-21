@@ -1,25 +1,19 @@
 @php
     // min_price, max_price ระดับสมาชิก
-    $min_price_silver = DB::table('tiers')
-        ->where('tier', 'SILVER')
+    $min_price_standard = DB::table('tiers')
+        ->where('tier', 'STANDARD')
         ->value('min_price');
-    $max_price_silver = DB::table('tiers')
-        ->where('tier', 'SILVER')
+    $max_price_standard = DB::table('tiers')
+        ->where('tier', 'STANDARD')
         ->value('max_price');
-    $min_price_gold = DB::table('tiers')
-        ->where('tier', 'GOLD')
+    $min_price_premium = DB::table('tiers')
+        ->where('tier', 'PREMIUM')
         ->value('min_price');
-    $max_price_gold = DB::table('tiers')
-        ->where('tier', 'GOLD')
+    $max_price_premium = DB::table('tiers')
+        ->where('tier', 'PREMIUM')
         ->value('max_price');
-    $min_price_platinam = DB::table('tiers')
-        ->where('tier', 'PLATINAM')
-        ->value('min_price');
-    $max_price_platinam = DB::table('tiers')
-        ->where('tier', 'PLATINAM')
-        ->value('max_price');
-    $min_price_diamond = DB::table('tiers')
-        ->where('tier', 'DIAMOND')
+    $min_price_supreme = DB::table('tiers')
+        ->where('tier', 'SUPREME')
         ->value('min_price');
 @endphp
 @foreach ($members as $member => $value)
@@ -49,14 +43,12 @@
         <td>{{ $value->tel }}</td>
         <td>{{ $value->name }} {{ $value->surname }}</td>
         <td>{{ $point_balance }}</td>
-        @if ($sumprice == $min_price_silver || $sumprice < $max_price_silver)
-            <td>SILVER</td>
-        @elseif($sumprice == $min_price_gold || $sumprice < $max_price_gold)
-            <td>GOLD</td>
-        @elseif($sumprice == $min_price_platinam || $sumprice < $max_price_platinam)
-            <td>PLATINAM</td>
-        @elseif($sumprice > $min_price_diamond)
-            <td>DIAMOND</td>
+        @if ($sumprice == $min_price_standard || $sumprice < $max_price_standard)
+            <td>STANDARD</td>
+        @elseif($sumprice == $min_price_premium || $sumprice < $max_price_premium)
+            <td>PREMIUM</td>
+        @elseif($sumprice > $min_price_supreme)
+            <td>SUPREME</td>
         @endif
         <td>{{ $value->date }}</td>
         @if ($value->status == 'ONLINE')
