@@ -18,7 +18,7 @@
 						<h2 class="widget-title">สมาชิก</h2>
 						<ul>
 							{{-- <li><a href="{{url('rewards')}}">REWARD</a></li> --}}
-							<li><a href="{{url('alliance')}}">เครือข่ายพันธมิตร</a></li>
+							<li><a href="{{url('alliance')}}">สิทธิพิเศษ</a></li>
 							<li><a href="https://ctp.is/8/9138713" target="_blank">E-COUPON</a></li>
 							<li><a href="https://lin.ee/dglPjnl" target="_blank">สมัครสมาชิก</a></li>
 							{{-- @if(Auth::guard('member')->user() == NULL)

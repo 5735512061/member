@@ -29,21 +29,25 @@
         <div class="container" style="padding-top:5rem; padding-bottom:5rem;">
             <div class="header-title">
                 <h2 style="color: #2e5b55;">
-                    <strong>สมัครสมาชิกง่ายๆ แค่ไม่กี่ขั้นตอน</strong>
+                    <strong>สมัครสมาชิกง่ายๆ ไม่กี่ขั้นตอน</strong>
                 </h2>
                 <h4>สมัครสมาชิกเป็นครอบครัวทัชใจง่ายๆ</h4>
                 <div class="row" style="text-align: center;">
-                    <div class="col-md-3">
-                       <h5>1. แอดไลน์ @touchjai</h5>
+                    <div class="col-md-3 col-6">
+                        <img src="{{ url('images/register/register_1.jpg') }}" style="border-radius: 10px;">
+                        <h5 class="mt-3">1. แอดไลน์ @touchjai</h5>
                     </div>
-                    <div class="col-md-3">
-                        <h5>2. กดปุ่มสมัครสมาชิก</h5>
+                    <div class="col-md-3 col-6">
+                        <img src="{{ url('images/register/register_2.jpg') }}" style="border-radius: 10px;">
+                        <h5 class="mt-3">2. กดปุ่ม Member Club</h5>
                     </div>
-                    <div class="col-md-3">
-                        <h5>3. กรอกรายละเอียดข้อมูลส่วนตัว</h5>
+                    <div class="col-md-3 col-6">
+                        <img src="{{ url('images/register/register_3.jpg') }}" style="border-radius: 10px;">
+                        <h5 class="mt-3">3. เลือกช่องทางในการสมัครสมาชิก</h5>
                     </div>
-                    <div class="col-md-3">
-                        <h5>4. ร่วมเป็นครอบครัวทัชใจ</h5> 
+                    <div class="col-md-3 col-6">
+                        <img src="{{ url('images/register/register_4.jpg') }}" style="border-radius: 10px;">
+                        <h5 class="mt-3">4. กรอกรายละเอียดข้อมูลส่วนตัว</h5>
                     </div>
                 </div>
             </div>

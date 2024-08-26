@@ -7,7 +7,7 @@
 					<!-- logo -->
 					<div class="site-logo">
 						<a href="{{url('/')}}">
-							<img src="{{ asset('frontend/assets/img/logo.png')}}" alt="touchjai-logo" width="50%" style="margin-top: -1rem;">
+							<img src="{{ asset('frontend/assets/img/logo.png')}}" alt="touchjai-logo" width="100%" style="margin-top: -4rem;">
 						</a>
 					</div>
 					<!-- logo -->
