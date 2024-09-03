@@ -19,4 +19,4 @@ class AccountStaff extends Authenticatable
 	protected $hidden = [
         'password', 'remember_token',
     ];
-}
+} 

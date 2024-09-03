@@ -6,7 +6,7 @@
     @php
         $image_slides = DB::table('slide_image_mains')->where('status', 'เปิด')->get();
     @endphp
-    <section class="hero-slider hero-style">
+    {{-- <section class="hero-slider hero-style">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @foreach ($image_slides as $image_slide => $value)
@@ -23,7 +23,7 @@
             <div class="swiper-button-next-js"></div>
             <div class="swiper-button-prev-js"></div>
         </div>
-    </section>
+    </section> --}}
 
     <div style="background-color:#f0b6b5;">
         <div class="container" style="padding-top:5rem; padding-bottom:5rem;">
@@ -35,19 +35,19 @@
                 <div class="row" style="text-align: center;">
                     <div class="col-md-3 col-6">
                         <img src="{{ url('images/register/register_1.jpg') }}" style="border-radius: 10px;">
-                        <h5 class="mt-3">1. แอดไลน์ @touchjai</h5>
+                        <h5 class="mt-3 mb-3">1. แอดไลน์ @touchjai</h5>
                     </div>
                     <div class="col-md-3 col-6">
                         <img src="{{ url('images/register/register_2.jpg') }}" style="border-radius: 10px;">
-                        <h5 class="mt-3">2. กดปุ่ม Member Club</h5>
+                        <h5 class="mt-3 mb-3">2. กดปุ่ม Member Club</h5>
                     </div>
                     <div class="col-md-3 col-6">
                         <img src="{{ url('images/register/register_3.jpg') }}" style="border-radius: 10px;">
-                        <h5 class="mt-3">3. เลือกช่องทางในการสมัครสมาชิก</h5>
+                        <h5 class="mt-3 mb-3">3. เลือกช่องทางในการสมัครสมาชิก</h5>
                     </div>
                     <div class="col-md-3 col-6">
                         <img src="{{ url('images/register/register_4.jpg') }}" style="border-radius: 10px;">
-                        <h5 class="mt-3">4. กรอกรายละเอียดข้อมูลส่วนตัว</h5>
+                        <h5 class="mt-3 mb-3">4. กรอกรายละเอียดข้อมูลส่วนตัว</h5>
                     </div>
                 </div>
             </div>
