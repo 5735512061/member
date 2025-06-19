@@ -82,7 +82,7 @@
                                 <div class="col-md-10">
                                     <select name="tier" id="tier" class="form-control">
                                         @foreach ($tiers as $tier => $value)
-                                            <option value="{{ $value->tier }}">{{ $value->tier }}</option>
+                                            <option value="{{ $value->tier }}">{{ $value->tier }} ({{ $value->detail }})</option>
                                         @endforeach
                                     </select>
                                 </div>

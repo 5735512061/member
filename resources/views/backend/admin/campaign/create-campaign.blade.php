@@ -108,7 +108,7 @@
                     <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
                 </div>
             </div>
-            <h4 class="mt-4">สร้างแคมเปญ</h4>
+            <h4 class="mt-4">สร้างคูปอง</h4>
             <div class="row mt-4">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -143,23 +143,31 @@
                                     <div class="card-header pb-0 pt-3 bg-transparent">
                                         <div class="row">
                                             <div class="col-md-12 mt-2">
-                                                <p><span>*</span> ชื่อแคมเปญ <span>(จำเป็นต้องกรอก)</span>
+                                                <p><span>*</span> ชื่อคูปอง <span>(จำเป็นต้องกรอก)</span>
                                                     @if ($errors->has('name'))
-                                                        <center><span class="text-danger"
-                                                                style="font-size: 15px;">({{ $errors->first('name') }})</span>
-                                                        </center>
+                                                        <span class="text-danger"
+                                                            style="font-size: 15px;">({{ $errors->first('name') }})</span>
                                                     @endif
                                                 </p>
                                                 <input class="form-control" type="text" placeholder="รับซาชิมิฟรี 1 เซต"
                                                     name="name">
                                             </div>
                                             <div class="col-md-12 mt-2">
-                                                <p><span>*</span> ประเภทแคมเปญ <span>(จำเป็นต้องกรอก)</span></p>
+                                                <p><span>*</span> ประเภทคูปอง <span>(จำเป็นต้องกรอก)</span></p>
                                                 <select name="campaign_type" class="form-control">
                                                     <option value="ไม่ระบุ">ไม่ระบุ</option>
                                                     <option value="เทศกาลพิเศษ">เทศกาลพิเศษ</option>
                                                     <option value="วันเกิด">วันเกิด</option>
                                                 </select>
+                                            </div>
+                                            <div class="col-md-12 mt-2">
+                                                <p><span>*</span> วันที่เริ่มต้นแคมเปญ <span>(จำเป็นต้องกรอก)</span>
+                                                    @if ($errors->has('start_date'))
+                                                        <span class="text-danger"
+                                                                style="font-size: 15px;">({{ $errors->first('start_date') }})</span>
+                                                    @endif
+                                                </p>
+                                                <input type="date" name="start_date" placeholder="" class="form-control">
                                             </div>
                                             <div class="col-md-12 mt-2">
                                                 <p><span>*</span> วันที่สิ้นสุดแคมเปญ <span>(จำเป็นต้องกรอก)</span>
@@ -216,7 +224,7 @@
                                                     $code = wordwrap($random, 4);
                                                 @endphp
                                                 <input type="hidden" name="code" value="{{ $code }}">
-                                                <button type="submit" class="btn btn-lg btn-success">สร้างแคมเปญ</button>
+                                                <button type="submit" class="btn btn-lg btn-success">สร้างคูปอง</button>
                                             </div>
                                         </div>
                                     </div>

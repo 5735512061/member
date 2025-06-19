@@ -15,10 +15,10 @@ class Member extends Authenticatable
 
 
     protected $fillable = [
-        'serialnumber', 'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status',
+        'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status',
     ];
 
-    public $sortable = ['id', 'serialnumber', 'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status', 'created_at', 'updated_at'];
+    public $sortable = ['id', 'card_id', 'title', 'name', 'surname', 'bday', 'tel', 'date', 'password', 'status', 'created_at', 'updated_at'];
 
     protected $primaryKey = 'id';
 

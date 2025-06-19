@@ -4012,7 +4012,7 @@ fieldset:disabled .btn {
 .btn-group-sm>.btn {
   --bs-btn-padding-y: 0.5rem;
   --bs-btn-padding-x: 2rem;
-  --bs-btn-font-size: 0.75rem;
+  --bs-btn-font-size: 1rem;
   --bs-btn-border-radius: 0.5rem;
 }
 
@@ -5731,9 +5731,9 @@ fieldset:disabled .btn {
 }
 
 .alert-success {
-  --bs-alert-color: #ffffff;
-  --bs-alert-bg: #d5f5e7;
-  --bs-alert-border-color: #c0f0dc;
+  --bs-alert-color: #67748E;
+  --bs-alert-bg: #c5ffe6;
+  --bs-alert-border-color: #bcfae0;
 }
 
 .alert-success .alert-link {
@@ -10610,8 +10610,8 @@ fieldset:disabled .btn {
 }
 
 .bg-primary {
-  /* background-color: #5e72e4 !important; */
-  background-image: linear-gradient(to right, #B87333, #D1793B, #ffdaa2 , #B87333, #D1793B);
+  background-color: #072dd7cf !important;
+  /* background-image: linear-gradient(to right, #B87333, #D1793B, #ffdaa2 , #B87333, #D1793B); */
 }
 
 .bg-secondary {
@@ -20136,9 +20136,9 @@ fieldset:disabled .btn {
   background-image: linear-gradient(310deg, #627594 0%, #8ca1cb 100%);
 }
 
-.alert-success {
+/* .alert-success {
   background-image: linear-gradient(310deg, #2dce89 0%, #26adab 100%);
-}
+} */
 
 .alert-info {
   background-image: linear-gradient(310deg, #1171ef 0%, #0eadca 100%);

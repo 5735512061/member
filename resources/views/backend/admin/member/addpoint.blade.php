@@ -176,13 +176,13 @@
                                         <div class="col-md-4">
                                             @if ($sumprice == $min_price_standard || $sumprice < $max_price_standard)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>STANDARD</h5>
+                                                        style="color:#777777;"></i><br><span style="font-size:30;">STANDARD</span></h5>
                                             @elseif($sumprice == $min_price_premium || $sumprice < $max_price_premium)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>PREMIUM</h5>
+                                                        style="color:#777777;"></i><br><span style="font-size:30;">PREMIUM</span></h5>
                                             @elseif($sumprice > $min_price_supreme)
                                                 <h5 class="mt-3">ระดับของสมาชิก <i class="fa fa-caret-down"
-                                                        style="color:#777777;"></i><br>SUPREME</h5>
+                                                        style="color:#777777;"></i><br><span style="font-size:30;">SUPREME</span></h5>
                                             @endif
                                             <h4 class="mb-1">พอยท์คงเหลือ <i class="fa fa-caret-down"
                                                     style="color:#777777;"></i><br><span style="font-size:30;">

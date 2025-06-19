@@ -105,7 +105,7 @@
                 <a href="javascript:history.back();" style="color:#fff;"><i class="ni ni-bold-left"></i> ย้อนกลับ</a>
             </div>
         </div>
-        <h4 class="mt-4">แก้ไขแคมเปญ</h4>
+        <h4 class="mt-4">แก้ไขคูปอง</h4>
         <div class="row mt-4">
             <div class="col-md-2"></div>
             <div class="col-md-8">
@@ -138,7 +138,7 @@
                                 <div class="card-header pb-0 pt-3 bg-transparent">
                                     <div class="row">
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ชื่อแคมเปญ <span>(จำเป็นต้องกรอก)</span>
+                                            <p><span>*</span> ชื่อคูปอง <span>(จำเป็นต้องกรอก)</span>
                                                 @if ($errors->has('name'))
                                                     <center><span class="text-danger" style="font-size: 15px;">({{ $errors->first('name') }})</span></center>
                                                 @endif
@@ -146,7 +146,7 @@
                                             <input class="form-control" type="text" placeholder="รับซาชิมิฟรี 1 เซต" name="name" value="{{$campaign->name}}">
                                         </div>
                                         <div class="col-md-12 mt-2">
-                                            <p><span>*</span> ประเภทแคมเปญ <span>(จำเป็นต้องกรอก)</span></p>
+                                            <p><span>*</span> ประเภทคูปอง <span>(จำเป็นต้องกรอก)</span></p>
                                             <select name="campaign_type" class="form-control">
                                                 <option value="{{$campaign->campaign_type}}">{{$campaign->campaign_type}}</option>
                                                 <option value="ไม่ระบุ">ไม่ระบุ</option>
@@ -198,7 +198,7 @@
                                     <div class="row">
                                         <div class="col-md-12 mt-3">
                                             <input type="hidden" name="id" value="{{$campaign->id}}">
-                                            <button type="submit" class="btn btn-lg btn-success">อัพเดตแคมเปญ</button>
+                                            <button type="submit" class="btn btn-lg btn-success">อัพเดตคูปอง</button>
                                         </div>
                                     </div>
                                 </div>

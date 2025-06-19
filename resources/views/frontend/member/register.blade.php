@@ -57,23 +57,9 @@
                             <div class="card-body">
 
                                 <h3>ข้อมูลผู้สมัครสมาชิก <i class="fa fa-caret-down" style="color:#777777;"></i></h3>
-                                <div class="row">
-                                    <div class="col-md-2 mt-4">
-                                        <p>คำนำหน้า <i class="fa fa-caret-right" style="color:#777777;"></i></p>
-                                    </div>
-                                    <div class="col-md-3 mt-3">
-                                        <select name="title" class="form-control">
-                                            <option value="นาย" {{ old('title') == 'นาย' ? 'selected' : '' }}>นาย
-                                            </option>
-                                            <option value="นาง" {{ old('title') == 'นาง' ? 'selected' : '' }}>นาง
-                                            </option>
-                                            <option value="นางสาว" {{ old('title') == 'นางสาว' ? 'selected' : '' }}>นางสาว
-                                            </option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 mt-2">
+
+                                <div class="row mt-3">
+                                    <div class="col-md-12">
                                         <p>
                                             <span>*</span> หมายเลขบัตรประชาชน <i class="fa fa-caret-down"
                                                 style="color:#777777;"></i><br>
@@ -87,8 +73,23 @@
                                             value="{{ old('card_id') }}">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6 mt-2">
+                                <div class="row mt-3">
+                                    <div class="col-md-3">
+                                        <p> <span>*</span> คำนำหน้า <i class="fa fa-caret-down" style="color:#777777;"></i>
+                                        </p>
+
+                                        <select name="title" class="form-control">
+                                            <option value="นาย" {{ old('title') == 'นาย' ? 'selected' : '' }}>นาย
+                                            </option>
+                                            <option value="นาง" {{ old('title') == 'นาง' ? 'selected' : '' }}>นาง
+                                            </option>
+                                            <option value="นางสาว" {{ old('title') == 'นางสาว' ? 'selected' : '' }}>นางสาว
+                                            </option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
                                         <p>
                                             <span>*</span> ชื่อ ตามบัตรประชาชน <i class="fa fa-caret-down"
                                                 style="color:#777777;"></i><br>
@@ -100,7 +101,7 @@
                                         <input class="form-control" type="text" placeholder="กรอกชื่อ ตามบัตรประชาชน"
                                             name="name" value="{{ old('name') }}">
                                     </div>
-                                    <div class="col-md-6 mt-2">
+                                    <div class="col-md-6">
                                         <p>
                                             <span>*</span> นามสกุล ตามบัตรประชาชน <i class="fa fa-caret-down"
                                                 style="color:#777777;"></i><br>
@@ -112,19 +113,21 @@
                                         <input class="form-control" type="text" placeholder="กรอกนามสกุล ตามบัตรประชาชน"
                                             name="surname" value="{{ old('surname') }}">
                                     </div>
-                                    <div class="col-md-6 mt-2">
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-md-6">
                                         <p>
-                                            <span>*</span> วัน/เดือน/ปี ค.ศ เกิด <i class="fa fa-caret-down"
+                                            <span>*</span> เดือน/วัน/ปี ค.ศ เกิด <i class="fa fa-caret-down"
                                                 style="color:#777777;"></i><br>
                                             @if ($errors->has('bday'))
                                                 <span class="text-danger"
                                                     style="font-size: 15px;">({{ $errors->first('bday') }})</span>
                                             @endif
                                         </p>
-                                        <input class="form-control" type="text" placeholder="กรอกวัน/เดือน/ปี ค.ศ เกิด"
-                                            name="bday" value="{{ old('bday') }}">
+                                        <input class="form-control" type="date" name="bday"
+                                            value="{{ old('bday') }}">
                                     </div>
-                                    <div class="col-md-6 mt-2">
+                                    <div class="col-md-6">
                                         <p>
                                             <span>*</span> เบอร์โทรศัพท์ <i class="fa fa-caret-down"
                                                 style="color:#777777;"></i><br>
@@ -137,8 +140,8 @@
                                             placeholder="กรอกเบอร์โทรศัพท์" name="tel" value="{{ old('tel') }}">
                                     </div>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-12 mt-3">
+                                <div class="row mt-5">
+                                    <div class="col-md-12">
                                         <input type="hidden" name="status" value="ONLINE">
                                         <button type="submit" class="btn btn-lg btn-success">สมัครสมาชิกใหม่</button>
                                     </div>

@@ -105,26 +105,32 @@ class AdminController extends Controller
     }
 
     public function createAccountStorePost(Request $request) {
-        if($request->hasFile('image')) { 
-            $image = $request->file('image');
-            $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
-            $image->move('images/store-logo/', $filename);
-            $path = 'images/'.$filename;
-        }
+        $validator = Validator::make($request->all(), $this->rules_createAccountStorePost(), $this->messages_createAccountStorePost());
+        if($validator->passes()) {
+            if($request->hasFile('image')) { 
+                $image = $request->file('image');
+                $filename = md5(($image->getClientOriginalName(). time()) . time()) . "_o." . $image->getClientOriginalExtension();
+                $image->move('images/store-logo/', $filename);
+                $path = 'images/'.$filename;
+            }
 
-        foreach ($request->inputs as $key => $value) {
-            $account_store = new AccountStore;
-            $account_store->store_name = $request->get('store_name');
-            $account_store->branch = $value['branch'];
-            $account_store->tel = $value['tel'];
-            $account_store->username = $value['username'];
-            $account_store->password_name = $value['password_name'];
-            $account_store['password'] = bcrypt($value['password_name']);
-            $account_store->image = $filename;
-            $account_store->save();
+            foreach ($request->inputs as $key => $value) {
+                $account_store = new AccountStore;
+                $account_store->store_name = $request->get('store_name');
+                $account_store->branch = $value['branch'];
+                $account_store->tel = $value['tel'];
+                $account_store->username = $value['username'];
+                $account_store->password_name = $value['password_name'];
+                $account_store['password'] = bcrypt($value['password_name']);
+                $account_store->image = $filename;
+                $account_store->save();
+            }
+                    
+            return back();
+        }else {
+            $request->session()->flash('alert-danger', 'สร้างบัญชีร้านค้าไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง');
+            return back()->withErrors($validator)->withInput();
         }
-                
-        return back();
     }
 
     public function editAccountStore($id) {
@@ -443,10 +449,10 @@ class AdminController extends Controller
                 $campaign->save();
             }
 
-            $request->session()->flash('alert-success', 'สร้างแคมเปญสำเร็จ');
+            $request->session()->flash('alert-success', 'สร้างคูปองสำเร็จ');
             return redirect()->action('Backend\AdminController@campaign');
         }else{
-            $request->session()->flash('alert-danger', 'สร้างแคมเปญไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
+            $request->session()->flash('alert-danger', 'สร้างคูปองไม่สำเร็จ กรุณาตรวจสอบข้อมูลอีกครั้ง !!');
             return back()->withErrors($validator)->withInput();   
         }
     }
@@ -1108,8 +1114,8 @@ class AdminController extends Controller
 
     public function messages_createCampaign() {
         return [
-            'name.required' => 'กรุณากรอกชื่อแคมเปญ',
-            'expire_date.required' => 'กรุณากรอกวันที่สิ้นสุดแคมเปญ',
+            'name.required' => 'กรุณากรอกชื่อคูปอง',
+            'expire_date.required' => 'กรุณากรอกวันที่สิ้นสุดคูปอง',
             'detail.required' => 'กรุณากรอกเงื่อนไขในการใช้สิทธิ์',
             'image.required' => 'กรุณาแนบไฟล์รูปภาพ',
         ];
@@ -1139,6 +1145,20 @@ class AdminController extends Controller
     public function messages_partnerAddPromotion() {
         return [
             'promotion.required' => 'กรุณากรอกรายละเอียดโปรโมชั่น',
+        ];
+    }
+
+    public function rules_createAccountStorePost() {
+        return [
+            'image' => 'required',
+            'store_name' => 'required',
+        ];
+    }
+
+    public function messages_createAccountStorePost() {
+        return [
+            'image.required' => 'กรุณาแนบไฟล์รูปภาพ',
+            'store_name.required' => 'กรุณากรอกชื่อร้านค้า',
         ];
     }
 }

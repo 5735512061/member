@@ -11,8 +11,10 @@ use App\Model\Article;
 use App\Model\PartnerShopPromotion;
 use App\PartnerShop;
 use App\AccountStore;
+use App\Member;
 
 use Validator;
+use Carbon\Carbon;
 
 class SystemController extends Controller
 {
@@ -34,7 +36,7 @@ class SystemController extends Controller
             $bday = $request->get('bday');
             $tel = $request->get('tel');
             $status = $request->get('status');
-            $password = $request->get('tel');
+            $password_str = str_replace('-', '', $request->get('tel'));
             $date = Carbon::now()->format('d/m/Y');
 
             $member = new Member;
@@ -47,7 +49,7 @@ class SystemController extends Controller
             $member->tel = $tel;
             $member->date = $date;
             $member->status = $status;
-            $member->password = $password;
+            $member->password = bcrypt($password_str);
             $member->save();
 
             $request->session()->flash('alert-success', 'ลงทะเบียนสมัครสมาชิกสำเร็จ');
@@ -224,11 +226,6 @@ class SystemController extends Controller
             'surname' => 'required',
             'bday' => 'required',
             'tel' => 'required|unique:members',
-            'address' => 'required',
-            'district' => 'required',
-            'amphoe' => 'required',
-            'province' => 'required',
-            'zipcode' => 'required',
         ];
     }
 
@@ -242,11 +239,6 @@ class SystemController extends Controller
             'bday.required' => 'กรุณากรอกวันเดือนปีเกิด',
             'tel.required' => 'กรุณากรอกเบอร์โทรศัพท์',
             'tel.unique' => 'เบอร์โทรศัพท์ใช้ในการลงทะเบียนแล้ว',
-            'address.required' => 'กรุณากรอกที่อยู่',
-            'district.required' => 'กรุณากรอกตำบล',
-            'amphoe.required' => 'กรุณากรอกอำเภอ',
-            'province.required' => 'กรุณากรอกจังหวัด',
-            'zipcode.required' => 'กรุณากรอกรหัสไปรษณีย์',
         ];
     }  
 }

@@ -133,10 +133,10 @@ Route::group(['prefix' => '/'], function(){
     Route::get('redeem-reward','Backend\AdminController@redeemReward'); //การแลกของรางวัล
     Route::post('confirm-redeem-reward','Backend\AdminController@confirmRedeemReward'); //คอนเฟิร์มสถานะการแลกของรางวัล
 
-    // จัดการแคมเปญ
-    Route::get('create-campaign','Backend\AdminController@createCampaign'); //หน้าสร้างแคมเปญ
-    Route::post('create-campaign','Backend\AdminController@createCampaignPost'); //สร้างแคมเปญ
-    Route::get('campaign','Backend\AdminController@campaign'); //หน้าแคมเปญทั้งหมด
+    // จัดการคูปอง
+    Route::get('create-campaign','Backend\AdminController@createCampaign'); //หน้าสร้างคูปอง
+    Route::post('create-campaign','Backend\AdminController@createCampaignPost'); //สร้างคูปอง
+    Route::get('campaign','Backend\AdminController@campaign'); //หน้าคูปองทั้งหมด
     Route::get('campaign-on','Backend\AdminController@campaignOn'); //หน้ากำลังจัดแคมเปญ
     Route::get('campaign-notActive','Backend\AdminController@campaignNotActive'); //หน้ายังไม่เริ่มแคมเปญ
     Route::get('campaign-pause','Backend\AdminController@campaignPause'); //หน้าแคมเปญถูกพัก

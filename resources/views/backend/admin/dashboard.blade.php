@@ -55,6 +55,26 @@
     @php
         $date_now = Carbon\Carbon::now();
         $count_member = number_format(DB::table('members')->count());
+
+        $memberCounts = DB::table(
+            DB::raw("(  
+                SELECT members.id,  
+                    CASE  
+                        WHEN COALESCE(SUM(points.price), 0) BETWEEN 0 AND 200000 THEN 'STANDARD'  
+                        WHEN COALESCE(SUM(points.price), 0) BETWEEN 200001 AND 500000 THEN 'PREMIUM'  
+                        WHEN COALESCE(SUM(points.price), 0) BETWEEN 500001 AND 100000000 THEN 'SUPREME'  
+                        ELSE 'OTHER'  
+                    END AS membership_level  
+                FROM members  
+                LEFT JOIN points ON members.id = points.member_id  
+                GROUP BY members.id  
+            ) AS member_points"),
+        )
+            ->select('membership_level', DB::raw('COUNT(*) as member_count'))
+            ->groupBy('membership_level')
+            ->orderByRaw("FIELD(membership_level, 'STANDARD', 'PREMIUM', 'SUPREME', 'OTHER')")
+            ->get();
+
     @endphp
     <div class="container-fluid py-4">
         <div class="header">
@@ -65,11 +85,27 @@
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
                         <center>
-                            <h6 class="text-capitalize">จำนวนสมาชิก <br>( {{ $count_member }} คน )</h6><br>
+                            <h6 class="text-capitalize">จำนวนสมาชิก ( {{ $count_member }} คน )</h6>
                         </center>
-                        <center>
+                        {{-- <center>
                             <div id="piechart" style="width: 450px; height: 320px; margin-top:-2rem;"></div>
-                        </center>
+                        </center> --}}
+
+                        <div class="card-body p-3 repeat-member">
+                            <div class="row">
+                                @foreach ($memberCounts as $count)
+                                    <div class="col-md-6">
+                                        <div class="member-types">
+                                            <div class="text-sm mb-0" style="text-align:center;"><br>
+                                                <span class="font-weight-bold">ระดับ
+                                                    {{ $count->membership_level }}</span>
+                                                <p style="text-align:center;">{{ $count->member_count }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,30 +113,16 @@
             <div class="col-lg-4 col-12 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
                     <div class="card-header pb-0 pt-3 bg-transparent">
-                        <h6 class="text-capitalize">สถิติของสมาชิก</h6>
+                        <h6 class="text-capitalize" style="text-align: center;">สถิติของสมาชิก</h6>
                     </div>
                     @php
                         $member_new = count(
                             DB::table('members')
-                                ->where(
-                                    'created_at',
-                                    '>',
-                                    now()
-                                        ->subDays(30)
-                                        ->endOfDay(),
-                                )
+                                ->where('created_at', '>', now()->subDays(30)->endOfDay())
                                 ->get(),
                         );
-                        $member_use_service = count(
-                            DB::table('points')
-                                ->groupBy('member_id')
-                                ->get(),
-                        );
-                        $member_use_point = count(
-                            DB::table('redeem_points')
-                                ->groupBy('member_id')
-                                ->get(),
-                        );
+                        $member_use_service = count(DB::table('points')->groupBy('member_id')->get());
+                        $member_use_point = count(DB::table('redeem_points')->groupBy('member_id')->get());
                     @endphp
                     <div class="card-body p-3 repeat-member">
                         <div class="row">
@@ -133,19 +155,11 @@
                 </div>
             </div>
             @php
-                $redeem_reward = count(
-                    DB::table('redeem_rewards')
-                        ->where('status', 'แลกรางวัลสำเร็จ')
-                        ->get(),
-                );
+                $redeem_reward = count(DB::table('redeem_rewards')->where('status', 'แลกรางวัลสำเร็จ')->get());
 
                 $coupon = count(DB::table('get_coupons')->get());
 
-                $get_coupon = count(
-                    DB::table('get_coupons')
-                        ->where('status', 'ใช้งานแล้ว')
-                        ->get(),
-                );
+                $get_coupon = count(DB::table('get_coupons')->where('status', 'ใช้งานแล้ว')->get());
             @endphp
             <div class="col-lg-4 col-12 mb-lg-0 mb-4">
                 <div class="card z-index-2 h-100">
@@ -223,13 +237,23 @@
 
                                                 // หักคะแนนจากการแลกของรางวัล
                                                 $redeem_reward_point = DB::table('redeem_rewards')
-                                                    ->join('reward_points', 'reward_points.id', '=', 'redeem_rewards.point_id')
+                                                    ->join(
+                                                        'reward_points',
+                                                        'reward_points.id',
+                                                        '=',
+                                                        'redeem_rewards.point_id',
+                                                    )
                                                     ->where('member_id', $value->id)
                                                     ->sum('reward_points.point');
 
                                                 // หักคะแนนแลกสิทธิ์ร้านค้าพันธมิตร
                                                 $redeem_point = DB::table('redeem_points')
-                                                    ->join('partner_shop_points', 'partner_shop_points.id', '=', 'redeem_points.point_id')
+                                                    ->join(
+                                                        'partner_shop_points',
+                                                        'partner_shop_points.id',
+                                                        '=',
+                                                        'redeem_points.point_id',
+                                                    )
                                                     ->where('member_id', $value->id)
                                                     ->sum('partner_shop_points.point');
 

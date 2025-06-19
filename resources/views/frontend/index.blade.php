@@ -6,13 +6,13 @@
     @php
         $image_slides = DB::table('slide_image_mains')->where('status', 'เปิด')->get();
     @endphp
-    {{-- <section class="hero-slider hero-style">
+    <section class="hero-slider hero-style">
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 @foreach ($image_slides as $image_slide => $value)
                     <div class="swiper-slide">
                         <div class="slide-inner slide-bg-image"
-                            data-background="{{ url('images/slide_main') }}/{{ $value->image }}">
+                            data-background="{{ url('images/slide_main') }}/{{ $value->image }}" style="width:100%">
                         </div>
                     </div>
                 @endforeach
@@ -23,7 +23,7 @@
             <div class="swiper-button-next-js"></div>
             <div class="swiper-button-prev-js"></div>
         </div>
-    </section> --}}
+    </section>
 
     <div style="background-color:#f0b6b5;">
         <div class="container" style="padding-top:5rem; padding-bottom:5rem;">

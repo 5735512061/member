@@ -19,17 +19,17 @@
 							{{-- <li><a href="{{url('rewards')}}">REWARD</a></li> --}}
 							<li><a href="{{url('alliance')}}">สิทธิพิเศษ</a></li>
 							<li><a href="{{url('allarticle')}}">บทความและข่าวสาร</a></li>
-							<li><a href="https://ctp.is/8/9138713" target="_blank">E-COUPON</a></li>
-							<li><a href="https://ctp.is/8/9138713" target="_blank">เข้าสู่ระบบสมาชิก</a></li>
-							{{-- @if(Auth::guard('member')->user() == NULL)
-								<li><a href="{{url('member/login')}}">เข้าสู่ระบบ</a></li>
+							{{-- <li><a href="https://ctp.is/8/9138713" target="_blank">E-COUPON</a></li> --}}
+							{{-- <li><a href="https://ctp.is/8/9138713" target="_blank">เข้าสู่ระบบสมาชิก</a></li> --}}
+							@if(Auth::guard('member')->user() == NULL)
+								<li><a href="{{url('member/login')}}">เข้าสู่ระบบสมาชิก</a></li>
 							@endif
 
 							@auth('member')
 								<li>
 									<a href="{{url('member/profile')}}">บัญชีสมาชิก</a>
 								</li>
-							@endauth --}}
+							@endauth
 						</ul>
 					</nav>
 					<div class="mobile-menu"></div>

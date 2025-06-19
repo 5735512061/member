@@ -98,6 +98,15 @@
         </div>
         <form action="{{ url('/create-account-store') }}" enctype="multipart/form-data" method="post">@csrf
             <div class="row mt-4">
+                <div class="flash-message">
+                    @foreach (['danger', 'warning', 'success', 'info'] as $msg)
+                        @if (Session::has('alert-' . $msg))
+                            <p class="alertdesign alert alert-{{ $msg }}">
+                                {{ Session::get('alert-' . $msg) }}
+                            </p>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="col-lg-3 col-12 mb-lg-0 mb-4">
                     <div class="account card z-index-2">
                         <div class="card-header pb-0 pt-3 bg-transparent">
@@ -116,15 +125,7 @@
                 </div>
                 <div class="col-lg-6 mb-lg-0 mb-4">
                     <div class="card z-index-2 h-100">
-                        <div class="flash-message">
-                            @foreach (['danger', 'warning', 'success', 'info'] as $msg)
-                                @if (Session::has('alert-' . $msg))
-                                    <p class="alertdesign alert alert-{{ $msg }}">
-                                        {{ Session::get('alert-' . $msg) }}
-                                    </p>
-                                @endif
-                            @endforeach
-                        </div>
+
                         <div class="card-header pb-0 pt-5 bg-transparent center" style="font-size: 28px;">
                             กรอกข้อมูลสำหรับการสร้างร้านค้า
                         </div>
@@ -133,7 +134,12 @@
                             <div class="account">
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <p><span>*</span> ชื่อร้านค้า <span>(จำเป็นต้องกรอก)</span></p>
+                                        <p><span>*</span> ชื่อร้านค้า <span>(จำเป็นต้องกรอก)</span>
+                                            @if ($errors->has('store_name'))
+                                                <span class="text-danger"
+                                                    style="font-size: 15px;">({{ $errors->first('store_name') }})</span>
+                                            @endif
+                                        </p>
                                         <input class="form-control" type="text" placeholder="ชื่อร้านค้า"
                                             name="store_name">
                                     </div>

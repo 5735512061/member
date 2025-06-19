@@ -28,12 +28,12 @@
             </div>
         </div>
         <div class="campaign mt-4">
-            <h4>แคมเปญ</h4>
+            <h4>คูปอง</h4>
         </div>
         <a href="{{ url('/create-campaign') }}" class="btn btn-success mt-5" type="submit"><i class="fa fa-plus-circle"
-                aria-hidden="true"></i> สร้างแคมเปญ</a><br>
+                aria-hidden="true"></i> สร้างคูปอง</a><br>
         <a href="{{ url('/campaign') }}" class="btn btn-secondary mt-5" type="submit"><i class="fa fa-ticket"
-                aria-hidden="true"></i> แคมเปญทั้งหมด</a>
+                aria-hidden="true"></i> คูปองทั้งหมด</a>
         <a href="{{ url('/campaign-on') }}" class="btn btn-success mt-5" type="submit"><i class="fa fa-play-circle"
                 aria-hidden="true"></i> กำลังจัดแคมเปญ</a>
         <a href="{{ url('/campaign-notActive') }}" class="btn btn-info mt-5" type="submit"><i class="fa fa-pause"
